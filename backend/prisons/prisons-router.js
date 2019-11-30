@@ -60,6 +60,43 @@ router.post("/register", (req, res) => {
   }
 });
 
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username) {
+    res.status(400).json({
+      error: "Please provide a username"
+    });
+  } else if (!password) {
+    res.status(400).json({
+      error: "Please provide a password"
+    });
+  } else {
+    db("prisons")
+      .where({ username })
+      .first()
+      .then(prison => {
+        if (!prison) {
+          res.status(401).json({
+            error: "This username does not exist"
+          });
+        } else if (prison && !bcrypt.compareSync(password, prison.password)) {
+          res.status(401).json({
+            error: "The password is incorrect"
+          });
+        } else {
+          const token = tokenService.generateToken(prison);
+          res.status(200).json({ username, token });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error while logging in."
+        });
+      });
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const prisons = await db("prisons");
