@@ -1,0 +1,78 @@
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+
+const db = require("../data/dbConfig.js");
+const tokenService = require("./token-service.js");
+
+router.post("/register", (req, res) => {
+  const prison = req.body;
+  const { name, username, password } = req.body;
+
+  if (!name) {
+    res.status(400).json({
+      error: "Please provide a name for your prison."
+    });
+  } else if (!username || username.length < 6) {
+    res.status(400).json({
+      error: "Please provide a username that is at least six characters."
+    });
+  } else if (!password || password.length < 6) {
+    res.status(400).json({
+      error: "Please provide a password that is at least six characters."
+    });
+  } else {
+    const hash = bcrypt.hashSync(password, 14);
+    prison.password = hash;
+    db("prisons")
+      .insert(prison)
+      .then(ids => {
+        const id = ids[0];
+        db("prisons")
+          .where({ id })
+          .first()
+          .then(prison => {
+            const token = tokenService.generateToken(prison);
+            res.status(201).json({
+              id: prison.id,
+              username: prison.username,
+              password: prison.password,
+              token
+            });
+          })
+          .catch(error => {
+            res.status(500).json({
+              error: "There was an error while retrieving the prison data"
+            });
+          });
+      })
+      .catch(error => {
+        if (db("prisons").where({ username })) {
+          res.status(400).json({
+            error: "This username already exists"
+          });
+        } else if (db("prisons").where({ name })) {
+          res.status(400).json({
+            error: "This prison name already exists"
+          });
+        }
+      });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const prisons = await db("prisons");
+    if (!prisons) {
+      res.status(404).json({ error: "There are no prisons." });
+    } else {
+      res.status(200).json(prisons);
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "There was an error while retrieving prisons."
+    });
+  }
+});
+
+module.exports = router;
