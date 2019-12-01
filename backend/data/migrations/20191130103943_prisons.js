@@ -13,7 +13,7 @@ exports.up = function(knex) {
     table.string("address");
     table.string("city");
     table.string("state");
-    table.integer("zip_code");
+    table.string("zip_code");
     table.string("prison_info");
     table.string("prison_image");
   });
