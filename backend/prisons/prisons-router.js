@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const multer = require("multer");
 
 const db = require("../data/dbConfig.js");
+const restricted = require("../auth/restricted");
+
+const storage = require("../config/cloudConfig");
+const parser = multer({ storage: storage });
+
 const tokenService = require("./token-service.js");
 
 router.post("/register", (req, res) => {
@@ -112,13 +118,28 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+// router.post('/test', parser.single("image"), (req, res) => {
+//   console.log(req.file) // to see what is returned to you
+//   const image = {};
+//   image.url = req.file.url;
+//   image.id = req.file.public_id;
+//   Image.create(image) // save image information in database
+//     .then(newImage => res.json(newImage))
+//     .catch(err => console.log(err));
+// });
+
+router.put("/:id", parser.single("image"), (req, res) => {
   const { id } = req.params;
   const changes = req.body;
+  // const image = {};
+  // image.url = req.file.url;
+  // image.id = req.file.public_id;
+  // let prisonImg = Image.create(image).then(newImage => newImage)
+  // prison_image: prisonImg
 
   db("prisons")
     .where({ id })
-    .update({ ...changes, zip_code: parseInt(changes.zip_code) })
+    .update({ ...changes })
     .then(count => {
       if (count > 0) {
         res.status(200).json(count);
