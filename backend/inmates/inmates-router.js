@@ -17,7 +17,29 @@ router.get("/", restricted, (req, res) => {
     .catch(error => {
       res
         .status(500)
-        .json({ error: "The inmates for this prison could not be retrieved." });
+        .json({ error: "The inmates for this prison could not be retrieved" });
+    });
+});
+
+router.get("/:id", restricted, (req, res) => {
+  const { id } = req.params;
+
+  db("inmates")
+    .where({ id, prison_id: req.decodedToken.subject })
+    .first()
+    .then(inmate => {
+      if (inmate) {
+        res.status(200).json(inmate);
+      } else {
+        res.status(404).json({
+          error: "You cannot access the inmate with this specific id"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "The inmate with the specified ID could not be retrieved."
+      });
     });
 });
 
