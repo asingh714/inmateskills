@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../data/dbConfig.js");
 const parser = require("../config/cloudConfig");
-const restricted = require("./restricted");
+const restricted = require("../config/restricted");
 
 const tokenService = require("./token-service.js");
 
@@ -115,7 +115,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/:id", parser.single("prison_image"), (req, res) => {
+router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -154,7 +154,7 @@ router.put("/:id", parser.single("prison_image"), (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", restricted, (req, res) => {
   const { id } = req.params;
 
   db("prisons")
