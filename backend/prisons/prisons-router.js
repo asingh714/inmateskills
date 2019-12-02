@@ -2,14 +2,27 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
 
 const db = require("../data/dbConfig.js");
-const restricted = require("../auth/restricted");
-
-const storage = require("../config/cloudConfig");
-const parser = multer({ storage: storage });
+const restricted = require("./restricted");
 
 const tokenService = require("./token-service.js");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "prisonerSkills",
+  allowedFormats: ["jpg", "png"],
+  transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+const parser = multer({ storage: storage });
 
 router.post("/register", (req, res) => {
   const prison = req.body;
@@ -118,40 +131,44 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.post('/test', parser.single("image"), (req, res) => {
-//   console.log(req.file) // to see what is returned to you
-//   const image = {};
-//   image.url = req.file.url;
-//   image.id = req.file.public_id;
-//   Image.create(image) // save image information in database
-//     .then(newImage => res.json(newImage))
-//     .catch(err => console.log(err));
-// });
 
-router.put("/:id", parser.single("image"), (req, res) => {
+router.put("/:id", parser.single("prison_image"), (req, res) => {
   const { id } = req.params;
   const changes = req.body;
-  // const image = {};
-  // image.url = req.file.url;
-  // image.id = req.file.public_id;
-  // let prisonImg = Image.create(image).then(newImage => newImage)
-  // prison_image: prisonImg
 
-  db("prisons")
-    .where({ id })
-    .update({ ...changes })
-    .then(count => {
-      if (count > 0) {
-        res.status(200).json(count);
-      } else {
-        res.status(404).json({
-          error: "You cannot access the prison with this specific id."
-        });
-      }
-    })
-    .catch(error => {
-      res.status(500).json({ error: "The prison could not be modified." });
-    });
+  if (req.file) {
+    db("prisons")
+      .where({ id })
+      .update({ ...changes, prison_image: req.file.url })
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json(count);
+        } else {
+          res.status(404).json({
+            error: "You cannot access the prison with this specific id."
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ error: "The prison could not be modified." });
+      });
+  } else {
+    db("prisons")
+      .where({ id })
+      .update({ ...changes })
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json(count);
+        } else {
+          res.status(404).json({
+            error: "You cannot access the prison with this specific id."
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ error: "The prison could not be modified." });
+      });
+  }
 });
 
 router.delete("/:id", (req, res) => {

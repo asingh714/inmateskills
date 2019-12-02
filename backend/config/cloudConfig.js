@@ -9,7 +9,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "prisonSkills",
+  folder: "prisonerSkills",
   allowedFormats: ["jpg", "png"],
   transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
