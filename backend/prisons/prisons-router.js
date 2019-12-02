@@ -1,28 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const multer = require("multer");
-const cloudinary = require("cloudinary");
-const cloudinaryStorage = require("multer-storage-cloudinary");
 
 const db = require("../data/dbConfig.js");
+const parser = require("../config/cloudConfig");
 const restricted = require("./restricted");
 
 const tokenService = require("./token-service.js");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-});
-
-const storage = cloudinaryStorage({
-  cloudinary: cloudinary,
-  folder: "prisonerSkills",
-  allowedFormats: ["jpg", "png"],
-  transformation: [{ width: 500, height: 500, crop: "limit" }]
-});
-const parser = multer({ storage: storage });
 
 router.post("/register", (req, res) => {
   const prison = req.body;
@@ -130,7 +114,6 @@ router.get("/", async (req, res) => {
     });
   }
 });
-
 
 router.put("/:id", parser.single("prison_image"), (req, res) => {
   const { id } = req.params;

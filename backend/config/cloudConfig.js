@@ -1,3 +1,4 @@
+const multer = require("multer");
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 
@@ -14,4 +15,6 @@ const storage = cloudinaryStorage({
   transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
 
-module.exports = storage;
+const parser = multer({ storage: storage });
+
+module.exports = parser;
