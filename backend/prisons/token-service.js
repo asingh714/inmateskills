@@ -3,7 +3,8 @@ const jwt = require("jsonwebtoken")
 const generateToken = (prison) => {
   const payload = {
     subject: prison.id,
-    username: prison.username
+    username: prison.username,
+    name: prison.name
   }
 
   const secret = process.env.JWT_SECRET 

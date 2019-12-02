@@ -1,4 +1,3 @@
-const multer = require("multer");
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 
@@ -8,13 +7,22 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-const storage = cloudinaryStorage({
+const imageStorage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "prisonerSkills",
   allowedFormats: ["jpg", "png"],
   transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
 
-const parser = multer({ storage: storage });
+const docStorage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "inmates",
+  allowedFormats: ["jpg", "png", "pdf"],
+})
 
-module.exports = parser;
+
+
+module.exports = {
+  imageStorage,
+  docStorage
+};

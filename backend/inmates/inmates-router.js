@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 
 const db = require("../data/dbConfig");
+const { docStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
+const parser = multer({ storage: docStorage });
 
 router.get("/", restricted, (req, res) => {
   db("inmates")
@@ -38,9 +41,69 @@ router.get("/:id", restricted, (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        error: "The inmate with the specified ID could not be retrieved."
+        error: "The inmate with the specified ID could not be retrieved"
       });
     });
+});
+
+
+router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
+  const inmate = req.body;
+  // console.log(req.files["inmate_image"][0].url);
+  // let inmateImage = req.files ? req.files["inmate_image"][0].url : ""
+  // let resume = req.files ? req.files["resume"][0].url : ""
+  inmate.prison_id = req.decodedToken.subject;
+  inmate.prison_name = req.decodedToken.name;
+
+  if (!inmate.release_date) {
+    res
+      .status(400)
+      .json({ error: "Please provide a release date for this inmate" });
+  } else if (!inmate.availability) {
+    res
+      .status(400)
+      .json({
+        error:
+          "Please provide an availability value if this inmate is available"
+      });
+  } else if (inmate.release_date && inmate.availability && req.file) { 
+    console.log(inmate);
+    db("inmates")
+      .insert({ ...inmate, inmate_image: inmateImage, resume: resume})
+      .then(ids => {
+        const id = ids[0];
+        db("inmates")
+          .where({ id })
+          .first()
+          .then(inmate => {
+            res.status(201).json(inmate);
+          });
+      })
+      .catch(error => {
+        res.status(500).json({
+          error:
+            "There was an error while saving the inmate profile to the database."
+        });
+      });
+  } else {
+    db("inmates")
+    .insert(inmate)
+    .then(ids => {
+      const id = ids[0];
+      db("inmates")
+        .where({ id })
+        .first()
+        .then(inmate => {
+          res.status(201).json(inmate);
+        });
+    })
+    .catch(error => {
+      res.status(500).json({
+        error:
+          "There was an error while saving the inmate profile to the database."
+      });
+    });
+  }
 });
 
 module.exports = router;

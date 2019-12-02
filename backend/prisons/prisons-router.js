@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const multer = require("multer");
+
 
 const db = require("../data/dbConfig.js");
-const parser = require("../config/cloudConfig");
+const { imageStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
 
 const tokenService = require("./token-service.js");
+const parser = multer({ storage: imageStorage });
 
 router.post("/register", (req, res) => {
   const prison = req.body;
@@ -82,13 +85,13 @@ router.post("/login", (req, res) => {
         if (!prison) {
           res.status(401).json({
             error: "This username does not exist"
-          })
+          });
         }
         //  else if (prison && !bcrypt.compareSync(password, prison.password)) {
         //   res.status(401).json({
         //     error: "The password is incorrect"
         //   });
-        // } 
+        // }
         else {
           const token = tokenService.generateToken(prison);
           res.status(200).json({ username, token });
