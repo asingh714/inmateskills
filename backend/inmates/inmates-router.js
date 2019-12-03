@@ -96,6 +96,15 @@ router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1
   const {id} = req.params;
   const changes = req.body;
 
+  if (req.files["inmate_image"]) {
+    changes.inmate_image = req.files["inmate_image"][0].url
+  }
+
+  if (req.files["resume"]) {
+    changes.resume = req.files["resume"][0].url
+  } 
+
+  console.log(changes);
   if (!changes.release_date) {
     res
       .status(400)
@@ -110,7 +119,7 @@ router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1
   } else {
     db("inmates")
       .where({ id, prison_id: req.decodedToken.subject })
-      .update({...changes,})
+      .update(changes)
       .then(count => {
         if (count > 0) {
           res.status(200).json(count);
