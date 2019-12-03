@@ -42,7 +42,6 @@ router.post("/register", (req, res) => {
             res.status(201).json({
               id: prison.id,
               username: prison.username,
-              password: prison.password,
               token
             });
           })
@@ -86,12 +85,11 @@ router.post("/login", (req, res) => {
           res.status(401).json({
             error: "This username does not exist"
           });
+        } else if (prison && !bcrypt.compareSync(password, prison.password)) {
+          res.status(401).json({
+            error: "The password is incorrect"
+          });
         }
-        //  else if (prison && !bcrypt.compareSync(password, prison.password)) {
-        //   res.status(401).json({
-        //     error: "The password is incorrect"
-        //   });
-        // }
         else {
           const token = tokenService.generateToken(prison);
           res.status(200).json({ username, token });

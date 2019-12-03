@@ -95,6 +95,8 @@ router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1},
 router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
   const {id} = req.params;
   const changes = req.body;
+  console.log(req.files);
+
 
   if (req.files["inmate_image"]) {
     changes.inmate_image = req.files["inmate_image"][0].url
@@ -104,7 +106,6 @@ router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1
     changes.resume = req.files["resume"][0].url
   } 
 
-  console.log(changes);
   if (!changes.release_date) {
     res
       .status(400)
