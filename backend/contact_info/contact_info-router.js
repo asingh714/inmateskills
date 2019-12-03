@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../data/dbConfig");
-const restricted = require("../config/restricted");
+// const restricted = require("../config/restricted");
 
-router.get("/:id/contact", restricted, (req, res) => {
+router.get("/:id/contact", (req, res) => {
   const { id } = req.params;
 
   db("inmates")
-    .where({ id, prison_id: req.decodedToken.subject })
+    .where({ id })
     .first()
     .then(inmate => {
       if (inmate) {
@@ -38,5 +38,37 @@ router.get("/:id/contact", restricted, (req, res) => {
       });
     });
 });
+
+router.post("/:id/contact", (req,res) => {
+  const { id } = req.params;
+  const contactInfo = req.body;
+
+  db("inmates")
+    .where({ id })
+    .first()
+    .then(inmate => {
+      if (inmate) {
+        db("contact_info")
+          .insert({...contactInfo, inmate_id: inmate.id})
+          .then(ids => {
+            const id = ids[0]
+            db("contact_info").where({id}).first()
+            .then(inmate => {
+              res.status(201).json(inmate);
+            })
+          })
+      } else {
+        res.status(404).json({
+          error:
+            "You cannot provide your contact information to this inmate"
+        });
+      }
+    }).catch(error => {
+      res.status(500).json({
+        error:
+          "There was an error while saving the contact information"
+      });
+    });
+})
 
 module.exports = router;
