@@ -49,11 +49,16 @@ router.get("/:id", restricted, (req, res) => {
 
 router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
   const inmate = req.body;
-  // console.log(req.files["inmate_image"][0].url);
-  // let inmateImage = req.files ? req.files["inmate_image"][0].url : ""
-  // let resume = req.files ? req.files["resume"][0].url : ""
   inmate.prison_id = req.decodedToken.subject;
   inmate.prison_name = req.decodedToken.name;
+  
+  if (req.files["inmate_image"]) {
+    inmate.inmate_image = req.files["inmate_image"][0].url
+  }
+
+  if (req.files["resume"]) {
+    inmate.resume = req.files["resume"][0].url
+  } 
 
   if (!inmate.release_date) {
     res
@@ -66,26 +71,8 @@ router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1},
         error:
           "Please provide an availability value if this inmate is available"
       });
-  } else if (inmate.release_date && inmate.availability && req.file) { 
-    console.log(inmate);
-    db("inmates")
-      .insert({ ...inmate, inmate_image: inmateImage, resume: resume})
-      .then(ids => {
-        const id = ids[0];
-        db("inmates")
-          .where({ id })
-          .first()
-          .then(inmate => {
-            res.status(201).json(inmate);
-          });
-      })
-      .catch(error => {
-        res.status(500).json({
-          error:
-            "There was an error while saving the inmate profile to the database."
-        });
-      });
-  } else {
+  } 
+ 
     db("inmates")
     .insert(inmate)
     .then(ids => {
@@ -103,7 +90,64 @@ router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1},
           "There was an error while saving the inmate profile to the database."
       });
     });
+});
+
+router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
+  const {id} = req.params;
+  const changes = req.body;
+
+  if (!changes.release_date) {
+    res
+      .status(400)
+      .json({ error: "Please provide a release date for this inmate" });
+  } else if (!changes.availability) {
+    res
+      .status(400)
+      .json({
+        error:
+          "Please provide an availability value if this inmate is available"
+      });
+  } else {
+    db("inmates")
+      .where({ id, prison_id: req.decodedToken.subject })
+      .update({...changes,})
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json(count);
+        } else {
+          res.status(404).json({
+            error: "You cannot access the inmate with this specific id."
+          });
+        }
+      })
+      .catch(error => {
+        res
+          .status(500)
+          .json({ error: "The inmate profile could not be modified." });
+      });
   }
+})
+
+router.delete("/:id", restricted, (req, res) => {
+  const { id } = req.params;
+
+  db("inmates")
+    .where({ id, prison_id: req.decodedToken.subject })
+    .del()
+    .then(count => {
+      if (count > 0) {
+        res.status(200).json(count);
+      } else {
+        res.status(404).json({
+          error: "You cannot access the inmate with this specific id."
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "The inmate could not be removed."
+      });
+    });
 });
 
 module.exports = router;
