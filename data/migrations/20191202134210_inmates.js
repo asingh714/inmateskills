@@ -8,11 +8,11 @@ exports.up = function(knex) {
 
     table.boolean("availability").notNullable();
 
-    table.string("inmate_info");
+    table.text("inmate_info");
 
-    table.string("inmate_image");
+    table.text("inmate_image");
 
-    table.string("resume");
+    table.text("resume");
 
     table
       .integer("prison_id")
