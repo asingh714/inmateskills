@@ -53,15 +53,18 @@ router.post("/register", (req, res) => {
           });
       })
       .catch(error => {
-        if (db("prisons").where({ username })) {
-          res.status(400).json({
-            error: "This username already exists"
-          });
-        } else if (db("prisons").where({ name })) {
-          res.status(400).json({
-            error: "This prison name already exists"
-          });
-        }
+        // if (db("prisons").where({ username })) {
+        //   res.status(400).json({
+        //     error: "This username already exists"
+        //   });
+        // } else if (db("prisons").where({ name })) {
+        //   res.status(400).json({
+        //     error: "This prison name already exists"
+        //   });
+        // }
+        res.status(400).json({
+          error: "This username or prison name already exists!"
+        });
       });
   }
 });
