@@ -32,6 +32,7 @@ router.post("/register", (req, res) => {
     prison.password = hash;
     db("prisons")
       .insert(prison)
+      .returning("id")
       .then(ids => {
         const id = ids[0];
         db("prisons")
@@ -78,6 +79,7 @@ router.post("/login", (req, res) => {
     });
   } else {
     db("prisons")
+    .returning("id")
       .where({ username })
       .first()
       .then(prison => {
@@ -130,6 +132,7 @@ router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
 
   if (req.file) {
     db("prisons")
+    .returning("id")
       .where({ id })
       .update({ ...changes, prison_image: req.file.url })
       .then(count => {
@@ -146,6 +149,7 @@ router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
       });
   } else {
     db("prisons")
+    .returning("id")
       .where({ id })
       .update({ ...changes })
       .then(count => {
@@ -167,11 +171,13 @@ router.delete("/:id", restricted, (req, res) => {
   const { id } = req.params;
 
   db("prisons")
+  .returning("id")
     .where({ id })
     .first()
     .then(prison => {
       if (prison) {
         db("prisons")
+        .returning("id")
           .where({ id })
           .del()
           .then(count => {
