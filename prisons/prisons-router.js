@@ -109,10 +109,13 @@ router.get("/", async (req, res) => {
     if (!prisons) {
       res.status(404).json({ error: "There are no prisons." });
     } else {
-      const {name, username, address, city, state, zip_code, prison_info, prison_image} = prisons
-      res.status(200).json({
-        name, username, address, city, state, zip_code, prison_info, prison_image
-      });
+      let prisonsWOPasswords = prisons.map(prison => {
+        let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
+        return {
+          id, name, username, address, city, state, zip_code, prison_info, prison_image
+        }
+      })
+      res.status(200).json(prisonsWOPasswords);
     }
   } catch (error) {
     res.status(500).json({
