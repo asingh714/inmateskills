@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       release_date: "1/3/2020",
       availability: true,
       inmate_info:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi quo eveniet blanditiis obcaecati. Ut officia nostrum recusandae tenetur consequuntur, quam suscipit voluptate. Quod commodi eveniet eius consequatur ut tenetur nobis.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
       inmate_image:
         "https://images.unsplash.com/photo-1565204241577-d3fa4a829588?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=666&q=80",
       resume: "",
@@ -19,7 +19,7 @@ exports.seed = function(knex) {
       release_date: "4/5/2020",
       availability: true,
       inmate_info:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi quos nostrum officiis harum amet nobis, eos doloribus, nihil veritatis neque voluptatibus odit. Deserunt sit ducimus omnis incidunt alias repellat accusamus.",
+        "Nisi quos nostrum officiis harum amet nobis, eos doloribus, nihil veritatis neque voluptatibus odit.",
       inmate_image:
         "https://images.unsplash.com/photo-1565204241577-d3fa4a829588?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=666&q=80",
       resume: "",
@@ -32,7 +32,7 @@ exports.seed = function(knex) {
       release_date: "2/3/2020",
       availability: true,
       inmate_info:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, voluptatum nam? Perferendis dignissimos saepe recusandae totam reiciendis officia facilis voluptates repellat, error sapiente dolores nam deserunt laborum dicta eius ea!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       inmate_image:
         "https://images.unsplash.com/photo-1565204241577-d3fa4a829588?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=666&q=80",
       resume: "",
