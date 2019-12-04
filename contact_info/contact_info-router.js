@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../data/dbConfig");
-// const restricted = require("../config/restricted");
 
 router.get("/:id/contact", (req, res) => {
   const { id } = req.params;
