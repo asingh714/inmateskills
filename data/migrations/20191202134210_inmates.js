@@ -24,7 +24,7 @@ exports.up = function(knex) {
       .onUpdate("CASCADE");
 
     table
-      .integer("prison_name")
+      .string("prison_name")
       .unsigned()
       .notNullable()
       .references("name")
