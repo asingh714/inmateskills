@@ -36,6 +36,7 @@ router.post("/register", (req, res) => {
       .then(ids => {
         const id = ids[0];
         db("prisons")
+        .returning("id")
           .where({ id })
           .first()
           .then(prison => {
@@ -79,7 +80,7 @@ router.post("/login", (req, res) => {
     });
   } else {
     db("prisons")
-    .returning("id")
+      .returning("id")
       .where({ username })
       .first()
       .then(prison => {
