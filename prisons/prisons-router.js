@@ -32,10 +32,10 @@ router.post("/register", (req, res) => {
     prison.password = hash;
     db("prisons")
       .insert(prison)
+      .returning("id")
       .then(ids => {
         const id = ids[0];
         db("prisons")
-          .returning("id")
           .where({ id })
           .first()
           .then(prison => {
