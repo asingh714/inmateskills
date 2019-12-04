@@ -109,7 +109,10 @@ router.get("/", async (req, res) => {
     if (!prisons) {
       res.status(404).json({ error: "There are no prisons." });
     } else {
-      res.status(200).json(prisons);
+      const {name, username, address, city, state, zip_code, prison_info, prison_image} = prisons
+      res.status(200).json({
+        name, username, address, city, state, zip_code, prison_info, prison_image
+      });
     }
   } catch (error) {
     res.status(500).json({

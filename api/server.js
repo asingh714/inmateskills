@@ -15,7 +15,7 @@ server.use("/api/inmates", contactsRouter)
 
 
 server.get("/", (req,res) => {
-  res.send("<h1>Prisoner Skills API</h1>")
+  res.send("<h1>Inmate Skills API</h1>")
 })
 
 module.exports = server;
