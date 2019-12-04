@@ -79,6 +79,7 @@ router.post("/login", (req, res) => {
     });
   } else {
     db("prisons")
+      .returning("id")
       .where({ username })
       .first()
       .then(prison => {
