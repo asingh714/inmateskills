@@ -105,7 +105,7 @@ router.post("/login", (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const prisons = await db("prisons").returning("id")
+    const prisons = await db("prisons")
     if (!prisons) {
       res.status(404).json({ error: "There are no prisons." });
     } else {
