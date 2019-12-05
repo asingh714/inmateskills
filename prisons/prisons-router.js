@@ -41,9 +41,9 @@ router.post("/register", (req, res) => {
           .then(prison => {
             const token = tokenService.generateToken(prison);
             res.status(201).json({
-              id: prison.id,
-              username: prison.username,
-              name: prison.name,
+              // id: prison.id,
+              // username: prison.username,
+              // name: prison.name,
               token
             });
           })
