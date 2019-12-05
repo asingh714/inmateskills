@@ -135,12 +135,11 @@ router.get("/:id", (req,res) => {
   .first()
   .then(prison => {
     if (prison) {
-      let prisonsWOPasswords = prisons.map(prison => {
         let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
         return {
           id, name, username, address, city, state, zip_code, prison_info, prison_image
         }
-      })
+
       res.status(200).json(prisonsWOPasswords);
     } else {
       res.status(404).json({
