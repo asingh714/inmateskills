@@ -44,6 +44,7 @@ router.post("/inmate/:id/contact", (req,res) => {
   const contactInfo = req.body;
 
   db("inmates")
+    .returning("id")
     .where({ id })
     .first()
     .then(inmate => {
