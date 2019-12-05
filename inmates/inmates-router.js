@@ -77,6 +77,7 @@ router.post("/addInmate", restricted, parser.fields([{name: "inmate_image", maxC
  
     db("inmates")
     .insert(inmate)
+    .returning("id")
     .then(ids => {
       const id = ids[0];
       db("inmates")
