@@ -7,7 +7,7 @@ const { docStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
 const parser = multer({ storage: docStorage });
 
-router.get("/", restricted, (req, res) => {
+router.get("/", (req, res) => {
   db("inmates")
     .where({ prison_id: req.decodedToken.subject })
     .then(inmates => {
@@ -24,7 +24,7 @@ router.get("/", restricted, (req, res) => {
     });
 });
 
-router.get("/:id", restricted, (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params;
 
   db("inmates")
