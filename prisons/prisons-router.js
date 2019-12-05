@@ -135,12 +135,10 @@ router.get("/:id", (req,res) => {
   .first()
   .then(prison => {
     if (prison) {
-        let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
-        return {
-          id, name, username, address, city, state, zip_code, prison_info, prison_image
-        }
-
-      res.status(200).json(prisonsWOPasswords);
+      let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
+      res.status(200).json({
+        id, name, username, address, city, state, zip_code, prison_info, prison_image
+      });
     } else {
       res.status(404).json({
         error: "You cannot access the prison with this specific id"
