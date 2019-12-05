@@ -39,13 +39,13 @@ router.post("/register", (req, res) => {
           .where({ id })
           .first()
           .then(prison => {
-            // const token = tokenService.generateToken(prison);
-            // res.status(201).json({
-            //   id: prison.id,
-            //   username: prison.username,
-            //   token
-            // });
-            res.status(201).json(prison)
+            const token = tokenService.generateToken(prison);
+            res.status(201).json({
+              id: prison.id,
+              username: prison.username,
+              name: prison.name,
+              token
+            });
           })
           .catch(error => {
             res.status(500).json({
