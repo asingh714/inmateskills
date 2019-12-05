@@ -8,7 +8,7 @@ const db = require("../data/dbConfig.js");
 const { imageStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
 
-const tokenService = require("./token-service.js");
+const tokenService = require("../config/token-service.js");
 const parser = multer({ storage: imageStorage });
 
 router.post("/register", (req, res) => {
@@ -35,17 +35,18 @@ router.post("/register", (req, res) => {
       .returning("id")
       .then(ids => {
         const id = ids[0];
-        db("prisons")
-          .where({ id })
-          .first()
-          .then(prison => {
-            const token = tokenService.generateToken(prison);
-            res.status(201).json({
-              id: prison.id,
-              username: prison.username,
-              token
-            });
-          })
+        res.status(201).json({ id })
+        // db("prisons")
+        //   .where({ id })
+        //   .first()
+        //   .then(prison => {
+        //     const token = tokenService.generateToken(prison);
+        //     res.status(201).json({
+        //       id: prison.id,
+        //       username: prison.username,
+        //       token
+        //     });
+        //   })
           .catch(error => {
             res.status(500).json({
               error: "There was an error while retrieving the prison data"
@@ -117,7 +118,7 @@ router.get("/", async (req, res) => {
           id, name, username, address, city, state, zip_code, prison_info, prison_image
         }
       })
-      res.status(200).json(prisons);
+      res.status(200).json(prisonsWOPasswords);
     }
   } catch (error) {
     res.status(500).json({
