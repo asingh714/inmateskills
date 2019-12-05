@@ -127,6 +127,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", (req,res) => {
+  const {id} = req.params;
+
+  db("prisons")
+  .where({ id })
+  .first()
+  .then(prison => {
+    if (prison) {
+      res.status(200).json(prison);
+    } else {
+      res.status(404).json({
+        error: "You cannot access the prison with this specific id"
+      });
+    }
+  })
+  .catch(error => {
+    res.status(500).json({
+      error: "The prison with the specified ID could not be retrieved"
+    });
+  });  
+})
+
 router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
   const { id } = req.params;
   const changes = req.body;
