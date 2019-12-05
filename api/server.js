@@ -10,8 +10,8 @@ const contactsRouter = require("../contact_info/contact_info-router.js")
 
 
 server.use("/api/prisons", prisonsRouter)
-server.use("/api/inmates", inmatesRouter)
-server.use("/api/inmates", contactsRouter)
+server.use("/api/prisons", inmatesRouter)
+server.use("/api/prisons", contactsRouter)
 
 
 server.get("/", (req,res) => {

@@ -7,9 +7,11 @@ const { docStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
 const parser = multer({ storage: docStorage });
 
-router.get("/", (req, res) => {
+router.get("/:prisonId/inmates", (req, res) => {
+  const {prisonId} = req.params;
+
   db("inmates")
-    .where({ prison_id: req.decodedToken.subject })
+    .where({ prison_id: prisonId })
     .then(inmates => {
       if (!inmates) {
         res.status(404).json({ error: "There are no inmates for this prison" });
@@ -24,11 +26,11 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-  const { id } = req.params;
+router.get("/:prisonId/inmates/:inmateId", (req, res) => {
+  const { prisonId, inmateId } = req.params;
 
   db("inmates")
-    .where({ id, prison_id: req.decodedToken.subject })
+    .where({ prison_id: prisonId, id: inmateId })
     .first()
     .then(inmate => {
       if (inmate) {
@@ -47,7 +49,7 @@ router.get("/:id", (req, res) => {
 });
 
 
-router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
+router.post("/addInmate", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
   const inmate = req.body;
   inmate.prison_id = req.decodedToken.subject;
   inmate.prison_name = req.decodedToken.name;
@@ -92,7 +94,7 @@ router.post("/", restricted, parser.fields([{name: "inmate_image", maxCount: 1},
     });
 });
 
-router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
+router.put("/updateInmate/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1}, {name: "resume", maxCount: 1}]), (req, res) => {
   const {id} = req.params;
   const changes = req.body;
   console.log(req.files);
@@ -138,7 +140,7 @@ router.put("/:id", restricted, parser.fields([{name: "inmate_image", maxCount: 1
   }
 })
 
-router.delete("/:id", restricted, (req, res) => {
+router.delete("/deleteInmate/:id", restricted, (req, res) => {
   const { id } = req.params;
 
   db("inmates")

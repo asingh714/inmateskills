@@ -3,7 +3,7 @@ const router = express.Router();
 
 const db = require("../data/dbConfig");
 
-router.get("/:id/contact", (req, res) => {
+router.get("/inmate/:id/contact", (req, res) => {
   const { id } = req.params;
 
   db("inmates")
@@ -38,7 +38,7 @@ router.get("/:id/contact", (req, res) => {
     });
 });
 
-router.post("/:id/contact", (req,res) => {
+router.post("/inmate/:id/contact", (req,res) => {
   const { id } = req.params;
   const contactInfo = req.body;
 
