@@ -44,13 +44,13 @@ router.post("/inmate/:id/contact", (req,res) => {
   const contactInfo = req.body;
 
   db("inmates")
-    .returning("id")
     .where({ id })
     .first()
     .then(inmate => {
       if (inmate) {
         db("contact_info")
           .insert({...contactInfo, inmate_id: inmate.id})
+          .returning("id")
           .then(ids => {
             const id = ids[0]
             db("contact_info").where({id}).first()
