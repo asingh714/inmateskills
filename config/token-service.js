@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken")
 
+const secrets = require("../api/secrets");
+
 
 const generateToken = (prison) => {
   const payload = {
@@ -8,7 +10,7 @@ const generateToken = (prison) => {
     name: prison.name
   }
 
-  const secret = process.env.JWT_SECRET 
+  const secret = secrets.jwtSecret;
 
   const options = {
     expiresIn: "10d"
