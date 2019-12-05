@@ -35,18 +35,18 @@ router.post("/register", (req, res) => {
       .returning("id")
       .then(ids => {
         const id = ids[0];
-        res.status(201).json({ id })
-        // db("prisons")
-        //   .where({ id })
-        //   .first()
-        //   .then(prison => {
-        //     const token = tokenService.generateToken(prison);
-        //     res.status(201).json({
-        //       id: prison.id,
-        //       username: prison.username,
-        //       token
-        //     });
-        //   })
+        db("prisons")
+          .where({ id })
+          .first()
+          .then(prison => {
+            // const token = tokenService.generateToken(prison);
+            // res.status(201).json({
+            //   id: prison.id,
+            //   username: prison.username,
+            //   token
+            // });
+            res.status(201).json(prison)
+          })
           .catch(error => {
             res.status(500).json({
               error: "There was an error while retrieving the prison data"
