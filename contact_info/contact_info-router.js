@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../data/dbConfig");
+const restricted = require("../config/restricted");
 
-router.get("/inmate/:id/contact", (req, res) => {
+router.get("/inmate/:id/contact", restricted, (req, res) => {
   const { id } = req.params;
 
   db("inmates")
