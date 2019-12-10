@@ -8,7 +8,7 @@ export default class PrisonPage extends Component {
   render() {
     return (
       <div>
-        <Prisons />  
+        <Prisons {...this.props} />  
       </div>
     )
   }
