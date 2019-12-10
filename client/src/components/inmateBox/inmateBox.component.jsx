@@ -9,7 +9,6 @@ const InmateBox = ({ inmate, prisonId, ...props }) => {
     props.history.push(`/prisons/${prisonId}/inmates/${inmateId}`)
   }
 
-
   return (
     <div className="box" onClick={e => routeToSingleInmateProfilePage(e, inmate.id)}>
       <img src={inmate.inmate_image} alt="Inmate" />

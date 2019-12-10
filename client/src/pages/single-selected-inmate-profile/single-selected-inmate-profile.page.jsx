@@ -1,9 +1,10 @@
 import React from 'react'
 
+import SingleInmateInfo from "../../components/single-inmate-info/single-inmate-info.component"
 
-const SingleSelectedInmateProfile = () => {
+const SingleSelectedInmateProfile = ({...props}) => {
   return (
-    <h1>YOOO</h1>
+    <SingleInmateInfo {...props} />
   )
 }
 

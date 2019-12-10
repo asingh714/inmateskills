@@ -1,13 +1,19 @@
 import {
   INMATE_FETCH_START,
   INMATE_FETCH_SUCCESS,
-  INMATE_FETCH_FAILURE
+  INMATE_FETCH_FAILURE,
+  SINGLE_INMATE_FETCH_START,
+  SINGLE_INMATE_FETCH_SUCCESS,
+  SINGLE_INMATE_FETCH_FAILURE
 } from "../actions/inmates.action";
 
 const initialState = {
   inmates: [],
   isFetchingInmates: false,
   fetchingInmatesError: "",
+  inmate: {},
+  isFetchingSingleInmate: false,
+  fetchingSingleInmateError: ""
 }
 
 const inmatesReducer = (state = initialState, action) => {
@@ -32,6 +38,27 @@ const inmatesReducer = (state = initialState, action) => {
         inmates: [],
         isFetchingInmates: false,
         fetchingInmatesError: action.payload
+      }
+    case SINGLE_INMATE_FETCH_START:
+      return {
+        ...state,
+        inmate: {},
+        isFetchingSingleInmate: true,
+        fetchingSingleInmateError: ""
+      }
+    case SINGLE_INMATE_FETCH_SUCCESS:
+      return {
+        ...state,
+        inmate: action.payload,
+        isFetchingSingleInmate: false,
+        fetchingSingleInmateError: ""
+      }
+    case SINGLE_INMATE_FETCH_FAILURE:
+      return {
+        ...state,
+        inmate: {},
+        isFetchingSingleInmate: false,
+        fetchingSingleInmateError: action.payload
       }
     default:
       return state
