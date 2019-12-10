@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.page";
 import PrisonPage from "./pages/prisons/prisons.page";
-import Login from "./pages/log-in/log-in.page";
+import Login from "./pages/login/login.page";
 import SingleSelectedPrisonPage from "./pages/single-selected-prison/single-selected-prison.page";
 import SingleSelectedInmateProfile from "./pages/single-selected-inmate-profile/single-selected-inmate-profile.page"
 
