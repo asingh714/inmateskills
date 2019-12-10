@@ -11,7 +11,7 @@ const PrisonBox = ({ prison, ...props }) => {
 
 
   return (
-    <div class="box" onClick={e => routeToSinglePrisonProfilePage(e, prison.id)}>
+    <div className="box" onClick={e => routeToSinglePrisonProfilePage(e, prison.id)}>
       <span>{prison.name}</span>
       <span> Inmates Available for Hire</span>
       <span>{prison.address}</span>
