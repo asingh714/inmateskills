@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { fetchInmates } from "../../redux/actions/inmates.action";
+import InmateBox from "../inmateBox/inmateBox.component";
 
 class Inmates extends Component {
   componentDidMount() {
@@ -15,7 +16,11 @@ class Inmates extends Component {
         <div>
           <span>{this.props.inmates.length} Inmates Available for Hire</span>
         </div>
-    <div>{this.props.inmates.map(inmate => <h2>{inmate.name}</h2>)}</div>
+        <div>
+          {this.props.inmates.map(inmate => (
+            <InmateBox key={inmate.id} prisonId={this.props.match.params.id} inmate={inmate} {...this.props}/>
+          ))}
+        </div>
       </div>
     );
   }
