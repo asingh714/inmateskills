@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchSinglePrison } from "../../redux/actions/prisons.actions";
+import { fetchInmates } from "../../redux/actions/inmates.action";
 
 class SingleSelectedPrison extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.fetchSinglePrison(id);
+    this.props.fetchInmates(id);
   }
 
   render() {
@@ -21,13 +23,20 @@ class SingleSelectedPrison extends React.Component {
     } = this.props.prison;
     return (
       <div>
-        <img src={prison_image} alt="Prison" />
-        <h1>{name}</h1>
-        <span>{address}</span>
-        <span>{city}</span>
-        <span>{state}</span>
-        <span>{zip_code}</span>
-        <span>{prison_info}</span>
+        <div>
+          <img src={prison_image} alt="Prison" />
+          <h1>{name}</h1>
+          <span>{address}</span>
+          <span>{city}</span>
+          <span>{state}</span>
+          <span>{zip_code}</span>
+          <span>{prison_info}</span>
+        </div>
+        <div>
+          {this.props.inmates.map(inmate => {
+          return <h2>{inmate.name}</h2>
+          })}
+        </div>
       </div>
     );
   }
@@ -35,10 +44,11 @@ class SingleSelectedPrison extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    prison: state.prisons.prison
+    prison: state.prisons.prison,
+    inmates: state.inmates.inmates
   };
 };
 
-export default connect(mapStateToProps, { fetchSinglePrison })(
+export default connect(mapStateToProps, { fetchSinglePrison, fetchInmates })(
   SingleSelectedPrison
 );
