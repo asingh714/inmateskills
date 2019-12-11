@@ -20,13 +20,13 @@ class LoginForm extends React.Component {
     });
   };
 
-  routeToSignUpPage = () => {
-    this.props.history.push(`/signup`);
-  };
-
   handleSubmit = event => {
     event.preventDefault();
-    this.props.loginPrison(this.state)
+    this.props.loginPrison(this.state);
+  };
+
+  routeToSignUpPage = () => {
+    this.props.history.push(`/signup`);
   };
 
   render() {
@@ -47,18 +47,12 @@ class LoginForm extends React.Component {
           value={this.state.password}
         />
         <CustomButton text="Submit" />
-        <span onClick={() => this.routeToSignUpPage()}>
+        <span onClick={this.routeToSignUpPage}>
           Don't have an account?
         </span>
       </form>
     );
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     user: user
-//   }
-// }
 
 export default connect(null, { loginPrison })(LoginForm);

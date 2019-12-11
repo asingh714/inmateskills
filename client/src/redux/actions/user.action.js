@@ -17,3 +17,22 @@ export const loginPrison = credentials => dispatch => {
       dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
     });
 };
+
+
+export const PRISON_REGISTER_START = "PRISON_REGISTER_START";
+export const PRISON_REGISTER_SUCCESS = "PRISON_REGISTER_SUCCESS";
+export const PRISON_REGISTER_FAILURE = "PRISON_REGISTER_FAILURE";
+
+export const registerPrison = credentials => dispatch => {
+  dispatch({ type: PRISON_REGISTER_START });
+
+  axiosWithAuth()
+  .post("/prisons/register", credentials)
+  .then(res => {
+    localStorage.setItem("token", res.data.token);
+    dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data.username });
+  })
+  .catch(error => {
+    dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
+  });
+}
