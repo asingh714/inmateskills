@@ -1,7 +1,7 @@
 import {
   PRISON_LOGIN_START,
   PRISON_LOGIN_SUCCESS,
-  // PRISON_LOGIN_FAILURE
+  PRISON_LOGIN_FAILURE
 } from "../actions/user.action";
 
 const initialState = {
@@ -29,7 +29,14 @@ const userReducer = (state = initialState, action) => {
         username: action.payload,
         error: ""
       }
-    // case PRISON_LOGIN_FAILURE:
+    case PRISON_LOGIN_FAILURE:
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: false,
+        username: "",
+        error: action.payload
+      }
     default:
       return state
   }
