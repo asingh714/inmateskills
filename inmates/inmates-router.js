@@ -160,7 +160,7 @@ router.delete("/deleteInmate/:id", restricted, (req, res) => {
       res.status(500).json({
         error: "The inmate could not be removed."
       });
-    });
+    }); 
 });
 
 module.exports = router;
