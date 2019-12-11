@@ -4,20 +4,44 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import "./login-form.styles.scss";
 
-const LoginForm = ({...props}) => {
+class LoginForm extends React.Component {
+  state = {
+    username: "",
+    password: ""
+  };
 
-  const routeToSignUpPage = () => {
-    props.history.push(`/signup`)
+  handleInputChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  routeToSignUpPage = () => {
+    this.props.history.push(`/signup`);
+  };
+
+  render() {
+    return (
+      <form>
+        <FormInput
+          name="username"
+          onChange={this.handleInputChange}
+          placeholder="Username"
+          type="text"
+          value={this.state.username}
+        />
+        <FormInput
+          name="password"
+          onChange={this.handleInputChange}
+          placeholder="Password"
+          type="text"
+          value={this.state.password}
+        />
+        <CustomButton text="Submit" />
+        <span onClick={() => this.routeToSignUpPage()}>Don't have an account?</span>
+      </form>
+    );
   }
-
-  return (
-    <form>
-      <FormInput placeholder="Username" />
-      <FormInput placeholder="Password" />
-      <CustomButton text="Submit" />
-      <span onClick={() => routeToSignUpPage()}>Don't have an account?</span>
-    </form>
-  );
-};
+}
 
 export default LoginForm;
