@@ -5,9 +5,6 @@ import {
   SINGLE_PRISON_FETCH_START,
   SINGLE_PRISON_FETCH_SUCCESS,
   SINGLE_PRISON_FETCH_FAILURE,
-  PRISON_LOGIN_START,
-  PRISON_LOGIN_SUCCESS,
-  PRISON_LOGIN_FAILURE
 } from "../actions/prisons.actions";
 
 const initialState = {
@@ -17,8 +14,6 @@ const initialState = {
   prison: {},
   isFetchingSinglePrison: false,
   fetchingSinglePrisonError: "",
-  isLoggingIn: false,
-  
 };
 
 const prisonsReducers = (state = initialState, action) => {
@@ -65,12 +60,6 @@ const prisonsReducers = (state = initialState, action) => {
         isFetchingSinglePrison: false,
         fetchingSinglePrisonError: action.payload
       };
-    case PRISON_LOGIN_START:
-      return {
-
-      }
-    case PRISON_LOGIN_SUCCESS:
-    case PRISON_LOGIN_FAILURE:
     default:
       return state;
   }
