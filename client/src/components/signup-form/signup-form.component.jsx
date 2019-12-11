@@ -1,7 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+
+import { registerPrison } from "../../redux/actions/user.action";
+
 import "./signup-form.styles.scss";
 
 class SignupForm extends React.Component {
@@ -18,13 +22,27 @@ class SignupForm extends React.Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const { name, username, password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+    } else {
+      this.props.registerPrison({
+        name,
+        username,
+        password
+      });
+    }
+  };
+
   routeToLoginPage = () => {
     this.props.history.push(`/login`);
   };
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -60,4 +78,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default SignupForm;
+export default connect(null, { registerPrison })(SignupForm);
