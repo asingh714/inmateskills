@@ -1,9 +1,10 @@
 import React from 'react'
 
+import SignUpForm from "../../components/signup-form/signup-form.component";
 import "./signup.styles.scss";
 
-const SignupPage = () => {
-  return <h2>Yo</h2>
+const SignupPage = ({...props}) => {
+  return <SignUpForm {...props} />
 }
 
 export default SignupPage
