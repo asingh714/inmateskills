@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from "react-redux";
 
 import {singleFetchInmate} from "../../redux/actions/inmates.action";
+import CustomButton from "../custom-button/custom-button.component"
+
 import "./single-inmate-info.styles.scss";
 
 class SingleInmateInfo extends React.Component {
@@ -19,6 +21,7 @@ class SingleInmateInfo extends React.Component {
         <span>{availability ? "Available" : "Not Available"}</span>
         <span>{release_date}</span>
         <span>{inmate_info}</span>
+        <CustomButton text="Contact" /> 
       </div>
     )
   }
