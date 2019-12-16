@@ -6,7 +6,7 @@ import InmateBox from "../inmateBox/inmateBox.component";
 
 class Inmates extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const id = this.props.match.params.prisonId;
     this.props.fetchInmates(id);
   }
 
@@ -18,7 +18,7 @@ class Inmates extends Component {
         </div>
         <div>
           {this.props.inmates.map(inmate => (
-            <InmateBox key={inmate.id} prisonId={this.props.match.params.id} inmate={inmate} {...this.props}/>
+            <InmateBox key={inmate.id} prisonId={this.props.match.params.prisonId} inmate={inmate} {...this.props}/>
           ))}
         </div>
       </div>

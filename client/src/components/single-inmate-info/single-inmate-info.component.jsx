@@ -9,11 +9,12 @@ import "./single-inmate-info.styles.scss";
 
 class SingleInmateInfo extends React.Component {
   componentDidMount() {
-    const {id, inmateId} = this.props.match.params;
-    this.props.singleFetchInmate(id, inmateId)
+    const {prisonId, inmateId} = this.props.match.params;
+    this.props.singleFetchInmate(prisonId, inmateId)
   }
   
   render() {
+    const {prisonId, inmateId} = this.props.match.params;
     const {name, availability, release_date, inmate_info, inmate_image} = this.props.inmate
     return (
       <>
@@ -25,7 +26,7 @@ class SingleInmateInfo extends React.Component {
         <span>{inmate_info}</span>
         <CustomButton text="Contact" /> 
       </div>
-      <ContactModal /> 
+      <ContactModal prisonId={prisonId} inmateId={inmateId} /> 
       </>
     )
   }

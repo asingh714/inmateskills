@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { contactInmate } from "../../redux/actions/inmates.action";
 
-import "./contact-modal.styles.scss"
+import "./contact-modal.styles.scss";
 
 class ContactModal extends React.Component {
   state = {
@@ -19,9 +21,17 @@ class ContactModal extends React.Component {
     });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const prisonId = this.props.prisonId
+    const inmateId = this.props.inmateId
+
+    this.props.contactInmate(prisonId, inmateId, this.state)
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -29,21 +39,21 @@ class ContactModal extends React.Component {
           type="text"
           value={this.state.name}
         />
-         <FormInput
+        <FormInput
           name="email"
           onChange={this.handleInputChange}
           placeholder="Email"
           type="text"
           value={this.state.email}
         />
-         <FormInput
+        <FormInput
           name="phone_number"
           onChange={this.handleInputChange}
           placeholder="Phone Number"
           type="text"
           value={this.state.phone_number}
         />
-         <FormInput
+        <FormInput
           name="job_details"
           onChange={this.handleInputChange}
           placeholder="Job Details"
@@ -56,4 +66,4 @@ class ContactModal extends React.Component {
   }
 }
 
-export default ContactModal;
+export default connect(null, { contactInmate })(ContactModal);

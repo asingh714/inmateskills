@@ -20,8 +20,8 @@ function App() {
         <Route exact path="/prisons" component={PrisonPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route exact path="/prisons/:id" component={SingleSelectedPrisonPage} />
-        <Route path="/prisons/:id/inmates/:inmateId" component={SingleSelectedInmateProfile} /> 
+        <Route exact path="/prisons/:prisonId" component={SingleSelectedPrisonPage} />
+        <Route path="/prisons/:prisonId/inmates/:inmateId" component={SingleSelectedInmateProfile} /> 
       </Switch>
     </div>
   );

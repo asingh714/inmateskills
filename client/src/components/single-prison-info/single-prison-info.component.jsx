@@ -6,7 +6,7 @@ import "./single-prison-info.styles.scss";
 
 class SinglePrisonInfo extends React.Component {
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const id = this.props.match.params.prisonId;
     this.props.fetchSinglePrison(id);
   }
 
