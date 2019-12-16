@@ -23,6 +23,7 @@ class LoginForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.loginPrison(this.state);
+    this.props.history.push(`/admin`);
   };
 
   routeToSignUpPage = () => {

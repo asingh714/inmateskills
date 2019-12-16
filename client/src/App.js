@@ -8,6 +8,7 @@ import Login from "./pages/login/login.page";
 import SignUp from "./pages/signup/signup.page";
 import SingleSelectedPrisonPage from "./pages/single-selected-prison/single-selected-prison.page";
 import SingleSelectedInmateProfile from "./pages/single-selected-inmate-profile/single-selected-inmate-profile.page"
+import Admin from "./pages/admin/admin.page";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route exact path="/prisons/:prisonId" component={SingleSelectedPrisonPage} />
         <Route path="/prisons/:prisonId/inmates/:inmateId" component={SingleSelectedInmateProfile} /> 
+        <Route path="/admin" component={Admin} />
       </Switch>
     </div>
   );
