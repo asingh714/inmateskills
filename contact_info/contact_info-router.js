@@ -8,7 +8,7 @@ router.get("/:prisonId/inmate/:inmateId/contact", restricted, (req, res) => {
   const { prisonId, inmateId } = req.params;
 
   db("contact_info")
-    .where({ prison_id: prisonId, prison_id: inmateId })
+    .where({ prison_id: prisonId, inmate_id: inmateId })
     .then(response => {
       if (!response) {
         res
