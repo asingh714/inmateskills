@@ -3,6 +3,8 @@ import React from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import "./contact-modal.styles.scss"
+
 class ContactModal extends React.Component {
   state = {
     name: "",
@@ -48,6 +50,7 @@ class ContactModal extends React.Component {
           type="text"
           value={this.state.job_details}
         />
+        <CustomButton text="Submit" />
       </form>
     );
   }

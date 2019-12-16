@@ -8,7 +8,7 @@ exports.up = function(knex) {
 
     table.string("phone_number").notNullable();
 
-    table.string("job_details");
+    table.text("job_details");
 
     table
       .integer("inmate_id")
@@ -16,6 +16,15 @@ exports.up = function(knex) {
       .notNullable()
       .references("id")
       .inTable("inmates")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE");
+
+      table
+      .integer("prison_id")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("prisons")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
   });

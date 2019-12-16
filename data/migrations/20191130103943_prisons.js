@@ -14,8 +14,8 @@ exports.up = function(knex) {
     table.string("city");
     table.string("state");
     table.string("zip_code");
-    table.string("prison_info");
-    table.string("prison_image");
+    table.text("prison_info");
+    table.text("prison_image");
   });
 };
 

@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from "react-redux";
 
 import {singleFetchInmate} from "../../redux/actions/inmates.action";
-import CustomButton from "../custom-button/custom-button.component"
+import CustomButton from "../custom-button/custom-button.component";
+import ContactModal from "../contact-modal/contact-modal.component";
 
 import "./single-inmate-info.styles.scss";
 
@@ -15,6 +16,7 @@ class SingleInmateInfo extends React.Component {
   render() {
     const {name, availability, release_date, inmate_info, inmate_image} = this.props.inmate
     return (
+      <>
       <div>
         <img src={inmate_image} alt="Inmate Profile"/>
         <span>{name}</span>
@@ -23,6 +25,8 @@ class SingleInmateInfo extends React.Component {
         <span>{inmate_info}</span>
         <CustomButton text="Contact" /> 
       </div>
+      <ContactModal /> 
+      </>
     )
   }
 }

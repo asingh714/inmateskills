@@ -35,3 +35,15 @@ export const singleFetchInmate = (prisonId, inmateId) => dispatch => {
       dispatch({ type: SINGLE_INMATE_FETCH_FAILURE });
     });
 };
+
+export const CONTACT_INMATE_START = "CONTACT_INMATE_START";
+export const CONTACT_INMATE_SUCCESS = "CONTACT_INMATE_SUCCESS";
+export const CONTACT_INMATE_FAILURE = "CONTACT_INMATE_FAILURE";
+
+
+export const contactInmate = (contactInfo) => dispatch => {
+  dispatch({ type: CONTACT_INMATE_START })
+
+  // http://localhost:3000/prisons/1/inmates/1
+  axios.post("")
+}
