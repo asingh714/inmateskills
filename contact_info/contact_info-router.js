@@ -36,7 +36,7 @@ router.post("/:prisonId/inmate/:inmateId/contact", (req, res) => {
     .then(inmate => {
       if (inmate) {
         db("contact_info")
-          .insert({ ...contactInfo, inmate_id: inmate.id, prison_id: prisonId })
+          .insert({ ...contactInfo, inmate_id: inmate.id, prison_id: inmate.prison_id })
           .returning("id")
           .then(ids => {
             const id = ids[0];
