@@ -11,6 +11,8 @@ const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
   username: "",
+  id: null,
+  name: "",
   error: ""
 };
 
@@ -23,6 +25,8 @@ const userReducer = (state = initialState, action) => {
         isLoggingIn: true,
         isLoggedIn: false,
         username: "",
+        id: null,
+        name: "",
         error: ""
       };
     case PRISON_LOGIN_SUCCESS:
@@ -31,7 +35,9 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
-        username: action.payload,
+        username: action.payload.username,
+        name: action.payload.name,
+        id: action.payload.id, 
         error: ""
       };
     case PRISON_LOGIN_FAILURE:
@@ -41,6 +47,8 @@ const userReducer = (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: false,
         username: "",
+        id: null,
+        name: "",
         error: action.payload
       };
     default:

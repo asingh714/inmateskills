@@ -11,7 +11,7 @@ export const loginPrison = credentials => dispatch => {
     .post("/prisons/login", credentials)
     .then(res => {
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data.username });
+      dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });
     })
     .catch(error => {
       dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
@@ -30,7 +30,7 @@ export const registerPrison = credentials => dispatch => {
   .post("/prisons/register", credentials)
   .then(res => {
     localStorage.setItem("token", res.data.token);
-    dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data.username });
+    dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });
   })
   .catch(error => {
     dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
