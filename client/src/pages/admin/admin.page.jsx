@@ -24,7 +24,7 @@ class Admin extends React.Component {
       <div>
         {/* <input type="file" onChange={this.fileSelectedHandler} /> */}
         <SinglePrisonInfo isAdmin {...this.props} />
-        <Inmates {...this.props} />
+        <Inmates isAdmin {...this.props} />
       </div>
     );
   }
