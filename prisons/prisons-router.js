@@ -95,7 +95,7 @@ router.post("/login", (req, res) => {
         }
         else {
           const token = tokenService.generateToken(prison);
-          res.status(200).json({ username, token });
+          res.status(200).json({ id, username, name, token,});
         }
       })
       .catch(error => {
