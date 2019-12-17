@@ -4,7 +4,7 @@ import SingleInmateInfo from "../../components/single-inmate-info/single-inmate-
 
 const SingleSelectedInmateProfile = ({...props}) => {
   return (
-    <SingleInmateInfo {...props} />
+    <SingleInmateInfo isAdmin={false} {...props} />
   )
 }
 

@@ -11,6 +11,7 @@ class SinglePrisonInfo extends React.Component {
   }
 
   render() {
+    console.log(this.props.isAdmin);
     const {
       name,
       address,
@@ -23,6 +24,12 @@ class SinglePrisonInfo extends React.Component {
     return (
       <div>
         <img src={prison_image} alt="Prison" />
+        {this.props.isAdmin ? (
+          <div>
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        ) : null}
         <h1>{name}</h1>
         <span>{address}</span>
         <span>{city}</span>
