@@ -1,6 +1,9 @@
 import React from "react";
 
+
 import SinglePrisonInfo from "../../components/single-prison-info/single-prison-info.component"
+import Inmates from "../../components/inmates/inmates.component"
+
 import "./admin.styles.scss"
 
 class Admin extends React.Component {
@@ -21,9 +24,10 @@ class Admin extends React.Component {
       <div>
         {/* <input type="file" onChange={this.fileSelectedHandler} /> */}
         <SinglePrisonInfo isAdmin {...this.props} />
+        <Inmates {...this.props} />
       </div>
     );
   }
 }
 
-export default Admin;
+export default (Admin);

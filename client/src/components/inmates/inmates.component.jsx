@@ -13,14 +13,14 @@ class Inmates extends Component {
   render() {
     return (
       <div>
-        <div>
-          <span>{this.props.inmates.length} Inmates Available for Hire</span>
-        </div>
-        <div>
-          {this.props.inmates.map(inmate => (
-            <InmateBox key={inmate.id} prisonId={this.props.match.params.prisonId} inmate={inmate} {...this.props}/>
-          ))}
-        </div>
+        {this.props.inmates.map(inmate => (
+          <InmateBox
+            key={inmate.id}
+            prisonId={this.props.match.params.prisonId}
+            inmate={inmate}
+            {...this.props}
+          />
+        ))}
       </div>
     );
   }
