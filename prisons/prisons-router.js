@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const multer = require("multer");
 
-
 const db = require("../data/dbConfig.js");
 const { imageStorage } = require("../config/cloudConfig");
 const restricted = require("../config/restricted");
@@ -92,10 +91,16 @@ router.post("/login", (req, res) => {
           res.status(401).json({
             error: "The password is incorrect"
           });
-        }
-        else {
+        } else {
           const token = tokenService.generateToken(prison);
-          res.status(200).json({ id, username, name, token,});
+          res
+            .status(200)
+            .json({
+              id: prison.id,
+              username: prison.username,
+              name: prison.username,
+              token
+            });
         }
       })
       .catch(error => {
@@ -108,16 +113,34 @@ router.post("/login", (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const prisons = await db("prisons")
+    const prisons = await db("prisons");
     if (!prisons) {
       res.status(404).json({ error: "There are no prisons." });
     } else {
       let prisonsWOPasswords = prisons.map(prison => {
-        let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
+        let {
+          id,
+          name,
+          username,
+          address,
+          city,
+          state,
+          zip_code,
+          prison_info,
+          prison_image
+        } = prison;
         return {
-          id, name, username, address, city, state, zip_code, prison_info, prison_image
-        }
-      })
+          id,
+          name,
+          username,
+          address,
+          city,
+          state,
+          zip_code,
+          prison_info,
+          prison_image
+        };
+      });
       res.status(200).json(prisonsWOPasswords);
     }
   } catch (error) {
@@ -127,30 +150,48 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", (req,res) => {
-  const {id} = req.params;
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
 
   db("prisons")
-  .where({ id })
-  .first()
-  .then(prison => {
-    if (prison) {
-      let {id, name, username, address, city, state, zip_code, prison_info, prison_image} = prison
-      res.status(200).json({
-        id, name, username, address, city, state, zip_code, prison_info, prison_image
+    .where({ id })
+    .first()
+    .then(prison => {
+      if (prison) {
+        let {
+          id,
+          name,
+          username,
+          address,
+          city,
+          state,
+          zip_code,
+          prison_info,
+          prison_image
+        } = prison;
+        res.status(200).json({
+          id,
+          name,
+          username,
+          address,
+          city,
+          state,
+          zip_code,
+          prison_info,
+          prison_image
+        });
+      } else {
+        res.status(404).json({
+          error: "You cannot access the prison with this specific id"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "The prison with the specified ID could not be retrieved"
       });
-    } else {
-      res.status(404).json({
-        error: "You cannot access the prison with this specific id"
-      });
-    }
-  })
-  .catch(error => {
-    res.status(500).json({
-      error: "The prison with the specified ID could not be retrieved"
     });
-  });  
-})
+});
 
 router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
   const { id } = req.params;
