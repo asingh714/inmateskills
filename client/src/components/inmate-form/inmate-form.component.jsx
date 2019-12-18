@@ -1,17 +1,31 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { addInmate } from "../../redux/actions/inmates.action"
 import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
   state = {
     name: "",
     availability: false,
-    inmate_image: "",
-    resume: "",
+    inmate_image: null,
+    resume: null,
     release_date: "",
     inmate_info: ""
+  };
+
+  resetForm = event => {
+    event.preventDefault();
+    this.setState({
+      name: "",
+      availability: false,
+      inmate_image: null,
+      resume: null,
+      release_date: "",
+      inmate_info: ""
+    });
   };
 
   handleInputChange = event => {
@@ -23,8 +37,10 @@ class InmateForm extends React.Component {
     });
   };
 
+  // LEFT OFF HERE --> have to test 
   handleSubmit = event => {
-    console.log(event);
+    event.preventDefault()
+    this.props.addInmate(this.state)
   };
 
   fileSelectedHandler = event => {
@@ -36,7 +52,7 @@ class InmateForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -68,9 +84,11 @@ class InmateForm extends React.Component {
           type="text"
           value={this.state.inmate_info}
         ></textarea>
+        <CustomButton text="Clear" onClick={this.resetForm} />
+        <CustomButton text="Submit" onClick={this.handleSubmit}/>
       </form>
     );
   }
 }
 
-export default InmateForm;
+export default connect( null, { addInmate })(InmateForm);

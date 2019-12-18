@@ -53,3 +53,25 @@ export const contactInmate = (prisonId, inmateId, contactInfo) => dispatch => {
     dispatch({ type: CONTACT_INMATE_FAILURE });
   })
 }
+
+
+export const ADD_INMATE_START = "ADD_INMATE_START";
+export const ADD_INMATE_SUCCESS = "ADD_INMATE_SUCCESS";
+export const ADD_INMATE_FAILURE = "ADD_INMATE_FAILURE";
+
+
+export const addInmate = (inmate) => dispatch => {
+  dispatch({ type: ADD_INMATE_START })
+
+  axios
+  .post("https://inmate-skills.herokuapp.com/api/prisons/addInmate", inmate)
+  .then(response => {
+    console.log(response)
+    dispatch({ type: ADD_INMATE_SUCCESS, payload: response.data })
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({ type: ADD_INMATE_FAILURE })
+  })
+
+}
