@@ -11,16 +11,16 @@ const InmateBox = ({ inmate, prisonId, ...props }) => {
   return (
     <div
       className="box"
-      onClick={e => routeToSingleInmateProfilePage(e, inmate.id)}
+      onClick={props.isAdmin ? null : e => routeToSingleInmateProfilePage(e, inmate.id)}
     >
       <img src={inmate.inmate_image} alt="Inmate" />
       <span>{inmate.name}</span>
       <span>{inmate.availability ? "Available" : "Not Available"}</span>
       <span>{inmate.release_date}</span>
       {props.isAdmin ? (
-        <>
+        <div>
           <button>delete</button> <button>edit</button>
-        </>
+        </div>
       ) : (
         <span>See More</span>
       )}
