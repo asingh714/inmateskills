@@ -5,7 +5,6 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { addInmate } from "../../redux/actions/inmates.action";
 
-
 import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
@@ -18,9 +17,8 @@ class InmateForm extends React.Component {
     inmate_info: ""
   };
 
-  
-
   resetForm = event => {
+    console.log(event.target);
     event.preventDefault();
     this.setState({
       name: "",
@@ -59,21 +57,20 @@ class InmateForm extends React.Component {
       resume: null,
       release_date: "",
       inmate_info: ""
-    })
+    });
   };
 
   fileSelectedHandler = event => {
-    console.log(event.target.files)
+    // console.log(event.target.files);
     this.setState({
       inmate_image: event.target.files[0],
-      resume: event.target.files[1]
+      // resume: event.target.files[1]
     });
   };
 
   render() {
-    console.log(this.props.inmatePosted)
     return (
-      <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+      <form encType="multipart/form-data">
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -113,12 +110,8 @@ class InmateForm extends React.Component {
           type="text"
           value={this.state.inmate_info}
         ></textarea>
-        {/* <CustomButton text="Reset" type="button" onClick={this.resetForm} /> */}
-        <CustomButton
-          text="Submit"
-          type="submit"
-          onClick={this.props.addInmate}
-        />
+        <CustomButton text="Reset" type="button" handleClick={this.resetForm} />
+        <CustomButton text="Submit" type="submit" handleClick={this.handleSubmit} />
       </form>
     );
   }

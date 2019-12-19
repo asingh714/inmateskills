@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
 import "./custom-button.styles.scss";
 
-const CustomButton = ({text, type}) => {
+const CustomButton = ({ text, type, handleClick }) => {
   return (
-  <button type={type}>{text}</button>
-  )
-}
+    <button type={type} onClick={handleClick}>
+      {text}
+    </button>
+  );
+};
 
-export default CustomButton; 
+export default CustomButton;
