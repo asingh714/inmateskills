@@ -2,9 +2,9 @@ import React from 'react'
 
 import "./custom-button.styles.scss";
 
-const CustomButton = ({text}) => {
+const CustomButton = ({text, type}) => {
   return (
-  <button>{text}</button>
+  <button type={type}>{text}</button>
   )
 }
 

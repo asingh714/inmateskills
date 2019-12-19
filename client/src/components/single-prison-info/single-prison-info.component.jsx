@@ -11,7 +11,6 @@ class SinglePrisonInfo extends React.Component {
   }
 
   render() {
-    console.log(this.props.isAdmin);
     const {
       name,
       address,

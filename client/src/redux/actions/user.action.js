@@ -8,7 +8,7 @@ export const loginPrison = credentials => dispatch => {
   dispatch({ type: PRISON_LOGIN_START });
 
   axiosWithAuth()
-    .post("/prisons/login", credentials)
+    .post("/login", credentials)
     .then(res => {
       localStorage.setItem("token", res.data.token);
       dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });
@@ -27,7 +27,7 @@ export const registerPrison = credentials => dispatch => {
   dispatch({ type: PRISON_REGISTER_START });
 
   axiosWithAuth()
-  .post("/prisons/register", credentials)
+  .post("/register", credentials)
   .then(res => {
     localStorage.setItem("token", res.data.token);
     dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });

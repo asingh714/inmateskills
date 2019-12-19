@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { addInmate } from "../../redux/actions/inmates.action"
+import { addInmate } from "../../redux/actions/inmates.action";
 import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
@@ -37,13 +37,29 @@ class InmateForm extends React.Component {
     });
   };
 
-  // LEFT OFF HERE --> have to test 
   handleSubmit = event => {
-    event.preventDefault()
-    this.props.addInmate(this.state)
+    event.preventDefault();
+    let formData = new FormData();
+    formData.append("name", this.state.name);
+    formData.append("availability", this.state.availability);
+    formData.append("inmate_image", this.state.inmate_image);
+    formData.append("resume", this.state.resume);
+    formData.append("release_date", this.state.release_date);
+    formData.append("inmate_info", this.state.inmate_info);
+    this.props.addInmate(formData);
+
+    this.setState({
+      name: "",
+      availability: false,
+      inmate_image: null,
+      resume: null,
+      release_date: "",
+      inmate_info: ""
+    })
   };
 
   fileSelectedHandler = event => {
+    console.log(event.target.files)
     this.setState({
       inmate_image: event.target.files[0],
       resume: event.target.files[1]
@@ -52,7 +68,7 @@ class InmateForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit} encType="multipart/form-data">
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -69,6 +85,7 @@ class InmateForm extends React.Component {
             type="checkbox"
           />
         </label>
+
         <label>
           Inmate Image
           <input type="file" onChange={this.fileSelectedHandler} />
@@ -77,6 +94,13 @@ class InmateForm extends React.Component {
           Resume
           <input type="file" onChange={this.fileSelectedHandler} />
         </label>
+        <FormInput
+          name="release_date"
+          onChange={this.handleInputChange}
+          type="date"
+          value={this.state.release_date}
+        />
+
         <textarea
           name="inmate_info"
           onChange={this.handleInputChange}
@@ -84,11 +108,15 @@ class InmateForm extends React.Component {
           type="text"
           value={this.state.inmate_info}
         ></textarea>
-        <CustomButton text="Clear" onClick={this.resetForm} />
-        <CustomButton text="Submit" onClick={this.handleSubmit}/>
+        {/* <CustomButton text="Reset" type="button" onClick={this.resetForm} /> */}
+        <CustomButton
+          text="Submit"
+          type="submit"
+          onClick={this.props.addInmate}
+        />
       </form>
     );
   }
 }
 
-export default connect( null, { addInmate })(InmateForm);
+export default connect(null, { addInmate })(InmateForm);
