@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { addInmate } from "../../redux/actions/inmates.action";
+
+
 import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
@@ -11,10 +13,12 @@ class InmateForm extends React.Component {
     name: "",
     availability: false,
     inmate_image: null,
-    resume: null,
+    // resume: null,
     release_date: "",
     inmate_info: ""
   };
+
+  
 
   resetForm = event => {
     event.preventDefault();
@@ -22,7 +26,7 @@ class InmateForm extends React.Component {
       name: "",
       availability: false,
       inmate_image: null,
-      resume: null,
+      // resume: null,
       release_date: "",
       inmate_info: ""
     });
@@ -43,7 +47,7 @@ class InmateForm extends React.Component {
     formData.append("name", this.state.name);
     formData.append("availability", this.state.availability);
     formData.append("inmate_image", this.state.inmate_image);
-    formData.append("resume", this.state.resume);
+    // formData.append("resume", this.state.resume);
     formData.append("release_date", this.state.release_date);
     formData.append("inmate_info", this.state.inmate_info);
     this.props.addInmate(formData);
@@ -67,6 +71,7 @@ class InmateForm extends React.Component {
   };
 
   render() {
+    console.log(this.props.inmatePosted)
     return (
       <form onSubmit={this.handleSubmit} encType="multipart/form-data">
         <FormInput
@@ -90,10 +95,10 @@ class InmateForm extends React.Component {
           Inmate Image
           <input type="file" onChange={this.fileSelectedHandler} />
         </label>
-        <label>
+        {/* <label>
           Resume
           <input type="file" onChange={this.fileSelectedHandler} />
-        </label>
+        </label> */}
         <FormInput
           name="release_date"
           onChange={this.handleInputChange}

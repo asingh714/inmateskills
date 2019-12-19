@@ -10,6 +10,14 @@ class Inmates extends Component {
     this.props.fetchInmates(id);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.inmatePosted !== prevProps.inmatePosted) {
+      const id = this.props.match.params.prisonId;
+      this.props.fetchInmates(id);
+    }
+  }
+  
+
   render() {
     return (
       <div>
@@ -28,7 +36,9 @@ class Inmates extends Component {
 
 const mapStateToProps = state => {
   return {
-    inmates: state.inmates.inmates
+    inmates: state.inmates.inmates,
+    inmatePosted: state.inmates.inmatePosted
+
   };
 };
 

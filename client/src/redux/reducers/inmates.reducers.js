@@ -4,7 +4,10 @@ import {
   INMATE_FETCH_FAILURE,
   SINGLE_INMATE_FETCH_START,
   SINGLE_INMATE_FETCH_SUCCESS,
-  SINGLE_INMATE_FETCH_FAILURE
+  SINGLE_INMATE_FETCH_FAILURE,
+  ADD_INMATE_START,
+  ADD_INMATE_SUCCESS,
+  ADD_INMATE_FAILURE
 } from "../actions/inmates.action";
 
 const initialState = {
@@ -13,7 +16,8 @@ const initialState = {
   fetchingInmatesError: "",
   inmate: {},
   isFetchingSingleInmate: false,
-  fetchingSingleInmateError: ""
+  fetchingSingleInmateError: "",
+  inmatePosted: false,
 }
 
 const inmatesReducer = (state = initialState, action) => {
@@ -59,6 +63,17 @@ const inmatesReducer = (state = initialState, action) => {
         inmate: {},
         isFetchingSingleInmate: false,
         fetchingSingleInmateError: action.payload
+      }
+    case ADD_INMATE_START:
+    case ADD_INMATE_FAILURE:
+      return {
+        ...state,
+        inmatePosted: false
+      }
+    case ADD_INMATE_SUCCESS:
+      return {
+        ...state,
+        inmatePosted: true
       }
     default:
       return state
