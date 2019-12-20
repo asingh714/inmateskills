@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { addInmate } from "../../redux/actions/inmates.action";
+import { addInmate, editInmate } from "../../redux/actions/inmates.action";
 
 import "./inmate-form.styles.scss";
 
@@ -17,8 +17,39 @@ class InmateForm extends React.Component {
     inmate_info: ""
   };
 
+  componentDidMount() {
+    const inmateId = this.props.match.params.inmateId;
+    const inmate = this.props.inmates.find(inmate => `${inmate.id}` === inmateId);
+
+    if (this.props.inmateToBeEdited) {
+      this.setState({
+        name: inmate.name,
+        availability: inmate.availability,
+        inmate_image: inmate.inmate_image,
+        release_date: inmate.release_date,
+        inmate_info: inmate.inmate_info
+      });
+    }
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   const inmateId = this.props.match.params.inmateId;
+  //   const inmate = this.props.inmates.find(inmate => `${inmate.id}` === inmateId);
+
+  //   if (this.props.inmateToBeEdited && prevProps.inmateToBeEdited !== this.props.inmateToBeEdited) {
+  //     this.setState({
+  //       name: inmate.name,
+  //       availability: inmate.availability,
+  //       inmate_image: inmate.inmate_image,
+  //       release_date: inmate.release_date,
+  //       inmate_info: inmate.inmate_info
+  //     });
+  //   }
+  // }
+  
+  
+
   resetForm = event => {
-    console.log(event.target);
     event.preventDefault();
     this.setState({
       name: "",
@@ -48,7 +79,13 @@ class InmateForm extends React.Component {
     // formData.append("resume", this.state.resume);
     formData.append("release_date", this.state.release_date);
     formData.append("inmate_info", this.state.inmate_info);
-    this.props.addInmate(formData);
+    const inmateId = this.props.match.params.inmateId;
+    
+    if (this.props.inmateToBeEdited) {
+      this.props.editInmate(inmateId, formData);
+    } else {
+      this.props.addInmate(formData);
+    }
 
     this.setState({
       name: "",
@@ -63,7 +100,7 @@ class InmateForm extends React.Component {
   fileSelectedHandler = event => {
     // console.log(event.target.files);
     this.setState({
-      inmate_image: event.target.files[0],
+      inmate_image: event.target.files[0]
       // resume: event.target.files[1]
     });
   };
@@ -111,10 +148,26 @@ class InmateForm extends React.Component {
           value={this.state.inmate_info}
         ></textarea>
         <CustomButton text="Reset" type="button" handleClick={this.resetForm} />
-        <CustomButton text="Submit" type="submit" handleClick={this.handleSubmit} />
+        <CustomButton
+          text="Submit"
+          type="submit"
+          handleClick={this.handleSubmit}
+        />
+        <CustomButton
+          text="Update"
+          type="submit"
+          handleClick={this.handleSubmit}
+        />
       </form>
     );
   }
 }
 
-export default connect(null, { addInmate })(InmateForm);
+const mapStateToProps = state => {
+  return {
+    inmates: state.inmates.inmates, 
+    inmateToBeEdited: state.inmates.inmateToBeEdited
+  };
+};
+
+export default connect(mapStateToProps, { addInmate, editInmate })(InmateForm);

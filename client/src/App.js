@@ -23,7 +23,9 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route exact path="/prisons/:prisonId" component={SingleSelectedPrisonPage} />
         <Route path="/prisons/:prisonId/inmates/:inmateId" component={SingleSelectedInmateProfile} /> 
-        <Route path="/admin/:prisonId" component={Admin} />
+        <Route exact path="/admin/:prisonId" component={Admin} />
+        <Route path="/admin/:prisonId/updateInmate/:inmateId" component={Admin} />
+
       </Switch>
     </div>
   );

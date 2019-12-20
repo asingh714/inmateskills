@@ -13,7 +13,8 @@ import {
   DELETE_INMATE_FAILURE,
   EDIT_INMATE_START,
   EDIT_INMATE_SUCCESS,
-  EDIT_INMATE_FAILURE
+  EDIT_INMATE_FAILURE,
+  TOGGLE_IS_INMATE_EDITING
 } from "../actions/inmates.action";
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
   fetchingSingleInmateError: "",
   inmatePosted: false,
   inmateDeleted: false,
-  inmateEdited: false
+  inmateEdited: false,
+  inmateToBeEdited: false
 };
 
 const inmatesReducer = (state = initialState, action) => {
@@ -104,6 +106,11 @@ const inmatesReducer = (state = initialState, action) => {
       return {
         ...state,
         inmateEdited: true
+      };
+    case TOGGLE_IS_INMATE_EDITING:
+      return {
+        ...state,
+        inmateToBeEdited: !state.inmateToBeEdited
       };
     default:
       return state;

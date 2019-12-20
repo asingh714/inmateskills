@@ -1,7 +1,7 @@
 import { TOGGLE_INMATE_FORM } from "../actions/forms.action";
 
 const initialState = {
-  inmateFormIsHidden: true
+  inmateFormIsHidden: true,
 };
 
 const formsReducer = (state = initialState, action) => {

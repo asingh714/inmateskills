@@ -2,15 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 
 import CustomButton from "../../components/custom-button/custom-button.component";
-import { deleteInmate } from "../../redux/actions/inmates.action";
+import { deleteInmate, toggleIsInmateEditing } from "../../redux/actions/inmates.action";
+import { toggleInmateForm } from "../../redux/actions/forms.action";
+
 
 import "./inmateBox.styles.scss";
 
-const InmateBox = ({ inmate, prisonId, deleteInmate, ...props }) => {
+const InmateBox = ({ inmate, prisonId, deleteInmate, toggleInmateForm, toggleIsInmateEditing, ...props }) => {
   const routeToSingleInmateProfilePage = (e, inmateId) => {
     e.preventDefault();
     props.history.push(`/prisons/${prisonId}/inmates/${inmateId}`);
   };
+
+
+  const routeToUpdateInmateandToggleInmateForm = (e, inmateId) => {
+    e.preventDefault()
+    toggleInmateForm()
+    toggleIsInmateEditing()
+    props.history.push(`/admin/${prisonId}/updateInmate/${inmateId}`)
+  }
 
   return (
     <div
@@ -30,7 +40,11 @@ const InmateBox = ({ inmate, prisonId, deleteInmate, ...props }) => {
             text="Delete"
             handleClick={() => deleteInmate(inmate.id)}
           />
-          <CustomButton type="button" text="Edit" />
+          <CustomButton
+            type="button"
+            text="Edit"
+            handleClick={(e) => routeToUpdateInmateandToggleInmateForm(e, inmate.id)}
+          />
         </div>
       ) : (
         <span>See More</span>
@@ -39,4 +53,4 @@ const InmateBox = ({ inmate, prisonId, deleteInmate, ...props }) => {
   );
 };
 
-export default connect(null, { deleteInmate })(InmateBox);
+export default connect(null, { deleteInmate, toggleInmateForm, toggleIsInmateEditing })(InmateBox);
