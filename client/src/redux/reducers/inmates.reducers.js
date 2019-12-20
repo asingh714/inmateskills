@@ -10,7 +10,10 @@ import {
   ADD_INMATE_FAILURE,
   DELETE_INMATE_START,
   DELETE_INMATE_SUCCESS,
-  DELETE_INMATE_FAILURE
+  DELETE_INMATE_FAILURE,
+  EDIT_INMATE_START,
+  EDIT_INMATE_SUCCESS,
+  EDIT_INMATE_FAILURE
 } from "../actions/inmates.action";
 
 const initialState = {
@@ -21,7 +24,8 @@ const initialState = {
   isFetchingSingleInmate: false,
   fetchingSingleInmateError: "",
   inmatePosted: false,
-  inmateDeleted: false
+  inmateDeleted: false,
+  inmateEdited: false
 };
 
 const inmatesReducer = (state = initialState, action) => {
@@ -89,6 +93,17 @@ const inmatesReducer = (state = initialState, action) => {
       return {
         ...state,
         inmateDeleted: true
+      };
+    case EDIT_INMATE_START:
+    case EDIT_INMATE_FAILURE:
+      return {
+        ...state,
+        inmateEdited: false
+      };
+    case EDIT_INMATE_SUCCESS:
+      return {
+        ...state,
+        inmateEdited: true
       };
     default:
       return state;

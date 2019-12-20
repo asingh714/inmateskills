@@ -11,17 +11,6 @@ import {toggleInmateForm} from "../../redux/actions/forms.action"
 import "./admin.styles.scss";
 
 class Admin extends React.Component {
-  // state = {
-  //   formIsHidden: true
-  // };
-
-  // showForm = () => {
-  //   const { formIsHidden } = this.state;
-  //   this.setState({
-  //     formIsHidden: !formIsHidden
-  //   });
-  // };
-
   render() {
     return (
       <div>

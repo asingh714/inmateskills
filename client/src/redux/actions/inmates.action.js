@@ -95,3 +95,23 @@ export const deleteInmate = id => dispatch => {
       dispatch({ type: DELETE_INMATE_FAILURE });
     });
 };
+
+export const EDIT_INMATE_START = "EDIT_INMATE_START";
+export const EDIT_INMATE_SUCCESS = "EDIT_INMATE_SUCCESS";
+export const EDIT_INMATE_FAILURE = "EDIT_INMATE_FAILURE";
+
+
+export const editInmate = (id, updatedInmate) => dispatch => {
+  dispatch({ type: EDIT_INMATE_START }) 
+
+  axiosWithAuth()
+  .put(`/updateImate/${id}`, updatedInmate) 
+  .then(res => {
+    console.log(res);
+    dispatch({ type: EDIT_INMATE_SUCCESS })
+  })
+  .catch(error => {
+    console.log(error);
+    dispatch({ type: EDIT_INMATE_FAILURE })
+  })
+}
