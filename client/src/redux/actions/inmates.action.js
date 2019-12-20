@@ -62,7 +62,7 @@ export const ADD_INMATE_START = "ADD_INMATE_START";
 export const ADD_INMATE_SUCCESS = "ADD_INMATE_SUCCESS";
 export const ADD_INMATE_FAILURE = "ADD_INMATE_FAILURE";
 
-export const addInmate = (inmate) => dispatch => {
+export const addInmate = inmate => dispatch => {
   dispatch({ type: ADD_INMATE_START });
 
   axiosWithAuth()
@@ -74,5 +74,24 @@ export const addInmate = (inmate) => dispatch => {
     .catch(error => {
       console.log(error);
       dispatch({ type: ADD_INMATE_FAILURE });
+    });
+};
+
+export const DELETE_INMATE_START = "DELETE_INMATE_START";
+export const DELETE_INMATE_SUCCESS = "DELETE_INMATE_SUCCESS";
+export const DELETE_INMATE_FAILURE = "DELETE_INMATE_FAILURE";
+
+export const deleteInmate = id => dispatch => {
+  dispatch({ type: DELETE_INMATE_START });
+
+  axiosWithAuth()
+    .delete(`/deleteInmate/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: DELETE_INMATE_SUCCESS });
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch({ type: DELETE_INMATE_FAILURE });
     });
 };
