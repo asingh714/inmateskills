@@ -13,3 +13,12 @@ export const togglePrisonForm = () => {
     type: TOGGLE_PRISON_FORM
   }
 }
+
+
+export const TOGGLE_DELETE_PRISON_MODAL = "TOGGLE_DELETE_PRISON_MODAL"
+
+export const toggleDeletePrisonModal = () => {
+  return {
+    type: TOGGLE_DELETE_PRISON_MODAL
+  }
+}
