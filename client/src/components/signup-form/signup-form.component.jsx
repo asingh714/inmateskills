@@ -16,6 +16,13 @@ class SignupForm extends React.Component {
     confirmPassword: ""
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.id !== prevProps.id) {
+      let id = this.props.id
+      this.props.history.push(`/admin/${id}`);
+    }
+  }
+
   handleInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -34,6 +41,9 @@ class SignupForm extends React.Component {
         password
       });
     }
+
+
+
   };
 
   routeToLoginPage = () => {
@@ -46,7 +56,7 @@ class SignupForm extends React.Component {
         <FormInput
           name="name"
           onChange={this.handleInputChange}
-          placeholder="Name"
+          placeholder="Prison Name"
           type="text"
           value={this.state.name}
         />
@@ -78,4 +88,12 @@ class SignupForm extends React.Component {
   }
 }
 
-export default connect(null, { registerPrison })(SignupForm);
+
+const mapStateToProps = state => {
+  return {
+    id: state.user.id
+  }
+}
+
+
+export default connect(mapStateToProps, { registerPrison })(SignupForm);
