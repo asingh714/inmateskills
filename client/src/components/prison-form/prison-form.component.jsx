@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { editPrison } from "../../redux/actions/user.action";
 
 import "./prison-form.styles.scss";
 
@@ -28,8 +30,8 @@ class PrisonForm extends React.Component {
     });
   };
 
-
   handleSubmit = event => {
+    const { prisonId } = this.props.match.params;
     event.preventDefault();
     let formData = new FormData();
     formData.append("name", this.state.name);
@@ -40,8 +42,8 @@ class PrisonForm extends React.Component {
     formData.append("prison_info", this.state.prison_info);
     formData.append("prison_image", this.state.prison_image);
 
-
-  }
+    this.props.editPrison(prisonId, formData);
+  };
 
   render() {
     return (
@@ -102,4 +104,4 @@ class PrisonForm extends React.Component {
   }
 }
 
-export default PrisonForm;
+export default connect(null, { editPrison })(PrisonForm);

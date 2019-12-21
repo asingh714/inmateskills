@@ -15,6 +15,7 @@ const initialState = {
   isLoggedIn: false,
   loggingError: "",
   loggedInUser: {},
+  prisonUpdated: false,
   updateError: ""
 };
 
@@ -52,6 +53,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
+        prisonUpdated: false,
         updateError: ""
       };
     case UPDATE_PRISON_SUCCESS:
@@ -59,6 +61,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
+        prisonUpdated: true,
         loggedInUser: action.payload,
         updateError: ""
       };
@@ -67,6 +70,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
+        prisonUpdated: false,
         updateError: action.payload
       };
     default:

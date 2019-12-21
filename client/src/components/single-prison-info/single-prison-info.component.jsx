@@ -13,6 +13,13 @@ class SinglePrisonInfo extends React.Component {
     this.props.fetchSinglePrison(id);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.prisonUpdated !== prevProps.prisonUpdated) {
+      const id = this.props.match.params.prisonId;
+      this.props.fetchSinglePrison(id);
+    }
+  }
+
   render() {
     const {
       name,
@@ -35,7 +42,11 @@ class SinglePrisonInfo extends React.Component {
         )}
         {this.props.isAdmin && prison_image && name ? (
           <div>
-            <button>Edit</button>
+            <CustomButton
+              type="button"
+              text="Edit Profile"
+              handleClick={this.props.togglePrisonForm}
+            />
             <button>Delete</button>
           </div>
         ) : null}
@@ -53,7 +64,8 @@ class SinglePrisonInfo extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    prison: state.prisons.prison
+    prison: state.prisons.prison,
+    prisonUpdated: state.user.prisonUpdated
   };
 };
 
