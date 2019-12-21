@@ -36,3 +36,22 @@ export const registerPrison = credentials => dispatch => {
     dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
   });
 }
+
+export const UPDATE_PRISON_START = "UPDATE_PRISON_START"
+export const UPDATE_PRISON_SUCCESS = "UPDATE_PRISON_SUCCESS"
+export const UPDATE_PRISON_FAILURE = "UPDATE_PRISON_FAILURE"
+
+export const updatePrison = (id, prisonInfo) => dispatch => {
+  dispatch({ type: UPDATE_PRISON_START })
+
+  axiosWithAuth()
+  .put(`/${id}`, prisonInfo)
+  .then(response => {
+    console.log(response) 
+    dispatch({ type: UPDATE_PRISON_SUCCESS, payload: response.data })
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({ type: UPDATE_PRISON_FAILURE })
+  })
+}

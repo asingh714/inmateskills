@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 
 import SinglePrisonInfo from "../../components/single-prison-info/single-prison-info.component";
 import Inmates from "../../components/inmates/inmates.component";
+import PrisonForm from "../../components/prison-form/prison-form.component";
 import InmateForm from "../../components/inmate-form/inmate-form.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 
-import {toggleInmateForm} from "../../redux/actions/forms.action"
+import { toggleInmateForm } from "../../redux/actions/forms.action";
 
 import "./admin.styles.scss";
 
@@ -15,6 +16,7 @@ class Admin extends React.Component {
     return (
       <div>
         <SinglePrisonInfo isAdmin {...this.props} />
+        {this.props.prisonFormIsHidden ? null : <PrisonForm {...this.props} />}
         <CustomButton
           type="button"
           text="Add Inmate"
@@ -29,8 +31,9 @@ class Admin extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    inmateFormIsHidden: state.forms.inmateFormIsHidden
-  }
-}
+    inmateFormIsHidden: state.forms.inmateFormIsHidden,
+    prisonFormIsHidden: state.forms.prisonFormIsHidden
+  };
+};
 
-export default connect(mapStateToProps, {toggleInmateForm} )(Admin);
+export default connect(mapStateToProps, { toggleInmateForm })(Admin);

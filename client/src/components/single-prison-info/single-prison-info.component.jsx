@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { fetchSinglePrison } from "../../redux/actions/prisons.actions";
+import { togglePrisonForm } from "../../redux/actions/forms.action";
+
 import "./single-prison-info.styles.scss";
 
 class SinglePrisonInfo extends React.Component {
@@ -24,14 +26,20 @@ class SinglePrisonInfo extends React.Component {
     return (
       <div>
         {prison_image ? <img src={prison_image} alt="Prison" /> : null}
-        {prison_image && name ? null : <CustomButton type="button" text="Add Profile" handleClick={}/>}
-      {this.props.isAdmin && prison_image && name ? (
+        {prison_image && name ? null : (
+          <CustomButton
+            type="button"
+            text="Add Profile"
+            handleClick={this.props.togglePrisonForm}
+          />
+        )}
+        {this.props.isAdmin && prison_image && name ? (
           <div>
             <button>Edit</button>
             <button>Delete</button>
           </div>
         ) : null}
-    
+
         <h1>{name}</h1>
         <span>{address}</span>
         <span>{city}</span>
@@ -49,6 +57,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchSinglePrison })(
-  SinglePrisonInfo
-);
+export default connect(mapStateToProps, {
+  fetchSinglePrison,
+  togglePrisonForm
+})(SinglePrisonInfo);

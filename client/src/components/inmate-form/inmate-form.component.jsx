@@ -19,7 +19,9 @@ class InmateForm extends React.Component {
 
   componentDidMount() {
     const inmateId = this.props.match.params.inmateId;
-    const inmate = this.props.inmates.find(inmate => `${inmate.id}` === inmateId);
+    const inmate = this.props.inmates.find(
+      inmate => `${inmate.id}` === inmateId
+    );
 
     if (this.props.inmateToBeEdited) {
       this.setState({
@@ -46,8 +48,6 @@ class InmateForm extends React.Component {
   //     });
   //   }
   // }
-  
-  
 
   resetForm = event => {
     event.preventDefault();
@@ -80,7 +80,7 @@ class InmateForm extends React.Component {
     formData.append("release_date", this.state.release_date);
     formData.append("inmate_info", this.state.inmate_info);
     const inmateId = this.props.match.params.inmateId;
-    
+
     if (this.props.inmateToBeEdited) {
       this.props.editInmate(inmateId, formData);
     } else {
@@ -98,10 +98,8 @@ class InmateForm extends React.Component {
   };
 
   fileSelectedHandler = event => {
-    // console.log(event.target.files);
     this.setState({
       inmate_image: event.target.files[0]
-      // resume: event.target.files[1]
     });
   };
 
@@ -165,7 +163,7 @@ class InmateForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    inmates: state.inmates.inmates, 
+    inmates: state.inmates.inmates,
     inmateToBeEdited: state.inmates.inmateToBeEdited
   };
 };
