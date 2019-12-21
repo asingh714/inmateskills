@@ -1,7 +1,8 @@
-import { TOGGLE_INMATE_FORM } from "../actions/forms.action";
+import { TOGGLE_INMATE_FORM, TOGGLE_PRISON_FORM } from "../actions/forms.action";
 
 const initialState = {
   inmateFormIsHidden: true,
+  prisonFormIsHidden: true
 };
 
 const formsReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const formsReducer = (state = initialState, action) => {
         ...state,
         inmateFormIsHidden: !state.inmateFormIsHidden
       };
+      case TOGGLE_PRISON_FORM:
+          return {
+            ...state,
+            prisonFormIsHidden: !state.prisonFormIsHidden
+          };
     default:
       return state;
   }

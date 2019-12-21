@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import CustomButton from "../../components/custom-button/custom-button.component";
 import { fetchSinglePrison } from "../../redux/actions/prisons.actions";
 import "./single-prison-info.styles.scss";
 
@@ -22,13 +23,15 @@ class SinglePrisonInfo extends React.Component {
     } = this.props.prison;
     return (
       <div>
-        <img src={prison_image} alt="Prison" />
-        {this.props.isAdmin ? (
+        {prison_image ? <img src={prison_image} alt="Prison" /> : null}
+        {prison_image && name ? null : <CustomButton type="button" text="Add Profile" handleClick={}/>}
+      {this.props.isAdmin && prison_image && name ? (
           <div>
             <button>Edit</button>
             <button>Delete</button>
           </div>
         ) : null}
+    
         <h1>{name}</h1>
         <span>{address}</span>
         <span>{city}</span>
