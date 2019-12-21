@@ -4,16 +4,18 @@ import {
   PRISON_LOGIN_FAILURE,
   PRISON_REGISTER_START,
   PRISON_REGISTER_SUCCESS,
-  PRISON_REGISTER_FAILURE
+  PRISON_REGISTER_FAILURE,
+  UPDATE_PRISON_START,
+  UPDATE_PRISON_SUCCESS,
+  UPDATE_PRISON_FAILURE
 } from "../actions/user.action";
 
 const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
-  username: "",
-  id: null,
-  name: "",
-  error: ""
+  loggingError: "",
+  loggedInUser: {},
+  updateError: ""
 };
 
 const userReducer = (state = initialState, action) => {
@@ -24,10 +26,8 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: true,
         isLoggedIn: false,
-        username: "",
-        id: null,
-        name: "",
-        error: ""
+        loggedInUser: {},
+        loggingError: ""
       };
     case PRISON_LOGIN_SUCCESS:
     case PRISON_REGISTER_SUCCESS:
@@ -35,10 +35,8 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
-        username: action.payload.username,
-        name: action.payload.name,
-        id: action.payload.id, 
-        error: ""
+        loggedInUser: action.payload,
+        loggingError: ""
       };
     case PRISON_LOGIN_FAILURE:
     case PRISON_REGISTER_FAILURE:
@@ -46,10 +44,30 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: false,
-        username: "",
-        id: null,
-        name: "",
-        error: action.payload
+        loggedInUser: {},
+        loggingError: action.payload
+      };
+    case UPDATE_PRISON_START:
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: true,
+        updateError: ""
+      };
+    case UPDATE_PRISON_SUCCESS:
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: true,
+        loggedInUser: action.payload,
+        updateError: ""
+      };
+    case UPDATE_PRISON_FAILURE:
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: true,
+        updateError: action.payload
       };
     default:
       return state;
