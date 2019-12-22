@@ -5,6 +5,7 @@ import SinglePrisonInfo from "../../components/single-prison-info/single-prison-
 import Inmates from "../../components/inmates/inmates.component";
 import PrisonForm from "../../components/prison-form/prison-form.component";
 import InmateForm from "../../components/inmate-form/inmate-form.component";
+import DeleteModal from "../../components/delete-modal/delete-modal.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 
 import { toggleInmateForm } from "../../redux/actions/forms.action";
@@ -24,6 +25,12 @@ class Admin extends React.Component {
         />
         <Inmates isAdmin {...this.props} />
         {this.props.inmateFormIsHidden ? null : <InmateForm {...this.props} />}
+        {this.props.deleteModalIsHidden ? null : (
+          <DeleteModal
+            text="Are you sure you want to delete this profile?"
+            {...this.props}
+          />
+        )}
       </div>
     );
   }
@@ -32,7 +39,8 @@ class Admin extends React.Component {
 const mapStateToProps = state => {
   return {
     inmateFormIsHidden: state.forms.inmateFormIsHidden,
-    prisonFormIsHidden: state.forms.prisonFormIsHidden
+    prisonFormIsHidden: state.forms.prisonFormIsHidden,
+    deleteModalIsHidden: state.forms.deleteModalIsHidden
   };
 };
 
