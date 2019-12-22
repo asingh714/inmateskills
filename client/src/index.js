@@ -9,7 +9,7 @@ import logger from "redux-logger";
 import reducer from "./redux/root-reducer";
 
 import App from "./App";
-import "./index.scss";
+import "./global-styles/index.scss";
 
 const middlewares = [thunk, logger];
 

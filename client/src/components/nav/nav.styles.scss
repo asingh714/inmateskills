@@ -1,0 +1,22 @@
+@import "../../global-styles/variables.scss";
+
+.nav {
+  font-size: 2rem;
+
+  a {
+    color: $purple-two;
+
+    &:not(:last-child) {
+      margin-right: 7.2rem;
+    }
+
+    &:hover {
+      border-bottom: $purple-two solid 1px;
+      padding-bottom: 0.5rem;
+    }
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
