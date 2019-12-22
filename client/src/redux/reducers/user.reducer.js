@@ -7,7 +7,10 @@ import {
   PRISON_REGISTER_FAILURE,
   UPDATE_PRISON_START,
   UPDATE_PRISON_SUCCESS,
-  UPDATE_PRISON_FAILURE
+  UPDATE_PRISON_FAILURE,
+  DELETE_PRISON_START,
+  DELETE_PRISON_SUCCESS,
+  DELETE_PRISON_FAILURE
 } from "../actions/user.action";
 
 const initialState = {
@@ -16,7 +19,8 @@ const initialState = {
   loggingError: "",
   loggedInUser: {},
   prisonUpdated: false,
-  updateError: ""
+  updateError: "",
+  prisonDeleted: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -72,6 +76,17 @@ const userReducer = (state = initialState, action) => {
         isLoggedIn: true,
         prisonUpdated: false,
         updateError: action.payload
+      };
+    case DELETE_PRISON_START:
+    case DELETE_PRISON_FAILURE:
+      return {
+        ...state,
+        prisonDeleted: false
+      };
+    case DELETE_PRISON_SUCCESS:
+      return {
+        ...state,
+        prisonDeleted: true
       };
     default:
       return state;

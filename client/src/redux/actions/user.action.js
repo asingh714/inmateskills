@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { DELETE_INMATE_FAILURE } from "./inmates.action";
 
 export const PRISON_LOGIN_START = "PRISON_LOGIN_START";
 export const PRISON_LOGIN_SUCCESS = "PRISON_LOGIN_SUCCESS";
@@ -53,5 +54,24 @@ export const editPrison = (id, prisonInfo) => dispatch => {
   .catch(error => {
     console.log(error)
     dispatch({ type: UPDATE_PRISON_FAILURE })
+  })
+}
+
+export const DELETE_PRISON_START = "DELETE_PRISON_START"
+export const DELETE_PRISON_SUCCESS = "DELETE_PRISON_SUCCESS"
+export const DELETE_PRISON_FAILURE = "DELETE_PRISON_FAILURE"
+
+export const deletePrison = (id) => dispatch => {
+  dispatch({ type: DELETE_PRISON_START })
+
+  axiosWithAuth()
+  .delete(`/${id}`)
+  .then(response => {
+    console.log(response)
+    dispatch({ type: DELETE_PRISON_SUCCESS })
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({ type: DELETE_INMATE_FAILURE })
   })
 }

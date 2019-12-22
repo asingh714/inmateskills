@@ -28,6 +28,7 @@ class Admin extends React.Component {
         {this.props.deleteModalIsHidden ? null : (
           <DeleteModal
             text="Are you sure you want to delete this profile?"
+            id={this.props.match.params.prisonId}
             {...this.props}
           />
         )}
