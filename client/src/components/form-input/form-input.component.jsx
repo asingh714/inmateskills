@@ -2,7 +2,7 @@ import React from "react";
 
 import "./form-input.styles.scss";
 
-const FormInput = ({ name, onChange, placeholder, type, value }) => {
+const FormInput = ({ name, onChange, placeholder, type, value, className }) => {
   return (
     <input
       name={name}
@@ -10,6 +10,7 @@ const FormInput = ({ name, onChange, placeholder, type, value }) => {
       placeholder={placeholder}
       type={type}
       value={value}
+      className={className}
     />
   );
 };

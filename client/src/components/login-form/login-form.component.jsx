@@ -45,6 +45,7 @@ class LoginForm extends React.Component {
           placeholder="Username"
           type="text"
           value={this.state.username}
+          className="login-signup-input"
         />
         <FormInput
           name="password"
@@ -52,8 +53,9 @@ class LoginForm extends React.Component {
           placeholder="Password"
           type="password"
           value={this.state.password}
+          className="login-signup-input"
         />
-        <CustomButton text="Submit" />
+        <CustomButton text="Submit" className="login-signup-submit"/>
         <span onClick={this.routeToSignUpPage}>Don't have an account?</span>
       </form>
     );
