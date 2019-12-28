@@ -6,7 +6,7 @@ import "./login.styles.scss"
 export default class LoginPage extends Component {
   render() {
     return (
-      <div>
+      <div className="login-form-container">
         <LoginForm {...this.props} /> 
       </div>
     )

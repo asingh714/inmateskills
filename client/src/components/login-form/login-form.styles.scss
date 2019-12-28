@@ -1,0 +1,10 @@
+@import "../../global-styles//variables.scss";
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  width: 30rem;
+  padding: 2.8rem 2.5rem;
+  border-radius: 1rem;
+}

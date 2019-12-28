@@ -1,9 +1,11 @@
+@import "../../global-styles/variables.scss";
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4rem 8rem 4rem 10rem;
+  background-color: $white;
 
 
   .logo {

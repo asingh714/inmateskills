@@ -16,11 +16,10 @@ class LoginForm extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.id !== prevProps.id) {
-      let id = this.props.id
+      let id = this.props.id;
       this.props.history.push(`/admin/${id}`);
     }
   }
-  
 
   handleInputChange = event => {
     this.setState({
@@ -39,7 +38,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="login-form">
         <FormInput
           name="username"
           onChange={this.handleInputChange}
@@ -55,9 +54,7 @@ class LoginForm extends React.Component {
           value={this.state.password}
         />
         <CustomButton text="Submit" />
-        <span onClick={this.routeToSignUpPage}>
-          Don't have an account?
-        </span>
+        <span onClick={this.routeToSignUpPage}>Don't have an account?</span>
       </form>
     );
   }
@@ -66,7 +63,7 @@ class LoginForm extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.user.id
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, { loginPrison })(LoginForm);
