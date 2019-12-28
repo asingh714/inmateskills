@@ -16,9 +16,9 @@ import "./App.css";
 
 function App() {
   return (
-    <>
-      <div>
-        <Header />
+    <div className="page-container">
+      <Header />
+      <div className="content-container">
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/prisons" component={PrisonPage} />
@@ -41,7 +41,7 @@ function App() {
         </Switch>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
