@@ -1,0 +1,14 @@
+@import "../../global-styles/variables.scss";
+
+.footer-container {
+  background-color: $purple-five;
+  padding: 5rem 8rem;
+
+  .copyright-text {
+    color: $white;
+    display: block;
+    text-align: center;
+    margin-top: 3.2rem;
+    font-weight: 200;
+  }
+}

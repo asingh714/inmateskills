@@ -1,7 +1,8 @@
 @import "../../global-styles/variables.scss";
 
-.nav {
+.header-nav {
   font-size: 2rem;
+  font-weight: 400;
 
   a {
     color: $purple-two;
@@ -16,7 +17,30 @@
     }
 
     &.active {
-      font-weight: bold;
+      font-weight: 600;
+    }
+  }
+}
+
+.footer-nav {
+  font-size: 1.6rem;
+  font-weight: 300;
+
+
+  a {
+    color: $white;
+
+    &:not(:last-child) {
+      margin-right: 7.2rem;
+    }
+
+    &:hover {
+      border-bottom: $white solid 1px;
+      padding-bottom: 0.5rem;
+    }
+
+    &.active {
+      font-weight: 600;
     }
   }
 }

@@ -12,7 +12,7 @@ const Header = () => {
       <NavLink exact to="/">
         <img src={logo} alt="Logo for Inmate Skills" className="logo" />
       </NavLink>
-      <Nav />
+      <Nav className="header-nav"/>
     </header>
   );
 };
