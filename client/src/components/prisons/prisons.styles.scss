@@ -1,0 +1,9 @@
+@import "../../global-styles/variables.scss";
+
+.prisons-container {
+  background-color: $white;
+  max-width: 120rem;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 8rem;
+}

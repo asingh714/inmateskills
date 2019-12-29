@@ -11,7 +11,8 @@ const PrisonBox = ({ prison, ...props }) => {
 
 
   return (
-    <div className="box" onClick={e => routeToSinglePrisonProfilePage(e, prison.id)}>
+    <div className="prison-box" onClick={e => routeToSinglePrisonProfilePage(e, prison.id)}>
+      <img src={prison.prison_image} alt="Prison" className="prison-box-banner"/>
       <span>{prison.name}</span>
       <span> Inmates Available for Hire</span>
       <span>{prison.address}</span>

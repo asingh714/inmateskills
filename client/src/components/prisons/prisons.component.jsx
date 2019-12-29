@@ -12,7 +12,7 @@ class Prisons extends Component {
 
   render() {
     return (
-      <div>
+      <div className="prisons-container">
         {this.props.prisons.map(prison => {
           return <PrisonBox prison={prison} key={prison.id} {...this.props} />;
         })}

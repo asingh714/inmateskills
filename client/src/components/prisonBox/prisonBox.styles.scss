@@ -1,5 +1,12 @@
-.box {
-  border: 1px solid black; 
+.prison-box{
   display: flex;
   flex-direction: column;
+  width: 25rem; 
+  border-radius: 10px;
+  border: 1px solid black;
+
+  .prison-box-banner {
+    height: 11rem;
+    // left off here! edit the border for the image to blend in. 
+  }
 }
