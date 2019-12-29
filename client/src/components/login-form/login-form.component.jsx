@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
           className="login-signup-input"
         />
         <CustomButton text="Submit" className="login-signup-submit"/>
-        <span onClick={this.routeToSignUpPage}>Don't have an account?</span>
+        <span onClick={this.routeToSignUpPage} className="login-route-text">Don't have an account?</span>
       </form>
     );
   }
