@@ -1,14 +1,17 @@
 @import "../../global-styles/variables.scss";
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4rem 8rem 4rem 10rem;
+.full-header {
   background-color: $white;
-
-
-  .logo {
-    width: 15rem;
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 8rem 4rem 10rem;
+    max-width: 120rem;
+    margin: 0 auto;
+    .logo {
+      width: 15rem;
+    }
   }
 }

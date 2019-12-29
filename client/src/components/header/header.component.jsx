@@ -8,11 +8,13 @@ import "./header.styles.scss";
 
 const Header = () => {
   return (
-    <header className="header">
-      <NavLink exact to="/">
-        <img src={logo} alt="Logo for Inmate Skills" className="logo" />
-      </NavLink>
-      <Nav className="header-nav"/>
+    <header className="full-header">
+      <div className="header-container">
+        <NavLink exact to="/">
+          <img src={logo} alt="Logo for Inmate Skills" className="logo" />
+        </NavLink>
+        <Nav className="header-nav" />
+      </div>
     </header>
   );
 };
