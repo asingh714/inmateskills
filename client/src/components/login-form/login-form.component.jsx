@@ -6,7 +6,7 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import { loginPrison } from "../../redux/actions/user.action";
 
-import "./login-form.styles.scss";
+import "./login-signup-form.styles.scss";
 
 class LoginForm extends React.Component {
   state = {
@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="login-form">
+      <form onSubmit={this.handleSubmit} className="login-signup-form">
         <FormInput
           name="username"
           onChange={this.handleInputChange}
@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
           className="login-signup-input"
         />
         <CustomButton text="Submit" className="login-signup-submit"/>
-        <span onClick={this.routeToSignUpPage} className="login-route-text">Don't have an account?</span>
+        <span onClick={this.routeToSignUpPage} className="login-signup-route">Don't have an account?</span>
       </form>
     );
   }

@@ -1,6 +1,6 @@
 @import "../../global-styles//variables.scss";
 
-.login-form {
+.login-signup-form {
   display: flex;
   flex-direction: column;
   background-color: $white;
@@ -8,7 +8,7 @@
   padding: 5.6rem 5rem;
   border-radius: 1rem;
 
-  .login-route-text {
+  .login-signup-route {
     font-size: 1.8rem;
     font-weight: 500;
     letter-spacing: 2px;

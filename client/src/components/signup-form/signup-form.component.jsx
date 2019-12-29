@@ -6,7 +6,7 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import { registerPrison } from "../../redux/actions/user.action";
 
-import "./signup-form.styles.scss";
+import "../login-form/login-signup-form.styles.scss";
 
 class SignupForm extends React.Component {
   state = {
@@ -18,7 +18,7 @@ class SignupForm extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.id !== prevProps.id) {
-      let id = this.props.id
+      let id = this.props.id;
       this.props.history.push(`/admin/${id}`);
     }
   }
@@ -41,9 +41,6 @@ class SignupForm extends React.Component {
         password
       });
     }
-
-
-
   };
 
   routeToLoginPage = () => {
@@ -52,13 +49,14 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="login-signup-form">
         <FormInput
           name="name"
           onChange={this.handleInputChange}
           placeholder="Prison Name"
           type="text"
           value={this.state.name}
+          className="login-signup-input"
         />
         <FormInput
           name="username"
@@ -66,6 +64,7 @@ class SignupForm extends React.Component {
           placeholder="Username"
           type="text"
           value={this.state.username}
+          className="login-signup-input"
         />
         <FormInput
           name="password"
@@ -73,6 +72,7 @@ class SignupForm extends React.Component {
           placeholder="Password"
           type="password"
           value={this.state.password}
+          className="login-signup-input"
         />
         <FormInput
           name="confirmPassword"
@@ -80,20 +80,21 @@ class SignupForm extends React.Component {
           placeholder="Confirm Password"
           type="password"
           value={this.state.confirmPassword}
+          className="login-signup-input"
         />
-        <CustomButton text="Submit" />
-        <span onClick={this.routeToLoginPage}>Already have an account?</span>
+        <CustomButton text="Submit" className="login-signup-submit" />
+        <span onClick={this.routeToLoginPage} className="login-signup-route">
+          Already have an account?
+        </span>
       </form>
     );
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     id: state.user.id
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps, { registerPrison })(SignupForm);
