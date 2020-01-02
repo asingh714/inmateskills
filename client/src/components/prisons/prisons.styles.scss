@@ -3,7 +3,12 @@
 .prisons-container {
   background-color: $white;
   max-width: 120rem;
-  margin: 0 auto;
+  margin: 10rem auto;
   border-radius: 5px;
-  padding: 8rem;
+  padding: 8rem 6.4rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2.4rem;
+  grid-row-gap: 4rem;
 }

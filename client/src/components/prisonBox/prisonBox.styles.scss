@@ -3,10 +3,17 @@
 .prison-box {
   display: flex;
   flex-direction: column;
-  width: 25rem;
-  border-radius: 10px;
+  width: 24rem;
+  border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 .8rem 1.3rem rgba(black, 0.15);
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(black, 0.2);
+  }
 
   .prison-box-banner {
     height: 10rem;
@@ -21,9 +28,9 @@
 
   .prison-box-title {
     font-size: 2.4rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 2.4rem;
-    color: $neutral-six;
+    color: $neutral-five;
     letter-spacing: 0.08rem;
   }
 
@@ -34,13 +41,13 @@
 
   .prison-box-street {
     margin-top: 1.6rem;
-    font-weight: 600;
+    font-weight: 500;
     color: $neutral-six;
   }
 
   .prison-box-city-state {
     margin-top: 0.5rem;
-    font-weight: 600;
+    font-weight: 500;
     color: $neutral-six;
   }
 
