@@ -1,12 +1,59 @@
-.prison-box{
+@import "../../global-styles//variables.scss";
+
+.prison-box {
   display: flex;
   flex-direction: column;
-  width: 25rem; 
+  width: 25rem;
   border-radius: 10px;
-  border: 1px solid black;
+  overflow: hidden;
+  cursor: pointer;
 
   .prison-box-banner {
-    height: 11rem;
-    // left off here! edit the border for the image to blend in. 
+    height: 10rem;
+  }
+
+  .prison-box-title,
+  .prison-box-count,
+  .prison-box-street,
+  .prison-box-city-state {
+    margin-left: 1.6rem;
+  }
+
+  .prison-box-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-top: 2.4rem;
+    color: $neutral-six;
+    letter-spacing: 0.08rem;
+  }
+
+  .prison-box-count {
+    margin-top: 1.6rem;
+    color: $neutral-seven;
+  }
+
+  .prison-box-street {
+    margin-top: 1.6rem;
+    font-weight: 600;
+    color: $neutral-six;
+  }
+
+  .prison-box-city-state {
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: $neutral-six;
+  }
+
+  .prison-box-button {
+    color: $white;
+    background-color: $purple-three;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2.4rem;
+    text-transform: uppercase;
+
+    #triangle {
+      margin-left: 0.5rem;
+    }
   }
 }
