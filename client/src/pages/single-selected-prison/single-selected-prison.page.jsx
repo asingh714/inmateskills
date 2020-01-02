@@ -10,7 +10,7 @@ class SingleSelectedPrisonPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="single-prison-container">
         <SinglePrisonInfo {...this.props} />
         <InmatesAvailable /> 
         <Inmates {...this.props} />

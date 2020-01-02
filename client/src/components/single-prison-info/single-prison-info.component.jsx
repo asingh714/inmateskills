@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { fetchSinglePrison } from "../../redux/actions/prisons.actions";
-import { togglePrisonForm, toggleDeletePrisonModal } from "../../redux/actions/forms.action";
+import {
+  togglePrisonForm,
+  toggleDeletePrisonModal
+} from "../../redux/actions/forms.action";
 
 import "./single-prison-info.styles.scss";
 
@@ -32,8 +35,10 @@ class SinglePrisonInfo extends React.Component {
     } = this.props.prison;
     return (
       <div>
-        {prison_image ? <img src={prison_image} alt="Prison" /> : null}
-        <div>
+        {prison_image ? (
+          <img src={prison_image} alt="Prison" className="prison-banner" />
+        ) : null}
+        {/* <div>
           <CustomButton
             type="button"
             text="Edit Profile"
@@ -44,15 +49,15 @@ class SinglePrisonInfo extends React.Component {
             text="Delete Profile"
             handleClick={this.props.toggleDeletePrisonModal}
           />
+        </div> */}
+
+        <div className="prison-info-container">
+          <h1 className="prison-name">{name}</h1>
+          <span className="prison-address">
+            {address} {city}, {state} {zip_code}
+          </span>
+          <span className="prison-info">{prison_info}</span>
         </div>
-
-
-        <h1>{name}</h1>
-        <span>{address}</span>
-        <span>{city}</span>
-        <span>{state}</span>
-        <span>{zip_code}</span>
-        <span>{prison_info}</span>
       </div>
     );
   }

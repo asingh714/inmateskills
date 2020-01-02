@@ -1,0 +1,10 @@
+@import "../../global-styles/variables.scss";
+
+
+.single-prison-container {
+  background-color: $white;
+  max-width: 120rem;
+  margin: 10rem auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
