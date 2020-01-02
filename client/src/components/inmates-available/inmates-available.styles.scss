@@ -1,0 +1,12 @@
+@import "../../global-styles/variables.scss";
+
+.inmate-text {
+  margin: 0 0 3.2rem 4rem;
+  font-size: 2rem;
+  color: $neutral-four;
+  font-weight: 400;
+
+  #inmate-number {
+    font-weight: 600;
+  }
+}

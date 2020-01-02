@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 
 import "./inmates-available.styles.scss";
 
-const InmatesAvailable = (props) => {
+const InmatesAvailable = props => {
   return (
-    <div>
-      <span>{props.inmates.length} Inmates Available for Hire</span>
-    </div>
+    // <div>
+      <span className="inmate-text">
+        <span id="inmate-number">{props.inmates.length}</span> Inmates Available
+        for Hire
+      </span>
+    // </div>
   );
 };
 
