@@ -24,15 +24,15 @@ const InmateBox = ({ inmate, prisonId, deleteInmate, toggleInmateForm, toggleIsI
 
   return (
     <div
-      className="box"
+      className="inmate-box-row"
       onClick={
         props.isAdmin ? null : e => routeToSingleInmateProfilePage(e, inmate.id)
       }
     >
-      <img src={inmate.inmate_image} alt="Inmate" />
-      <span>{inmate.name}</span>
-      <span>{inmate.availability ? "Available" : "Not Available"}</span>
-      <span>{inmate.release_date}</span>
+      <img src={inmate.inmate_image} alt="Inmate" className="inmate-box-row-image"/>
+      <span className="inmate-box-row-name">{inmate.name}</span>
+      <span className="inmate-box-row-availability">{inmate.availability ? "Available" : "Not Available"}</span>
+      <span className="inmate-box-row-date">{inmate.release_date}</span>
       {props.isAdmin ? (
         <div>
           <CustomButton

@@ -38,18 +38,21 @@ class SinglePrisonInfo extends React.Component {
         {prison_image ? (
           <img src={prison_image} alt="Prison" className="prison-banner" />
         ) : null}
-        {/* <div>
-          <CustomButton
-            type="button"
-            text="Edit Profile"
-            handleClick={this.props.togglePrisonForm}
-          />
-          <CustomButton
-            type="button"
-            text="Delete Profile"
-            handleClick={this.props.toggleDeletePrisonModal}
-          />
-        </div> */}
+
+        {this.props.isAdmin ? (
+          <div>
+            <CustomButton
+              type="button"
+              text="Edit Profile"
+              handleClick={this.props.togglePrisonForm}
+            />
+            <CustomButton
+              type="button"
+              text="Delete Profile"
+              handleClick={this.props.toggleDeletePrisonModal}
+            />
+          </div>
+        ) : null}
 
         <div className="prison-info-container">
           <h1 className="prison-name">{name}</h1>

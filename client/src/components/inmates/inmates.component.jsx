@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { fetchInmates } from "../../redux/actions/inmates.action";
 import InmateBox from "../inmateBox/inmateBox.component";
 
+import "./inmates.styles.scss";
+
 class Inmates extends Component {
   componentDidMount() {
     const id = this.props.match.params.prisonId;
@@ -23,7 +25,7 @@ class Inmates extends Component {
 
   render() {
     return (
-      <div>
+      <div className="inmates-row-container">
         {this.props.inmates.map(inmate => (
           <InmateBox
             key={inmate.id}
