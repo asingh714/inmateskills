@@ -6,10 +6,12 @@
   // padding: 1rem 0;
   width: 80rem;
   margin: 0 auto;
+  margin-bottom: 4rem;
   cursor: pointer;
   box-shadow: 0 0.8rem 1.3rem rgba(black, 0.15);
   transition: all 0.3s;
   border-radius: 1rem;
+
 
   &:hover {
     box-shadow: 0 1rem 2rem rgba(black, 0.2);

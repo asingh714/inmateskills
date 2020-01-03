@@ -1,0 +1,50 @@
+@import "../../global-styles/variables.scss";
+
+.single-inmate-info-container {
+  max-width: 60rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8rem 0; 
+
+  .single-inmate-info-image {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 50%;
+  }
+
+  .single-inmate-info-name {
+    font-size: 4rem;
+    margin-top: 4rem;
+    color: $purple-one;
+    font-weight: 300;
+  }
+
+  .single-inmate-info-availability {
+    font-size: 2.1rem;
+    margin-top: 2.4rem;
+    color: $neutral-one;
+    font-weight: 500;
+  }
+
+  .single-inmate-info-release_date {
+    margin-top: 1.2rem;
+    color: $neutral-six;
+  }
+
+
+  .single-inmate-info-inmate_info {
+    margin-top: 4rem;
+    color: $neutral-five;
+    letter-spacing: 1px;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .single-inmate-info-contact-button {
+
+  }
+
+}

@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import SingleInmateInfo from "../../components/single-inmate-info/single-inmate-info.component"
+import SingleInmateInfo from "../../components/single-inmate-info/single-inmate-info.component";
 
-const SingleSelectedInmateProfile = ({...props}) => {
+import "./single-selected-inmate-profile.styles.scss";
+
+const SingleSelectedInmateProfile = ({ ...props }) => {
   return (
-    <SingleInmateInfo isAdmin={false} {...props} />
-  )
-}
+    <div className="single-inmate-profile-container">
+      <SingleInmateInfo isAdmin={false} {...props} />
+    </div>
+  );
+};
 
 export default SingleSelectedInmateProfile;
