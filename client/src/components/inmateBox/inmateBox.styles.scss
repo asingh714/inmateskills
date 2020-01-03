@@ -1,14 +1,13 @@
 @import "../../global-styles/variables.scss";
 
-
 .inmate-box-row {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  // padding: 1rem 0;
   width: 80rem;
   margin: 0 auto;
   cursor: pointer;
-  box-shadow: 0 .8rem 1.3rem rgba(black, 0.15);
+  box-shadow: 0 0.8rem 1.3rem rgba(black, 0.15);
   transition: all 0.3s;
   border-radius: 1rem;
 
@@ -23,22 +22,47 @@
     margin-left: 3.2rem;
   }
 
-  .inmate-box-row-name {
-    font-size: 2rem;
-    font-weight: 600;
-    color: $neutral-two;
-    margin-left: 4.8rem;
+  .text-container {
+    display: flex;
+    align-items: baseline;
+
+
+    .inmate-box-row-name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $neutral-two;
+      margin-left: 4.8rem;
+    }
+
+    .inmate-box-row-availability {
+      // font-size: 1.8rem;
+      color: $neutral-one;
+      margin-left: 4rem;
+    }
+
+    .inmate-box-row-date {
+      color: $neutral-six;
+      margin-left: 4rem;
+    }
   }
 
-  .inmate-box-row-availability {
-    // font-size: 1.8rem;
-    color: $neutral-one;
-    margin-left: 3.2rem;
-  }
+  .inmate-box-row-btn-container {
+    margin-left: auto;
+    height: 12rem;
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $neutral-ten;
 
-  .inmate-box-row-date {
-    color: $neutral-six;
-    margin-left: 3.2rem;
-  }
+    .inmate-box-row-btn {
+      color: $purple-three;
+      text-transform: uppercase;
+      font-weight: 600;
 
+      #triangle {
+        margin-left: 0.5rem;
+      }
+    }
+  }
 }
