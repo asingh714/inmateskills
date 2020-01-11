@@ -18,21 +18,24 @@ export default class Homepage extends Component {
         </main>
         <div className="how-it-works-section">
           <h2 className="how-it-works-header">How it works for employees</h2>
-          <img src={Employee_Img} alt="Employee Office" />
-          <div className="list-container">
-            <ol>
-              <li>
-                Employees can browse through local prisons without signing up
-              </li>
-              <li>Look through a list of inmate profiles per prison</li>
-              <li>
-                Interested? Use the form in the profile to contact the candidate
-                and prison.
-              </li>
-            </ol>
-            <span>Browse Prisons<span id="triangle">&#9658;</span></span>
+          <div className="image-list-container">
+            <img src={Employee_Img} alt="Employee Office" className="how-it-works-image" />
+            <div className="list-container">
+              <ol>
+                <li>
+                  Employees can browse through local prisons without signing up
+                </li>
+                <li>Look through a list of inmate profiles per prison</li>
+                <li>
+                  Interested? Use the form in the profile to contact the
+                  candidate and prison.
+                </li>
+              </ol>
+              <span className="brown-prisons-link">
+                Browse Prisons<span id="triangle">&#9658;</span>
+              </span>
+            </div>
           </div>
-
         </div>
       </div>
     );

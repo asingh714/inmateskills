@@ -2,9 +2,10 @@
 
 .hero-container {
   background-image: linear-gradient(
-    to right bottom,
-    rgba($purple-five, 0.5),
-    rgba($purple-two, 0.5)),
+      to right bottom,
+      rgba($purple-five, 0.5),
+      rgba($purple-two, 0.5)
+    ),
     url(../../assets/images/hero_img.png);
   background-position: center;
   background-size: cover;
@@ -16,12 +17,12 @@
   align-items: center;
 
   .main-header {
-    color: $white; 
+    color: $white;
     margin-bottom: 6.4rem;
     font-size: 4rem;
     font-weight: 500;
   }
-  
+
   .sub-header {
     color: $white;
     font-size: 3.2rem;
@@ -41,5 +42,41 @@
     font-size: 4rem;
     font-weight: 300;
     color: $neutral-two;
+    margin-bottom: 8rem;
+  }
+
+  .image-list-container {
+    display: flex;
+
+    .how-it-works-image {
+      width: 50%;
+      border-radius: 5px;
+    }
+
+    .list-container {
+      // border: 1px solid red;
+      margin-left: 4.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      li {
+        line-height: 1.5;
+        margin-bottom: 3.2rem;
+        color: $neutral-two;
+        letter-spacing: 1px;
+      }
+
+      .brown-prisons-link {
+        color: $purple-two;
+        text-transform: uppercase;
+        font-weight: 600;
+
+        #triangle {
+          margin-left: 0.5rem;
+        }
+      }
+    }
   }
 }
