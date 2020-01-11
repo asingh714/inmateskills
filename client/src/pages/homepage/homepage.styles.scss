@@ -31,3 +31,15 @@
     line-height: 1.5;
   }
 }
+
+.how-it-works-section {
+  margin: 10rem auto;
+  width: 80%;
+
+  .how-it-works-header {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 300;
+    color: $neutral-two;
+  }
+}
