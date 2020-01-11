@@ -39,7 +39,7 @@ export default class Homepage extends Component {
                   candidate and prison.
                 </li>
               </ol>
-              <span className="brown-prisons-link">
+              <span className="browse-prisons-link">
                 Browse Prisons<span id="triangle">&#9658;</span>
               </span>
             </div>
@@ -62,6 +62,18 @@ export default class Homepage extends Component {
             </div>
             <img src={Prison_Img} alt="Prison" className="how-it-works-image" />
           </div>
+        </div>
+
+        <div className="why-it-matters-section">
+          <h2 className="why-it-matters-header">Why this matters</h2>
+          <p className="why-it-matters-text">
+            Approximately 2.2 million men and women are incarcerated. Of these
+            2.2 million inmates, 95% will eventually be released. Every year
+            over 600,000 inmates are released and have to acclimate to their
+            communities. Our goal is to provide a platform so that every able
+            inmate that is released, can return to society as a functioning
+            member. Step one starts with helping them find a job
+          </p>
         </div>
       </div>
     );

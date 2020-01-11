@@ -75,7 +75,7 @@
         letter-spacing: 1px;
       }
 
-      .brown-prisons-link {
+      .browse-prisons-link {
         color: $purple-two;
         text-transform: uppercase;
         font-weight: 600;
@@ -85,5 +85,25 @@
         }
       }
     }
+  }
+}
+
+.why-it-matters-section {
+
+  .why-it-matters-header {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 300;
+    color: $neutral-two;
+    margin-bottom: 6rem;
+  }
+
+  .why-it-matters-text {
+    max-width: 80rem;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 2;
+    color: $neutral-two;
+    letter-spacing: 1px;
   }
 }
