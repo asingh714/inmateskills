@@ -75,6 +75,15 @@ export default class Homepage extends Component {
             member. Step one starts with helping them find a job
           </p>
         </div>
+
+        <div className="testimonial-section">
+          <p className="testimonial-text">
+            “Prison Skills helped me find a job before I was released from
+            prison. I am thankful that my prisons participated in this platform.
+            It changes lives!“
+          </p>
+          <span className="testimonial-author">— Steve Peterson</span>
+        </div>
       </div>
     );
   }
