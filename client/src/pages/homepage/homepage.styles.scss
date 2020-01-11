@@ -53,14 +53,21 @@
       border-radius: 5px;
     }
 
-    .list-container {
-      // border: 1px solid red;
+    .list-container-right {
       margin-left: 4.8rem;
+    }
+
+    .list-container-left {
+      margin-right: 4.8rem;
+    }
+
+    .list-container-right,
+    .list-container-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
+      
       li {
         line-height: 1.5;
         margin-bottom: 3.2rem;
