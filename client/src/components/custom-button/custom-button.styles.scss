@@ -20,3 +20,25 @@
     box-shadow: 1px 2px 5px rgba(black, 0.15);
   }
 }
+
+.single-inmate-info-contact-button {
+  padding: 1.4rem 2rem;
+  width: 20rem;
+  background-color: $cyan-six;
+  border-radius: 5px;
+  color: $cyan-one;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  box-shadow: 1px 2px 5px rgba(black, 0.15);
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: 1px 3px 7px rgba(black, 0.25);
+  }
+
+  &:active {
+    box-shadow: 1px 2px 5px rgba(black, 0.15);
+  }
+
+}
