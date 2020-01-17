@@ -60,7 +60,14 @@ class SingleInmateInfo extends React.Component {
             handleClick={this.toggleContact}
           />
         </div>
-        {this.state.isVisible && <ContactModal prisonId={prisonId} inmateId={inmateId} />}
+        <div
+          className={`${this.state.isVisible ? "contact-container" : ""}`}
+          onClick={this.toggleContact}
+        >
+          {this.state.isVisible && (
+            <ContactModal prisonId={prisonId} inmateId={inmateId} />
+          )}
+        </div>
       </>
     );
   }

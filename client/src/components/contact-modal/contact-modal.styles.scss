@@ -1,0 +1,10 @@
+@import "../../global-styles/variables.scss";
+
+.contact-form {
+  background-color: $purple-ten;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50rem; 
+}

@@ -31,7 +31,7 @@ class ContactModal extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="contact-form" >
         <FormInput
           name="name"
           onChange={this.handleInputChange}
