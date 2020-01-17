@@ -21,23 +21,25 @@ class ContactModal extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
-    const prisonId = this.props.prisonId
-    const inmateId = this.props.inmateId
+    const prisonId = this.props.prisonId;
+    const inmateId = this.props.inmateId;
 
-    this.props.contactInmate(prisonId, inmateId, this.state)
+    this.props.contactInmate(prisonId, inmateId, this.state);
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="contact-form" >
+      <form onSubmit={this.handleSubmit} className="contact-form">
+        <span className="close-button" onClick={this.props.toggleContact}>&#9747;</span>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
           placeholder="Name"
           type="text"
           value={this.state.name}
+          className="contact-input"
         />
         <FormInput
           name="email"
@@ -45,6 +47,7 @@ class ContactModal extends React.Component {
           placeholder="Email"
           type="text"
           value={this.state.email}
+          className="contact-input"
         />
         <FormInput
           name="phone_number"
@@ -52,15 +55,17 @@ class ContactModal extends React.Component {
           placeholder="Phone Number"
           type="text"
           value={this.state.phone_number}
+          className="contact-input"
         />
-        <FormInput
+        <textarea
           name="job_details"
           onChange={this.handleInputChange}
           placeholder="Job Details"
           type="text"
           value={this.state.job_details}
+          className="large-input"
         />
-        <CustomButton text="Submit" />
+        <CustomButton text="Submit" className="contact-form-button" />
       </form>
     );
   }

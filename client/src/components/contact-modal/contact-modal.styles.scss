@@ -1,10 +1,20 @@
 @import "../../global-styles/variables.scss";
 
 .contact-form {
+  width: 50rem;
+  padding: 4.4rem 6.4rem 6.4rem 6.4rem;
   background-color: $purple-ten;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50rem; 
-}
+  border-radius: 5px;
+
+  .close-button {
+    margin: 0 0 1.6rem auto;
+    color: $purple-six;
+    font-size: 3.2rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
+} 

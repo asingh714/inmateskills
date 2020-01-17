@@ -61,11 +61,10 @@ class SingleInmateInfo extends React.Component {
           />
         </div>
         <div
-          className={`${this.state.isVisible ? "contact-container" : ""}`}
-          onClick={this.toggleContact}
+          className={`${this.state.isVisible ? "bg-container" : ""}`}
         >
           {this.state.isVisible && (
-            <ContactModal prisonId={prisonId} inmateId={inmateId} />
+            <ContactModal prisonId={prisonId} inmateId={inmateId} toggleContact={this.toggleContact}/>
           )}
         </div>
       </>

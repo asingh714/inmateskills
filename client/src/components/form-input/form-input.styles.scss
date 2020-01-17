@@ -6,10 +6,34 @@
   border-radius: 10px;
   margin-bottom: 2rem;
 
+  color: $purple-one;
+  font-size: 1.6rem;
+  font-weight: 600;
+
+}
+
+.contact-input {
+  width: 100%;
+  padding: 1.6rem 2.4rem;
+  border: 1px solid $neutral-eight;
+  border-radius: 10px;
+  color: $purple-one;
+  margin-bottom: 2.4rem;
   color: $purple-three;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
+}
 
+.large-input {
+  width: 100%;
+  padding: 1.6rem 2.4rem 10rem;
+  border: 1px solid $neutral-eight;
+  border-radius: 10px;
+  color: $purple-one;
+  margin-bottom: 2.4rem;
+  color: $purple-three;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 ::placeholder {
