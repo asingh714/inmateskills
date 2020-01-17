@@ -9,10 +9,22 @@ import ContactModal from "../contact-modal/contact-modal.component";
 import "./single-inmate-info.styles.scss";
 
 class SingleInmateInfo extends React.Component {
+  state = {
+    isVisible: false
+  };
+
   componentDidMount() {
     const { prisonId, inmateId } = this.props.match.params;
     this.props.singleFetchInmate(prisonId, inmateId);
   }
+
+  toggleContact = event => {
+    event.preventDefault();
+
+    this.setState(prevState => ({
+      isVisible: !prevState.isVisible
+    }));
+  };
 
   render() {
     const { prisonId, inmateId } = this.props.match.params;
@@ -42,9 +54,13 @@ class SingleInmateInfo extends React.Component {
               .format("MMM Do YYYY")}
           </span>
           <span className="single-inmate-info-inmate_info">{inmate_info}</span>
-          <CustomButton text="Contact" className="single-inmate-info-contact-button"/>
+          <CustomButton
+            text="Contact"
+            className="single-inmate-info-contact-button"
+            handleClick={this.toggleContact}
+          />
         </div>
-        <ContactModal prisonId={prisonId} inmateId={inmateId} />
+        {this.state.isVisible && <ContactModal prisonId={prisonId} inmateId={inmateId} />}
       </>
     );
   }
