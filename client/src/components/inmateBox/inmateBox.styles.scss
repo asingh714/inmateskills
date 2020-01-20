@@ -1,6 +1,68 @@
 @import "../../global-styles/variables.scss";
 
-.inmate-box-row {
+.inmate-box {
+  display: flex;
+  flex-direction: column;
+  width: 24rem;
+  border-radius: 1rem;
+  box-shadow: 0 .8rem 1.3rem rgba(black, 0.15);
+  transition: all 0.3s;
+
+  .inmate-box-row-image {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    margin: 3rem auto 1.6rem;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .inmate-box-row-name {
+      color: $neutral-two;
+      letter-spacing: 0.08rem;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .inmate-box-row-availability {
+      color: $neutral-one;
+      letter-spacing: 0.08rem;
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .inmate-box-row-date {
+      color: $neutral-six;
+      letter-spacing: 0.08rem;
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .inmate-box-row-info {
+      color: $purple-five;
+      letter-spacing: 0.08rem;
+      font-size: 1.6rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+  }
+
+  .inmate-button-container {   
+    background-color: $neutral-ten;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1.6rem 0;
+    margin-top: 3.2rem;
+  }
+
+
+}
+
+.inmate-row {
   display: flex;
   align-items: center;
   // padding: 1rem 0;

@@ -17,6 +17,7 @@ const InmateBox = ({
   deleteInmate,
   toggleInmateForm,
   toggleIsInmateEditing,
+  isAdmin,
   ...props
 }) => {
   const routeToSingleInmateProfilePage = (e, inmateId) => {
@@ -33,9 +34,9 @@ const InmateBox = ({
 
   return (
     <div
-      className="inmate-box-row"
+      className={`${isAdmin ? "inmate-box" : "inmate-row"}`}
       onClick={
-        props.isAdmin ? null : e => routeToSingleInmateProfilePage(e, inmate.id)
+        isAdmin ? null : e => routeToSingleInmateProfilePage(e, inmate.id)
       }
     >
       <img
@@ -53,20 +54,23 @@ const InmateBox = ({
             .utc()
             .format("MMM Do YYYY")}
         </span>
+          <span className="inmate-box-row-info">{inmate.inmate_info}</span>
       </div>
-      {props.isAdmin ? (
-        <div>
+      {isAdmin ? (
+        <div className="inmate-button-container">
           <CustomButton
             type="button"
             text="Delete"
             handleClick={() => deleteInmate(inmate.id)}
-          />
+            className="purple-text-btn"
+          /> 
           <CustomButton
             type="button"
             text="Edit"
             handleClick={e =>
               routeToUpdateInmateandToggleInmateForm(e, inmate.id)
             }
+            className=""
           />
         </div>
       ) : (

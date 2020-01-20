@@ -89,3 +89,13 @@
   color: $purple-five;
   font-weight: 600;
 }
+
+.purple-text-btn {
+  all: unset;
+  color: $purple-two;
+  
+  &:hover {
+    border-bottom: $purple-two solid 1px;
+    padding-bottom: 0.1rem;
+  }
+}
