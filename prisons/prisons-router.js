@@ -93,14 +93,12 @@ router.post("/login", (req, res) => {
           });
         } else {
           const token = tokenService.generateToken(prison);
-          res
-            .status(200)
-            .json({
-              id: prison.id,
-              username: prison.username,
-              name: prison.username,
-              token
-            });
+          res.status(200).json({
+            id: prison.id,
+            username: prison.username,
+            name: prison.username,
+            token
+          });
         }
       })
       .catch(error => {
@@ -257,6 +255,58 @@ router.delete("/:id", restricted, (req, res) => {
         error: "The prison profile could not be removed."
       });
     });
+});
+
+router.get("/admin/:id", restricted, (req, res) => {
+  const { id } = req.params;
+  const subjectId = req.decodedToken.subject;
+
+  if (id == subjectId) {
+    db("prisons")
+      .where({ id })
+      .first()
+      .then(prison => {
+        if (prison) {
+          let {
+            id,
+            name,
+            username,
+            address,
+            city,
+            state,
+            zip_code,
+            prison_info,
+            prison_image
+          } = prison;
+          res.status(200).json({
+            id,
+            name,
+            username,
+            address,
+            city,
+            state,
+            zip_code,
+            prison_info,
+            prison_image
+          });
+        } else {
+          res.status(404).json({
+            error:
+              "You cannot access the prison with this specific id"
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "The prison with the specified ID could not be retrieved"
+        });
+      });
+  } else {
+    res.status(404).json({
+      error:
+        "You do not have administrative access to access this prison."
+    });
+  }
 });
 
 module.exports = router;
