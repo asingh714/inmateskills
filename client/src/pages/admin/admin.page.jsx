@@ -15,13 +15,14 @@ import "./admin.styles.scss";
 class Admin extends React.Component {
   render() {
     return (
-      <div>
+      <div className="admin-container">
         <SinglePrisonInfo isAdmin {...this.props} />
         {this.props.prisonFormIsHidden ? null : <PrisonForm {...this.props} />}
         <CustomButton
           type="button"
           text="Add Inmate"
           handleClick={this.props.toggleInmateForm}
+          className="small-round-button purple"
         />
         <Inmates isAdmin {...this.props} />
         {this.props.inmateFormIsHidden ? null : <InmateForm {...this.props} />}

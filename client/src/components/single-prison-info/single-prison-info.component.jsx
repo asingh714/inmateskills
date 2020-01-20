@@ -46,16 +46,18 @@ class SinglePrisonInfo extends React.Component {
         ) : null}
 
         {this.props.isAdmin ? (
-          <div>
+          <div className="edit-delete-button-container">
             <CustomButton
               type="button"
-              text="Edit Profile"
+              text="Edit"
               handleClick={this.props.togglePrisonForm}
+              className="small-round-button purple"
             />
             <CustomButton
               type="button"
-              text="Delete Profile"
+              text="Delete"
               handleClick={this.props.toggleDeletePrisonModal}
+              className="small-round-button lightpurple"
             />
           </div>
         ) : null}
