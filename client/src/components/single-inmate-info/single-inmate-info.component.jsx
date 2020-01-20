@@ -56,7 +56,7 @@ class SingleInmateInfo extends React.Component {
           <span className="single-inmate-info-inmate_info">{inmate_info}</span>
           <CustomButton
             text="Contact"
-            className="single-inmate-info-contact-button"
+            className="med-cyan-button"
             handleClick={this.toggleContact}
           />
         </div>

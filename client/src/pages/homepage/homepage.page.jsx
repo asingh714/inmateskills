@@ -58,7 +58,7 @@ export default class Homepage extends Component {
                   they are interested in
                 </li>
               </ol>
-              <CustomButton text="Get Started" />
+              <CustomButton text="Get Started" className="med-cyan-button" />
             </div>
             <img src={Prison_Img} alt="Prison" className="how-it-works-image" />
           </div>
