@@ -1,5 +1,10 @@
 @import "../../global-styles//variables.scss";
 
+.admin-prison-container {
+  border-bottom: 2px solid $neutral-ten;
+  margin-bottom: 4rem;
+}
+
 .edit-delete-button-container {
   display: flex;
   justify-content: flex-end;
@@ -34,5 +39,4 @@
     line-height: 3.2rem;
     color: $neutral-four;
   }
-
 }

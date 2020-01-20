@@ -18,12 +18,14 @@ class Admin extends React.Component {
       <div className="admin-container">
         <SinglePrisonInfo isAdmin {...this.props} />
         {this.props.prisonFormIsHidden ? null : <PrisonForm {...this.props} />}
-        <CustomButton
-          type="button"
-          text="Add Inmate"
-          handleClick={this.props.toggleInmateForm}
-          className="small-round-button purple"
-        />
+        <div className="button-container">
+          <CustomButton
+            type="button"
+            text="Add Inmate"
+            handleClick={this.props.toggleInmateForm}
+            className="small-round-button purple"
+          />
+        </div>
         <Inmates isAdmin {...this.props} />
         {this.props.inmateFormIsHidden ? null : <InmateForm {...this.props} />}
         {this.props.deleteModalIsHidden ? null : (

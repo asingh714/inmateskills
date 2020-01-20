@@ -6,4 +6,8 @@
   margin: 10rem auto;
   border-radius: 5px;
 
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
 }

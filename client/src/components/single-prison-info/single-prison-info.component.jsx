@@ -40,7 +40,7 @@ class SinglePrisonInfo extends React.Component {
       prison_image
     } = this.props.isAdmin ? this.props.singleAdminPrison : this.props.prison;
     return (
-      <div>
+      <div className={`${this.props.isAdmin ? "admin-prison-container" : null}`}>
         {prison_image ? (
           <img src={prison_image} alt="Prison" className="prison-banner" />
         ) : null}
