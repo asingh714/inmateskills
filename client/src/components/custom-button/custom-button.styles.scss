@@ -93,9 +93,21 @@
 .purple-text-btn {
   all: unset;
   color: $purple-two;
-  
+  font-size: 1.6rem;
+
   &:hover {
     border-bottom: $purple-two solid 1px;
     padding-bottom: 0.1rem;
   }
+}
+
+.small-round-cyan {
+  width: 7.2rem;  
+  padding: .5rem 0;
+  border-radius: 20px;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  background-color: $cyan-seven;
+  color: $purple-two;  
+  font-weight: 500;
 }

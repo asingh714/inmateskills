@@ -70,7 +70,7 @@ const InmateBox = ({
             handleClick={e =>
               routeToUpdateInmateandToggleInmateForm(e, inmate.id)
             }
-            className=""
+            className="small-round-cyan"
           />
         </div>
       ) : (
