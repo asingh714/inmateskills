@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
@@ -14,7 +15,7 @@ import Admin from "./pages/admin/admin.page";
 
 import "./App.css";
 
-function App() {
+function App({isLoggedIn}) {
   return (
     <div className="page-container">
       <Header />
@@ -33,11 +34,13 @@ function App() {
             path="/prisons/:prisonId/inmates/:inmateId"
             component={SingleSelectedInmateProfile}
           />
+          {isLoggedIn ? 
           <Route exact path="/admin/:prisonId" component={Admin} />
-          <Route
+        : <h1>You must login to see this page.</h1> }
+          {/* <Route
             path="/admin/:prisonId/updateInmate/:inmateId"
             component={Admin}
-          />
+          /> */}
         </Switch>
       </div>
       <Footer />
@@ -45,4 +48,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.user.isLoggedIn
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

@@ -82,7 +82,7 @@ class SignupForm extends React.Component {
           value={this.state.confirmPassword}
           className="login-signup-input"
         />
-        <CustomButton text="Submit" className="login-signup-submit" />
+        <CustomButton text="Submit" className="wide-purple-submit" />
         <span onClick={this.routeToLoginPage} className="login-signup-route">
           Already have an account?
         </span>

@@ -10,7 +10,10 @@ import {
   UPDATE_PRISON_FAILURE,
   DELETE_PRISON_START,
   DELETE_PRISON_SUCCESS,
-  DELETE_PRISON_FAILURE
+  DELETE_PRISON_FAILURE,
+  SINGLE_ADMIN_PRISON_FETCH_START,
+  SINGLE_ADMIN_PRISON_FETCH_SUCCESS,
+  SINGLE_ADMIN_PRISON_FETCH_FAILURE
 } from "../actions/user.action";
 
 const initialState = {
@@ -20,7 +23,9 @@ const initialState = {
   loggedInUser: {},
   prisonUpdated: false,
   updateError: "",
-  prisonDeleted: false
+  prisonDeleted: false,
+  isFetchingSingleAdminPrison: false,
+  singleAdminPrison: {}
 };
 
 const userReducer = (state = initialState, action) => {
@@ -88,6 +93,25 @@ const userReducer = (state = initialState, action) => {
         ...state,
         prisonDeleted: true
       };
+    case SINGLE_ADMIN_PRISON_FETCH_START:
+      return {
+        ...state,
+        isFetchingSingleAdminPrison: true,
+        singleAdminPrison: {}
+      };
+    case SINGLE_ADMIN_PRISON_FETCH_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+        isFetchingSingleAdminPrison: false,
+        singleAdminPrison: action.payload
+      }
+    case SINGLE_ADMIN_PRISON_FETCH_FAILURE:
+      return {
+        ...state,
+        isFetchingSingleAdminPrison: false,
+        singleAdminPrison: {}
+      }
     default:
       return state;
   }

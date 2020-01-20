@@ -75,3 +75,21 @@ export const deletePrison = (id) => dispatch => {
     dispatch({ type: DELETE_INMATE_FAILURE })
   })
 }
+
+
+export const SINGLE_ADMIN_PRISON_FETCH_START = "SINGLE_ADMIN_PRISON_FETCH_START";
+export const SINGLE_ADMIN_PRISON_FETCH_SUCCESS = "SINGLE_ADMIN_PRISON_FETCH_SUCCESS";
+export const SINGLE_ADMIN_PRISON_FETCH_FAILURE = "SINGLE_ADMIN_PRISON_FETCH_FAILURE";
+
+export const fetchSingleAdminPrison = id => dispatch => {
+  dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_START });
+
+  axiosWithAuth()
+    .get(`https://inmate-skills.herokuapp.com/api/prisons/admin/${id}`)
+    .then(res => {
+      dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_FAILURE });
+    });
+};

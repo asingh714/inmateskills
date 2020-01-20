@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { fetchSinglePrison } from "../../redux/actions/prisons.actions";
+import { fetchSingleAdminPrison } from "../../redux/actions/user.action";
+
 import {
   togglePrisonForm,
   toggleDeletePrisonModal
@@ -13,7 +15,11 @@ import "./single-prison-info.styles.scss";
 class SinglePrisonInfo extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.prisonId;
-    this.props.fetchSinglePrison(id);
+    if (this.props.isAdmin) {
+      this.props.fetchSingleAdminPrison(id);
+    } else {
+      this.props.fetchSinglePrison(id);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -32,7 +38,7 @@ class SinglePrisonInfo extends React.Component {
       zip_code,
       prison_info,
       prison_image
-    } = this.props.prison;
+    } = this.props.isAdmin ? this.props.singleAdminPrison : this.props.prison;
     return (
       <div>
         {prison_image ? (
@@ -69,12 +75,14 @@ class SinglePrisonInfo extends React.Component {
 const mapStateToProps = state => {
   return {
     prison: state.prisons.prison,
-    prisonUpdated: state.user.prisonUpdated
+    prisonUpdated: state.user.prisonUpdated,
+    singleAdminPrison: state.user.singleAdminPrison
   };
 };
 
 export default connect(mapStateToProps, {
   fetchSinglePrison,
   togglePrisonForm,
-  toggleDeletePrisonModal
+  toggleDeletePrisonModal,
+  fetchSingleAdminPrison
 })(SinglePrisonInfo);

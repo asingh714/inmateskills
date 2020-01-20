@@ -55,8 +55,10 @@ class LoginForm extends React.Component {
           value={this.state.password}
           className="login-signup-input"
         />
-        <CustomButton text="Submit" className="login-signup-submit"/>
-        <span onClick={this.routeToSignUpPage} className="login-signup-route">Don't have an account?</span>
+        <CustomButton text="Submit" className="wide-purple-submit" />
+        <span onClick={this.routeToSignUpPage} className="login-signup-route">
+          Don't have an account?
+        </span>
       </form>
     );
   }
@@ -64,7 +66,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    id: state.user.id
+    id: state.user.loggedInUser.id
   };
 };
 
