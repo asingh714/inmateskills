@@ -1,3 +1,11 @@
 .inmates-row-container {
   margin: 8rem 0;
 }
+
+.admin-inmate-container { 
+  padding: 8rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2.4rem;
+  grid-row-gap: 4rem;
+}

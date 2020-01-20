@@ -25,7 +25,7 @@ class Inmates extends Component {
 
   render() {
     return (
-      <div className="inmates-row-container">
+      <div className={`${this.props.isAdmin ? "admin-inmate-container" : "inmates-row-container"}`}>
         {this.props.inmates.map(inmate => (
           <InmateBox
             key={inmate.id}

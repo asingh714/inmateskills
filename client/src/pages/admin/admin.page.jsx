@@ -26,7 +26,9 @@ class Admin extends React.Component {
             className="small-round-button purple"
           />
         </div>
-        <Inmates isAdmin {...this.props} />
+        {/* <div className="admin-inmates-container"> */}
+          <Inmates isAdmin {...this.props} />
+        {/* </div> */}
         {this.props.inmateFormIsHidden ? null : <InmateForm {...this.props} />}
         {this.props.deleteModalIsHidden ? null : (
           <DeleteModal

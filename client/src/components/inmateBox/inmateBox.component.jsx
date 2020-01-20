@@ -29,7 +29,7 @@ const InmateBox = ({
     e.preventDefault();
     toggleInmateForm();
     toggleIsInmateEditing();
-    props.history.push(`/admin/${prisonId}/updateInmate/${inmateId}`);
+    // props.history.push(`/admin/${prisonId}/updateInmate/${inmateId}`);
   };
 
   return (
