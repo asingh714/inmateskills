@@ -133,15 +133,14 @@ class InmateForm extends React.Component {
           className="date-input"
         />
 
-        <label>
-          Inmate Image
+        <label className="file-label">
+          <span className="file-input">Inmate Image</span>
           <input type="file" onChange={this.fileSelectedHandler} />
         </label>
         {/* <label>
           Resume
           <input type="file" onChange={this.fileSelectedHandler} />
         </label> */}
- 
 
         <textarea
           name="inmate_info"
@@ -149,6 +148,7 @@ class InmateForm extends React.Component {
           placeholder="Inmate Information"
           type="text"
           value={this.state.inmate_info}
+          className="inmate_info_textarea"
         ></textarea>
         <CustomButton text="Reset" type="button" handleClick={this.resetForm} />
         <CustomButton
