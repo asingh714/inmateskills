@@ -150,12 +150,21 @@ class InmateForm extends React.Component {
           value={this.state.inmate_info}
           className="inmate_info_textarea"
         ></textarea>
-        <CustomButton text="Reset" type="button" handleClick={this.resetForm} />
-        <CustomButton
-          text="Submit"
-          type="submit"
-          handleClick={this.handleSubmit}
-        />
+
+        <div className="inmate-btn-container">
+          <CustomButton
+            text="Clear"
+            type="button"
+            handleClick={this.resetForm}
+            className="med-btn light"
+          />
+          <CustomButton
+            text="Submit"
+            type="submit"
+            handleClick={this.handleSubmit}
+            className="med-btn dark"
+          />
+        </div>
       </form>
     );
   }

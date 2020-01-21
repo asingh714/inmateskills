@@ -111,3 +111,29 @@
   color: $purple-two;  
   font-weight: 600;
 }
+
+.med-btn {
+  width: 15rem;  
+  padding: 1.2rem 0;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  transition: all 0.3s;
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: 1px 3px 5px rgba(black, 0.20);
+  }
+}
+
+.light {
+  background-color: $purple-nine;
+  color: $purple-five;
+}
+
+.dark {
+  background-color: $purple-five;
+  color: $white;
+}
