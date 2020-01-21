@@ -26,10 +26,17 @@ class Admin extends React.Component {
             className="small-round-button purple"
           />
         </div>
-        {/* <div className="admin-inmates-container"> */}
-          <Inmates isAdmin {...this.props} />
-        {/* </div> */}
-        {this.props.inmateFormIsHidden ? null : <InmateForm {...this.props} />}
+
+        <Inmates isAdmin {...this.props} />
+
+        <div
+          className={`${!this.props.inmateFormIsHidden ? "bg-container" : ""}`}
+        >
+          {this.props.inmateFormIsHidden ? null : (
+            <InmateForm {...this.props} />
+          )}
+        </div>
+
         {this.props.deleteModalIsHidden ? null : (
           <DeleteModal
             text="Are you sure you want to delete this profile?"

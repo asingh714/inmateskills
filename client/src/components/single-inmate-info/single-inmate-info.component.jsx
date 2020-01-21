@@ -9,6 +9,7 @@ import ContactModal from "../contact-modal/contact-modal.component";
 import "./single-inmate-info.styles.scss";
 
 class SingleInmateInfo extends React.Component {
+  // add to form reducer 
   state = {
     isVisible: false
   };

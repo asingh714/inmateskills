@@ -105,23 +105,33 @@ class InmateForm extends React.Component {
 
   render() {
     return (
-      <form encType="multipart/form-data">
+      <form encType="multipart/form-data" className="inmate-form-container">
         <FormInput
           name="name"
           onChange={this.handleInputChange}
           placeholder="Name"
           type="text"
           value={this.state.name}
+          className="contact-input"
         />
-        <label>
-          Availability
+        <label className="avail-label">
           <input
             checked={this.state.availability}
             name="availability"
             onChange={this.handleInputChange}
             type="checkbox"
+            className="avail-checkbox"
           />
+          <span>Available for work</span>
         </label>
+
+        <FormInput
+          name="release_date"
+          onChange={this.handleInputChange}
+          type="date"
+          value={this.state.release_date}
+          className="date-input"
+        />
 
         <label>
           Inmate Image
@@ -131,12 +141,7 @@ class InmateForm extends React.Component {
           Resume
           <input type="file" onChange={this.fileSelectedHandler} />
         </label> */}
-        <FormInput
-          name="release_date"
-          onChange={this.handleInputChange}
-          type="date"
-          value={this.state.release_date}
-        />
+ 
 
         <textarea
           name="inmate_info"
@@ -148,11 +153,6 @@ class InmateForm extends React.Component {
         <CustomButton text="Reset" type="button" handleClick={this.resetForm} />
         <CustomButton
           text="Submit"
-          type="submit"
-          handleClick={this.handleSubmit}
-        />
-        <CustomButton
-          text="Update"
           type="submit"
           handleClick={this.handleSubmit}
         />

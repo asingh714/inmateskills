@@ -1,0 +1,22 @@
+@import "../../global-styles//variables.scss";
+
+.inmate-form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $neutral-ten;
+  width: 48rem;
+  padding: 5.6rem 5rem;
+  border-radius: 1rem;
+
+  .avail-label {
+    color: $purple-three;
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2rem;
+  }
+
+  .avail-checkbox {
+    margin-right: 1.6rem;
+    transform: scale(1.5);
+  }
+}
