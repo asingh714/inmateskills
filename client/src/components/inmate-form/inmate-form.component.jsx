@@ -86,6 +86,7 @@ class InmateForm extends React.Component {
       this.props.editInmate(inmateId, formData);
     } else {
       this.props.addInmate(formData);
+      this.props.toggleInmateForm()
     }
 
     this.setState({
