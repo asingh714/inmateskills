@@ -4,13 +4,15 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import "./delete-modal.styles.scss";
 
-const DeleteModal = ({ text, handleNo, handleYes }) => {
+const DeleteModal = ({ text, handleNo, handleYes, className }) => {
   return (
-    <>
-      <span>{text}</span>
-      <CustomButton text="Yes" type="button" handleClick={handleYes} />
-      <CustomButton text="No" type="button" handleClick={handleNo} />
-    </>
+    <div className={className}>
+      <span className="text">{text}</span>
+      <div className="delete-button-container">
+        <CustomButton text="Yes" type="button" handleClick={handleYes} className="small-round-button purple"/>
+        <CustomButton text="No" type="button" handleClick={handleNo} className="small-round-button lightpurple"/>
+      </div>
+    </div>
   );
 };
 

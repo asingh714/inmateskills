@@ -1,0 +1,20 @@
+@import "../../global-styles/variables.scss";
+
+.deleteBox {
+  background-color: $neutral-ten;
+  padding: 8rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+
+  .text {
+    color: $purple-three;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+  }
+
+  .delete-button-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

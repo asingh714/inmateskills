@@ -30,7 +30,7 @@ class Admin extends React.Component {
 
   handleInmateDelete = () => {
     this.props.deleteInmate(this.props.idToDelete);
-    this.props.toggleDeleteInmateModal(null)
+    this.props.toggleDeleteInmateModal(null);
   };
 
   render() {
@@ -57,22 +57,29 @@ class Admin extends React.Component {
           )}
         </div>
 
-        {this.props.deleteModalIsHidden ? null : (
-          <DeleteModal
-            text="Are you sure you want to delete your prison profile?"
-            handleYes={this.handlePrisonDelete}
-            handleNo={this.props.toggleDeletePrisonModal}
-            {...this.props}
-          />
-        )}
-
-        {this.props.deleteInmateModalIsHidden ? null : (
-          <DeleteModal
-            text="Are you sure you want to delete this inmate profile?"
-            handleYes={this.handleInmateDelete}
-            handleNo={() => this.props.toggleDeleteInmateModal(null)}
-          />
-        )}
+        <div
+          className={`${!this.props.deleteModalIsHidden ? "bg-container" : ""}`}
+        >
+          {this.props.deleteModalIsHidden ? null : (
+            <DeleteModal
+              text="Are you sure you want to delete your prison profile?"
+              handleYes={this.handlePrisonDelete}
+              handleNo={this.props.toggleDeletePrisonModal}
+              className="deleteBox"
+              {...this.props}
+            />
+          )}
+        </div>
+        <div className={`${!this.props.deleteInmateModalIsHidden ? "bg-container" : ""}`}>
+          {this.props.deleteInmateModalIsHidden ? null : (
+            <DeleteModal
+              text="Are you sure you want to delete this inmate profile?"
+              handleYes={this.handleInmateDelete}
+              handleNo={() => this.props.toggleDeleteInmateModal(null)}
+              className="deleteBox"
+            />
+          )}
+        </div>
       </div>
     );
   }
