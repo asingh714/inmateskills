@@ -5,17 +5,19 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { editPrison } from "../../redux/actions/user.action";
 
+import { togglePrisonForm } from "../../redux/actions/forms.action";
+
 import "./prison-form.styles.scss";
 
 class PrisonForm extends React.Component {
   state = {
-    name: "",
-    address: "",
-    city: "",
-    state: "",
-    zip_code: "",
-    prison_info: "",
-    prison_image: ""
+    name: "" || this.props.singleAdminPrison.name,
+    address: "" || this.props.singleAdminPrison.address,
+    city: "" || this.props.singleAdminPrison.city,
+    state: "" || this.props.singleAdminPrison.state,
+    zip_code: "" || this.props.singleAdminPrison.zip_code,
+    prison_info: "" || this.props.singleAdminPrison.prison_info,
+    prison_image: "" || this.props.singleAdminPrison.prison_image
   };
 
   handleInputChange = event => {
@@ -43,65 +45,85 @@ class PrisonForm extends React.Component {
     formData.append("prison_image", this.state.prison_image);
 
     this.props.editPrison(prisonId, formData);
+    this.props.togglePrisonForm();
   };
 
   render() {
     return (
-      <form encType="multipart/form-data">
-        <FormInput
-          name="name"
-          onChange={this.handleInputChange}
-          placeholder="Name"
-          type="text"
-          value={this.state.name}
-        />
-        <FormInput
-          name="address"
-          onChange={this.handleInputChange}
-          placeholder="Address"
-          type="text"
-          value={this.state.address}
-        />
-        <FormInput
-          name="city"
-          onChange={this.handleInputChange}
-          placeholder="City"
-          type="text"
-          value={this.state.city}
-        />
-        <FormInput
-          name="state"
-          onChange={this.handleInputChange}
-          placeholder="State"
-          type="text"
-          value={this.state.state}
-        />
-        <FormInput
-          name="zip_code"
-          onChange={this.handleInputChange}
-          placeholder="Zip Code"
-          type="text"
-          value={this.state.zip_code}
-        />
-        <label>
-          Inmate Image
-          <input type="file" onChange={this.fileSelectedHandler} />
-        </label>
-        <FormInput
-          name="prison_info"
-          onChange={this.handleInputChange}
-          placeholder="Prison Details"
-          type="text"
-          value={this.state.prison_info}
-        />
-        <CustomButton
-          text="Submit"
-          type="submit"
-          handleClick={this.handleSubmit}
-        />
-      </form>
+      <div
+        className={`${!this.props.prisonFormIsHidden ? "bg-container" : ""}`}
+      >
+        <form encType="multipart/form-data">
+          <FormInput
+            name="name"
+            onChange={this.handleInputChange}
+            placeholder="Name"
+            type="text"
+            value={this.state.name}
+          />
+          <FormInput
+            name="address"
+            onChange={this.handleInputChange}
+            placeholder="Address"
+            type="text"
+            value={this.state.address}
+          />
+          <FormInput
+            name="city"
+            onChange={this.handleInputChange}
+            placeholder="City"
+            type="text"
+            value={this.state.city}
+          />
+          <FormInput
+            name="state"
+            onChange={this.handleInputChange}
+            placeholder="State"
+            type="text"
+            value={this.state.state}
+          />
+          <FormInput
+            name="zip_code"
+            onChange={this.handleInputChange}
+            placeholder="Zip Code"
+            type="text"
+            value={this.state.zip_code}
+          />
+          <label>
+            Inmate Image
+            <input type="file" onChange={this.fileSelectedHandler} />
+          </label>
+          <FormInput
+            name="prison_info"
+            onChange={this.handleInputChange}
+            placeholder="Prison Details"
+            type="text"
+            value={this.state.prison_info}
+          />
+          <CustomButton
+            text="Submit"
+            type="submit"
+            handleClick={this.handleSubmit}
+          />
+
+          <CustomButton
+            text="Cancel"
+            type="submit"
+            handleClick={this.props.togglePrisonForm}
+          />
+        </form>
+      </div>
     );
   }
 }
 
-export default connect(null, { editPrison })(PrisonForm);
+const mapStateToProps = state => {
+  return {
+    prisonFormIsHidden: state.forms.prisonFormIsHidden,
+    singleAdminPrison: state.user.singleAdminPrison
+  };
+};
+
+export default connect(mapStateToProps, { editPrison, togglePrisonForm })(
+  PrisonForm
+);
