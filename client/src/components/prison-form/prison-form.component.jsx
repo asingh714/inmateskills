@@ -53,13 +53,14 @@ class PrisonForm extends React.Component {
       <div
         className={`${!this.props.prisonFormIsHidden ? "bg-container" : ""}`}
       >
-        <form encType="multipart/form-data">
+        <form encType="multipart/form-data" className="edit-form">
           <FormInput
             name="name"
             onChange={this.handleInputChange}
             placeholder="Name"
             type="text"
             value={this.state.name}
+            className="contact-input"
           />
           <FormInput
             name="address"
@@ -67,30 +68,36 @@ class PrisonForm extends React.Component {
             placeholder="Address"
             type="text"
             value={this.state.address}
+            className="contact-input"
           />
-          <FormInput
-            name="city"
-            onChange={this.handleInputChange}
-            placeholder="City"
-            type="text"
-            value={this.state.city}
-          />
-          <FormInput
-            name="state"
-            onChange={this.handleInputChange}
-            placeholder="State"
-            type="text"
-            value={this.state.state}
-          />
-          <FormInput
-            name="zip_code"
-            onChange={this.handleInputChange}
-            placeholder="Zip Code"
-            type="text"
-            value={this.state.zip_code}
-          />
-          <label>
-            Inmate Image
+          <div className="form-btn-row">
+            <FormInput
+              name="city"
+              onChange={this.handleInputChange}
+              placeholder="City"
+              type="text"
+              value={this.state.city}
+              className="small-input"
+            />
+            <FormInput
+              name="state"
+              onChange={this.handleInputChange}
+              placeholder="State"
+              type="text"
+              value={this.state.state}
+              className="small-input"
+            />
+            <FormInput
+              name="zip_code"
+              onChange={this.handleInputChange}
+              placeholder="Zip Code"
+              type="text"
+              value={this.state.zip_code}
+              className="small-input"
+            />
+          </div>
+          <label className="file-label">
+            <span className="file-input">Prison Image</span>
             <input type="file" onChange={this.fileSelectedHandler} />
           </label>
           <FormInput
@@ -99,18 +106,24 @@ class PrisonForm extends React.Component {
             placeholder="Prison Details"
             type="text"
             value={this.state.prison_info}
-          />
-          <CustomButton
-            text="Submit"
-            type="submit"
-            handleClick={this.handleSubmit}
+            className="large-input"
           />
 
-          <CustomButton
-            text="Cancel"
-            type="submit"
-            handleClick={this.props.togglePrisonForm}
-          />
+          <div className="dual-btn-container">
+            <CustomButton
+              text="Submit"
+              type="submit"
+              handleClick={this.handleSubmit}
+              className="med-btn dark"
+            />
+
+            <CustomButton
+              text="Cancel"
+              type="submit"
+              handleClick={this.props.togglePrisonForm}
+              className="med-btn light"
+            />
+          </div>
         </form>
       </div>
     );
