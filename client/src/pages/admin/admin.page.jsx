@@ -22,14 +22,15 @@ import "./admin.styles.scss";
 class Admin extends React.Component {
   handlePrisonDelete = () => {
     let id = this.props.match.params.prisonId;
-    deletePrison(id);
+    this.props.deletePrison(id);
     toggleDeletePrisonModal();
     this.props.history.push("/prisons");
     localStorage.removeItem("token");
   };
 
   handleInmateDelete = () => {
-    // deleteInmate(id);
+    this.props.deleteInmate(this.props.idToDelete);
+    this.props.toggleDeleteInmateModal(null)
   };
 
   render() {
@@ -69,7 +70,7 @@ class Admin extends React.Component {
           <DeleteModal
             text="Are you sure you want to delete this inmate profile?"
             handleYes={this.handleInmateDelete}
-            handleNo={this.props.toggleDeleteInmateModal}
+            handleNo={() => this.props.toggleDeleteInmateModal(null)}
           />
         )}
       </div>
@@ -82,7 +83,8 @@ const mapStateToProps = state => {
     inmateFormIsHidden: state.forms.inmateFormIsHidden,
     prisonFormIsHidden: state.forms.prisonFormIsHidden,
     deleteModalIsHidden: state.forms.deleteModalIsHidden,
-    deleteInmateModalIsHidden: state.forms.deleteInmateModalIsHidden
+    deleteInmateModalIsHidden: state.forms.deleteInmateModalIsHidden,
+    idToDelete: state.forms.idToDelete
   };
 };
 

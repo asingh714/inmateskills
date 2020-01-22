@@ -22,11 +22,12 @@ export const toggleDeletePrisonModal = () => {
     type: TOGGLE_DELETE_PRISON_MODAL
   }
 }
-
+ 
 export const TOGGLE_DELETE_INMATE_MODAL = "TOGGLE_DELETE_INMATE_MODAL"
 
-export const toggleDeleteInmateModal = () => {
+export const toggleDeleteInmateModal = (id) => {
   return {
-    type: TOGGLE_DELETE_INMATE_MODAL
+    type: TOGGLE_DELETE_INMATE_MODAL,
+    id: id
   }
 }

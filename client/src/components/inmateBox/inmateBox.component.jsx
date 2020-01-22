@@ -62,7 +62,7 @@ const InmateBox = ({
           <CustomButton
             type="button"
             text="Delete"
-            handleClick={toggleDeleteInmateModal}
+            handleClick={() => toggleDeleteInmateModal(inmate.id)}
             className="purple-text-btn"
           /> 
           <CustomButton
