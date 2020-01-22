@@ -8,6 +8,14 @@
   padding: 5.6rem 5rem;
   border-radius: 1rem;
 
+  .close-button {
+    margin: 0 0 1.6rem auto;
+    color: $purple-six;
+    font-size: 3.2rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
+
   .avail-label {
     color: $purple-three;
     display: flex;

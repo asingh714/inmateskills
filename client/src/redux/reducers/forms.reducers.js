@@ -1,9 +1,15 @@
-import { TOGGLE_INMATE_FORM, TOGGLE_PRISON_FORM, TOGGLE_DELETE_PRISON_MODAL } from "../actions/forms.action";
+import {
+  TOGGLE_INMATE_FORM,
+  TOGGLE_PRISON_FORM,
+  TOGGLE_DELETE_PRISON_MODAL,
+  TOGGLE_DELETE_INMATE_MODAL
+} from "../actions/forms.action";
 
 const initialState = {
   inmateFormIsHidden: true,
   prisonFormIsHidden: true,
   deleteModalIsHidden: true,
+  deleteInmateModalIsHidden: true
 };
 
 const formsReducer = (state = initialState, action) => {
@@ -13,16 +19,21 @@ const formsReducer = (state = initialState, action) => {
         ...state,
         inmateFormIsHidden: !state.inmateFormIsHidden
       };
-      case TOGGLE_PRISON_FORM:
-          return {
-            ...state,
-            prisonFormIsHidden: !state.prisonFormIsHidden
-          };
-      case TOGGLE_DELETE_PRISON_MODAL:
-        return {
-          ...state,
-          deleteModalIsHidden: !state.deleteModalIsHidden
-        }
+    case TOGGLE_PRISON_FORM:
+      return {
+        ...state,
+        prisonFormIsHidden: !state.prisonFormIsHidden
+      };
+    case TOGGLE_DELETE_PRISON_MODAL:
+      return {
+        ...state,
+        deleteModalIsHidden: !state.deleteModalIsHidden
+      };
+    case TOGGLE_DELETE_INMATE_MODAL:
+      return {
+        ...state,
+        deleteInmateModalIsHidden: !state.deleteInmateModalIsHidden
+      };
     default:
       return state;
   }

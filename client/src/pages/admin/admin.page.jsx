@@ -8,11 +8,30 @@ import InmateForm from "../../components/inmate-form/inmate-form.component";
 import DeleteModal from "../../components/delete-modal/delete-modal.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 
-import { toggleInmateForm } from "../../redux/actions/forms.action";
+import { deletePrison } from "../../redux/actions/user.action";
+import { deleteInmate } from "../../redux/actions/inmates.action";
+
+import {
+  toggleInmateForm,
+  toggleDeletePrisonModal,
+  toggleDeleteInmateModal
+} from "../../redux/actions/forms.action";
 
 import "./admin.styles.scss";
 
 class Admin extends React.Component {
+  handlePrisonDelete = () => {
+    let id = this.props.match.params.prisonId;
+    deletePrison(id);
+    toggleDeletePrisonModal();
+    this.props.history.push("/prisons");
+    localStorage.removeItem("token");
+  };
+
+  handleInmateDelete = () => {
+    // deleteInmate(id);
+  };
+
   render() {
     return (
       <div className="admin-container">
@@ -39,9 +58,18 @@ class Admin extends React.Component {
 
         {this.props.deleteModalIsHidden ? null : (
           <DeleteModal
-            text="Are you sure you want to delete this profile?"
-            id={this.props.match.params.prisonId}
+            text="Are you sure you want to delete your prison profile?"
+            handleYes={this.handlePrisonDelete}
+            handleNo={this.props.toggleDeletePrisonModal}
             {...this.props}
+          />
+        )}
+
+        {this.props.deleteInmateModalIsHidden ? null : (
+          <DeleteModal
+            text="Are you sure you want to delete this inmate profile?"
+            handleYes={this.handleInmateDelete}
+            handleNo={this.props.toggleDeleteInmateModal}
           />
         )}
       </div>
@@ -53,8 +81,15 @@ const mapStateToProps = state => {
   return {
     inmateFormIsHidden: state.forms.inmateFormIsHidden,
     prisonFormIsHidden: state.forms.prisonFormIsHidden,
-    deleteModalIsHidden: state.forms.deleteModalIsHidden
+    deleteModalIsHidden: state.forms.deleteModalIsHidden,
+    deleteInmateModalIsHidden: state.forms.deleteInmateModalIsHidden
   };
 };
 
-export default connect(mapStateToProps, { toggleInmateForm })(Admin);
+export default connect(mapStateToProps, {
+  toggleInmateForm,
+  deletePrison,
+  toggleDeletePrisonModal,
+  toggleDeleteInmateModal,
+  deleteInmate
+})(Admin);

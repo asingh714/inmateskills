@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { addInmate, editInmate } from "../../redux/actions/inmates.action";
+import { toggleInmateForm } from "../../redux/actions/forms.action";
 
 import "./inmate-form.styles.scss";
 
@@ -106,6 +107,7 @@ class InmateForm extends React.Component {
   render() {
     return (
       <form encType="multipart/form-data" className="inmate-form-container">
+        <span className="close-button" onClick={this.props.toggleInmateForm}>&#9747;</span>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -177,4 +179,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addInmate, editInmate })(InmateForm);
+export default connect(mapStateToProps, { addInmate, editInmate, toggleInmateForm })(InmateForm);

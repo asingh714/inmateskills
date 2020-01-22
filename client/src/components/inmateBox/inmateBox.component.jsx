@@ -7,7 +7,7 @@ import {
   deleteInmate,
   toggleIsInmateEditing
 } from "../../redux/actions/inmates.action";
-import { toggleInmateForm } from "../../redux/actions/forms.action";
+import { toggleInmateForm, toggleDeleteInmateModal } from "../../redux/actions/forms.action";
 
 import "./inmateBox.styles.scss";
 
@@ -17,6 +17,7 @@ const InmateBox = ({
   deleteInmate,
   toggleInmateForm,
   toggleIsInmateEditing,
+  toggleDeleteInmateModal,
   isAdmin,
   ...props
 }) => {
@@ -61,7 +62,7 @@ const InmateBox = ({
           <CustomButton
             type="button"
             text="Delete"
-            handleClick={() => deleteInmate(inmate.id)}
+            handleClick={toggleDeleteInmateModal}
             className="purple-text-btn"
           /> 
           <CustomButton
@@ -87,5 +88,6 @@ const InmateBox = ({
 export default connect(null, {
   deleteInmate,
   toggleInmateForm,
-  toggleIsInmateEditing
+  toggleIsInmateEditing,
+  toggleDeleteInmateModal
 })(InmateBox);
