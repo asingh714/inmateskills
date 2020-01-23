@@ -12,33 +12,4 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .edit-form {
-    background-color: $neutral-ten;
-    padding: 8rem 4rem;
-    width: 56rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-
-    .form-btn-row {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .file-label {
-      margin-bottom: 2rem;
-    }
-  
-    .file-input {
-      color: $purple-three; 
-      font-size: 1.6rem;
-      margin-right: 1rem;
-    }
-
-    .dual-btn-container {
-      display: flex;
-      justify-content: space-evenly;
-    }
-  }
 }

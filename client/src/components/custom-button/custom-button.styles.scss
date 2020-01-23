@@ -21,11 +21,12 @@
   }
 }
 
-.med-button {
+.med-cyan-button {
   padding: 1.4rem 2rem;
   width: 20rem;
-
+  background-color: $cyan-six;
   border-radius: 5px;
+  color: $cyan-one;
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 2px;
@@ -135,9 +136,4 @@
 .dark {
   background-color: $purple-five;
   color: $white;
-}
-
-.cyan {
-  background-color: $cyan-six;
-  color: $cyan-one;
 }
