@@ -6,7 +6,7 @@ import { logoutUser } from "../../redux/actions/user.action";
 
 import "./nav.styles.scss";
 
-const Nav = ({ className, isLoggedIn, logoutUser }) => {
+const Nav = ({ className, isLoggedIn, logoutUser, adminID }) => {
   return (
     <nav className={className}>
       <NavLink exact to="/">
@@ -14,7 +14,7 @@ const Nav = ({ className, isLoggedIn, logoutUser }) => {
       </NavLink>
       <NavLink to="/prisons">Prisons</NavLink>
       {isLoggedIn ? (
-        <NavLink to="/admin">Admin</NavLink>
+        <NavLink to={`/admin/${adminID}`}>Admin</NavLink>
       ) : (
         <NavLink to="/login">Login</NavLink>
       )}
@@ -29,7 +29,8 @@ const Nav = ({ className, isLoggedIn, logoutUser }) => {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    adminID: state.user.loggedInUser.id
   };
 };
 
