@@ -2,7 +2,7 @@
 
 .full-header {
   background-color: $white;
-  
+
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -10,8 +10,19 @@
     padding: 4rem 8rem 4rem 10rem;
     max-width: 120rem;
     margin: 0 auto;
+
+    @media only screen and (max-width: $bp-large) {
+      width: 100%;
+      flex-direction: column;
+      padding: 4rem 0;
+    }
+
     .logo {
       width: 15rem;
+
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 2rem;
+      }
     }
   }
 }
