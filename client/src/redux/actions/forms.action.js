@@ -1,8 +1,9 @@
 export const TOGGLE_INMATE_FORM = "TOGGLE_INMATE_FORM";
 
-export const toggleInmateForm = () => {
+export const toggleInmateForm = (id) => {
   return {
-    type: TOGGLE_INMATE_FORM
+    type: TOGGLE_INMATE_FORM,
+    id: id 
   };
 };
 

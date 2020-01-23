@@ -10,30 +10,29 @@ import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
   state = {
-    name: "",
-    availability: false,
-    inmate_image: null,
-    // resume: null,
-    release_date: "",
-    inmate_info: ""
+    name: "" || this.props.inmateToEdit.name,
+    availability: false || this.props.inmateToEdit.availability ,
+    inmate_image: null || this.props.inmateToEdit.inmate_image,
+    release_date: "" || this.props.inmateToEdit.release_date,
+    inmate_info: "" || this.props.inmateToEdit.inmate_info
   };
 
-  componentDidMount() {
-    const inmateId = this.props.match.params.inmateId;
-    const inmate = this.props.inmates.find(
-      inmate => `${inmate.id}` === inmateId
-    );
+  // componentDidMount() {
+  //   const inmateId = this.props.match.params.inmateId;
+  //   const inmate = this.props.inmates.find(
+  //     inmate => `${inmate.id}` === inmateId
+  //   );
 
-    if (this.props.inmateToBeEdited) {
-      this.setState({
-        name: inmate.name,
-        availability: inmate.availability,
-        inmate_image: inmate.inmate_image,
-        release_date: inmate.release_date,
-        inmate_info: inmate.inmate_info
-      });
-    }
-  }
+  //   if (this.props.inmateToBeEdited) {
+  //     this.setState({
+  //       name: inmate.name,
+  //       availability: inmate.availability,
+  //       inmate_image: inmate.inmate_image,
+  //       release_date: inmate.release_date,
+  //       inmate_info: inmate.inmate_info
+  //     });
+  //   }
+  // }
 
   // componentDidUpdate(prevProps, prevState) {
   //   const inmateId = this.props.match.params.inmateId;
@@ -56,7 +55,6 @@ class InmateForm extends React.Component {
       name: "",
       availability: false,
       inmate_image: null,
-      // resume: null,
       release_date: "",
       inmate_info: ""
     });
@@ -82,11 +80,12 @@ class InmateForm extends React.Component {
     formData.append("inmate_info", this.state.inmate_info);
     const inmateId = this.props.match.params.inmateId;
 
-    if (this.props.inmateToBeEdited) {
-      this.props.editInmate(inmateId, formData);
+    if (this.props.idToEdit) {
+      this.props.editInmate(this.props.idToEdit, formData);
+      this.props.toggleInmateForm(null)
     } else {
       this.props.addInmate(formData);
-      this.props.toggleInmateForm()
+      this.props.toggleInmateForm(null)
     }
 
     this.setState({
@@ -108,7 +107,7 @@ class InmateForm extends React.Component {
   render() {
     return (
       <form encType="multipart/form-data" className="inmate-form-container">
-        <span className="close-button" onClick={this.props.toggleInmateForm}>&#9747;</span>
+        <span className="close-button" onClick={() => this.props.toggleInmateForm(null)}>&#9747;</span>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -176,7 +175,8 @@ class InmateForm extends React.Component {
 const mapStateToProps = state => {
   return {
     inmates: state.inmates.inmates,
-    inmateToBeEdited: state.inmates.inmateToBeEdited
+    idToEdit: state.forms.idToEdit,
+    inmateToEdit: state.forms.idToEdit ?  state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : {}
   };
 };
 

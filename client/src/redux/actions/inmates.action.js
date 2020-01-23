@@ -116,12 +116,6 @@ export const editInmate = (id, updatedInmate) => dispatch => {
   })
 }
 
-export const TOGGLE_IS_INMATE_EDITING = "TOGGLE_IS_INMATE_EDITING"
 
-export const toggleIsInmateEditing = () => {
-  return { 
-    type: TOGGLE_IS_INMATE_EDITING
-  }
-}
 
 

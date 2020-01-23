@@ -10,6 +10,7 @@ const initialState = {
   prisonFormIsHidden: true,
   deleteModalIsHidden: true,
   deleteInmateModalIsHidden: true,
+  idToEdit: null,
   idToDelete: null
 };
 
@@ -18,7 +19,8 @@ const formsReducer = (state = initialState, action) => {
     case TOGGLE_INMATE_FORM:
       return {
         ...state,
-        inmateFormIsHidden: !state.inmateFormIsHidden
+        inmateFormIsHidden: !state.inmateFormIsHidden,
+        idToEdit: action.id
       };
     case TOGGLE_PRISON_FORM:
       return {

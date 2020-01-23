@@ -5,9 +5,11 @@ import moment from "moment";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import {
   deleteInmate,
-  toggleIsInmateEditing
 } from "../../redux/actions/inmates.action";
-import { toggleInmateForm, toggleDeleteInmateModal } from "../../redux/actions/forms.action";
+import {
+  toggleInmateForm,
+  toggleDeleteInmateModal
+} from "../../redux/actions/forms.action";
 
 import "./inmateBox.styles.scss";
 
@@ -16,7 +18,6 @@ const InmateBox = ({
   prisonId,
   deleteInmate,
   toggleInmateForm,
-  toggleIsInmateEditing,
   toggleDeleteInmateModal,
   isAdmin,
   ...props
@@ -24,13 +25,6 @@ const InmateBox = ({
   const routeToSingleInmateProfilePage = (e, inmateId) => {
     e.preventDefault();
     props.history.push(`/prisons/${prisonId}/inmates/${inmateId}`);
-  };
-
-  const routeToUpdateInmateandToggleInmateForm = (e, inmateId) => {
-    e.preventDefault();
-    toggleInmateForm();
-    toggleIsInmateEditing();
-    // props.history.push(`/admin/${prisonId}/updateInmate/${inmateId}`);
   };
 
   return (
@@ -55,7 +49,7 @@ const InmateBox = ({
             .utc()
             .format("MMM Do YYYY")}
         </span>
-          <span className="inmate-box-row-info">{inmate.inmate_info}</span>
+        <span className="inmate-box-row-info">{inmate.inmate_info}</span>
       </div>
       {isAdmin ? (
         <div className="inmate-button-container">
@@ -64,13 +58,11 @@ const InmateBox = ({
             text="Delete"
             handleClick={() => toggleDeleteInmateModal(inmate.id)}
             className="purple-text-btn"
-          /> 
+          />
           <CustomButton
             type="button"
             text="Edit"
-            handleClick={e =>
-              routeToUpdateInmateandToggleInmateForm(e, inmate.id)
-            }
+            handleClick={() => toggleInmateForm(inmate.id)}
             className="small-round-cyan"
           />
         </div>
@@ -88,6 +80,5 @@ const InmateBox = ({
 export default connect(null, {
   deleteInmate,
   toggleInmateForm,
-  toggleIsInmateEditing,
   toggleDeleteInmateModal
 })(InmateBox);
