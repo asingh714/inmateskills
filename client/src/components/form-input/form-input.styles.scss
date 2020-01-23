@@ -43,7 +43,16 @@
   color: $purple-three;
   font-size: 1.6rem;
   font-weight: 600;
+}
 
+.small-input {
+  width: 31%;
+  padding: 1.6rem 2.4rem;
+  border: 1px solid $neutral-eight;
+  border-radius: 10px;
+  color: $purple-three;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 ::placeholder {

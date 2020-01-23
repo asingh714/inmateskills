@@ -12,4 +12,45 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .prison-form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $neutral-ten;
+    width: 48rem;
+    padding: 5.6rem 5rem;
+    border-radius: 1rem;
+  }
+
+  .small-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.4rem;
+  }
+
+  .file-label {
+    margin-bottom: 2rem;
+  }
+
+  .file-input {
+    color: $purple-three;
+    font-size: 1.6rem;
+    margin-right: 1rem;
+  }
+
+  .prison_info_textarea {
+    max-width: 100%;
+    padding: 1.6rem 2rem;
+    border: 1px solid $neutral-eight;
+    border-radius: 10px;
+    margin-bottom: 2.4rem;
+    color: $purple-three;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .dual-btn-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
