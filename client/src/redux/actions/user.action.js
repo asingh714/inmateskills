@@ -93,3 +93,18 @@ export const fetchSingleAdminPrison = id => dispatch => {
       dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_FAILURE });
     });
 };
+
+
+export const PRISON_LOGOUT_START = "PRISON_LOGOUT_START";
+export const PRISON_LOGOUT_SUCCESS = "PRISON_LOGOUT_SUCCESS";
+
+export const logoutUser = () => dispatch => {
+  dispatch({ type: PRISON_LOGOUT_START })
+
+  let token = localStorage.getItem("token")
+
+  if(token) {
+    localStorage.removeItem('token');
+    dispatch({ type: PRISON_LOGOUT_SUCCESS })
+  }
+}

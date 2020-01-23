@@ -13,12 +13,14 @@ import {
   DELETE_PRISON_FAILURE,
   SINGLE_ADMIN_PRISON_FETCH_START,
   SINGLE_ADMIN_PRISON_FETCH_SUCCESS,
-  SINGLE_ADMIN_PRISON_FETCH_FAILURE
+  SINGLE_ADMIN_PRISON_FETCH_FAILURE,
+  PRISON_LOGOUT_START,
+  PRISON_LOGOUT_SUCCESS
 } from "../actions/user.action";
 
 const initialState = {
   isLoggingIn: false,
-  isLoggedIn: false,
+  isLoggedIn: false || localStorage.getItem("token") ? true : false,
   loggingError: "",
   loggedInUser: {},
   prisonUpdated: false,
@@ -105,13 +107,24 @@ const userReducer = (state = initialState, action) => {
         isLoggedIn: true,
         isFetchingSingleAdminPrison: false,
         singleAdminPrison: action.payload
-      }
+      };
     case SINGLE_ADMIN_PRISON_FETCH_FAILURE:
       return {
         ...state,
+        isLoggedIn: false,
         isFetchingSingleAdminPrison: false,
         singleAdminPrison: {}
-      }
+      };
+    case PRISON_LOGOUT_START:
+      return {
+        ...state,
+        isLoggedIn: true
+      };
+    case PRISON_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: false
+      };
     default:
       return state;
   }

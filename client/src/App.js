@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-
+import { connect } from "react-redux";
 
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
@@ -15,7 +15,7 @@ import Admin from "./pages/admin/admin.page";
 
 import "./App.css";
 
-function App() {
+function App({isLoggedIn}) {
   return (
     <div className="page-container">
       <Header />
@@ -34,7 +34,7 @@ function App() {
             path="/prisons/:prisonId/inmates/:inmateId"
             component={SingleSelectedInmateProfile}
           />
-          {localStorage.getItem("token") ? 
+          {isLoggedIn ? 
           <Route exact path="/admin/:prisonId" component={Admin} />
         : <h1>You must login to see this page.</h1> }
           {/* <Route
@@ -48,10 +48,10 @@ function App() {
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     isLoggedIn: state.user.isLoggedIn
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.user.isLoggedIn
+  };
+};
 
-export default App
+export default connect(mapStateToProps, {})(App)
