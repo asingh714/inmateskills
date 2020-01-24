@@ -13,11 +13,11 @@ class Prisons extends Component {
 
   render() {
     return (
-      <>
+      <div className="prisons-container">
         {this.props.isFetchingPrisons ? (
           <Loader type="Oval" color="#4c63b6" height={80} width={80} className="circle-loader" />
         ) : (
-          <div className="prisons-container">
+          <div className="prison-box-container">
             {this.props.prisons.map(prison => {
               return (
                 <PrisonBox prison={prison} key={prison.id} {...this.props} />
@@ -25,7 +25,7 @@ class Prisons extends Component {
             })}
           </div>
         )}
-      </>
+      </div>
     );
   }
 }
