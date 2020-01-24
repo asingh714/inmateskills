@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 25rem;
   border-radius: 1rem;
-  box-shadow: 0 .8rem 1.3rem rgba(black, 0.15);
+  box-shadow: 0 0.8rem 1.3rem rgba(black, 0.15);
   transition: all 0.3s;
 
   .inmate-box-row-image {
@@ -52,22 +52,19 @@
     }
   }
 
-  .inmate-button-container {   
+  .inmate-button-container {
     background-color: $neutral-ten;
     display: flex;
     justify-content: space-evenly;
     padding: 1.6rem 0;
-    margin-top: auto
+    margin-top: auto;
   }
-
-
 }
 
 .inmate-row {
   display: flex;
   align-items: center;
-  // padding: 1rem 0;
-  width: 80rem;
+  width: 75%;
   margin: 0 auto;
   margin-bottom: 4rem;
   cursor: pointer;
@@ -75,6 +72,18 @@
   transition: all 0.3s;
   border-radius: 1rem;
 
+  @media only screen and (max-width: $bp-super-large) {
+    width: 90%;
+  }
+
+  @media only screen and (max-width: $bp-XXL-large) {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: $bp-XL-large) {
+    width: 75%;
+    flex-direction: column;
+  }
 
   &:hover {
     box-shadow: 0 1rem 2rem rgba(black, 0.2);
@@ -85,29 +94,71 @@
     width: 10rem;
     border-radius: 50%;
     margin-left: 3.2rem;
+
+    @media only screen and (max-width: $bp-largest) {
+      margin-left: 1rem;
+    }
+
+    @media only screen and (max-width: $bp-XL-large) {
+      margin-top: 4rem;
+    }
   }
 
   .text-container {
     display: flex;
     align-items: baseline;
+    justify-content: space-evenly;
+    padding: 0 1rem 0 2.4rem;
+    width: 100%;
 
+    @media only screen and (max-width: $bp-largest) {
+      padding: 0 1rem;
+    }
+
+    @media only screen and (max-width: $bp-XL-large) {
+      margin: 4rem 0;
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+    }
 
     .inmate-box-row-name {
       font-size: 2rem;
       font-weight: 600;
       color: $neutral-two;
-      margin-left: 4.8rem;
+
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 1.2rem;
+      }
     }
 
     .inmate-box-row-availability {
-      // font-size: 1.8rem;
+      font-size: 1.8rem;
       color: $neutral-one;
-      margin-left: 4rem;
+
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 1.2rem;
+      }
     }
 
     .inmate-box-row-date {
       color: $neutral-six;
-      margin-left: 4rem;
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    .inmate-box-row-info {
+      max-width: 20rem;
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 1.2rem;
+        max-width: 80%;
+        text-align: center;
+      }
     }
   }
 
@@ -119,6 +170,12 @@
     justify-content: center;
     align-items: center;
     background-color: $neutral-ten;
+
+    @media only screen and (max-width: $bp-XL-large) {
+      height: 0;
+      width: 100%;
+      padding: 4rem 0;
+    }
 
     .inmate-box-row-btn {
       color: $purple-three;

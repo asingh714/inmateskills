@@ -1,5 +1,12 @@
+@import "../../global-styles//variables.scss";
+
 .inmates-row-container {
   margin: 8rem 0;
+
+  @media only screen and (max-width: $bp-XXL-large) {
+    padding: 0 1rem;
+  }
+
 }
 
 .admin-inmate-container { 
