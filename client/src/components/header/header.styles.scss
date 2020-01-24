@@ -11,7 +11,7 @@
     max-width: 120rem;
     margin: 0 auto;
 
-    @media only screen and (max-width: $bp-large) {
+    @media only screen and (max-width: $bp-largest) {
       width: 100%;
       flex-direction: column;
       padding: 4rem 0;
@@ -20,7 +20,7 @@
     .logo {
       width: 15rem;
 
-      @media only screen and (max-width: $bp-large) {
+      @media only screen and (max-width: $bp-largest) {
         margin-bottom: 2rem;
       }
     }

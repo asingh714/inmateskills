@@ -176,7 +176,7 @@ const mapStateToProps = state => {
   return {
     inmates: state.inmates.inmates,
     idToEdit: state.forms.idToEdit,
-    inmateToEdit: state.forms.idToEdit ?  state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : {}
+    inmateToEdit: state.forms.idToEdit ?  state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : null
   };
 };
 

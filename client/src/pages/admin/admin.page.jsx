@@ -42,7 +42,7 @@ class Admin extends React.Component {
           <CustomButton
             type="button"
             text="Add Inmate"
-            handleClick={this.props.toggleInmateForm}
+            handleClick={() => this.props.toggleInmateForm(null)}
             className="small-round-button purple"
           />
         </div>

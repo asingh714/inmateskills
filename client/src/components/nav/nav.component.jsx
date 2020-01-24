@@ -19,7 +19,7 @@ const Nav = ({ className, isLoggedIn, logoutUser, adminID }) => {
         <NavLink to="/login">Login</NavLink>
       )}
       {isLoggedIn ? (
-        <NavLink exact to="/" onClick={logoutUser}>
+        <NavLink to="/login" onClick={logoutUser}>
           Sign Out
         </NavLink>
       ) : null}

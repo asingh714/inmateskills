@@ -9,6 +9,14 @@
 
     &:not(:last-child) {
       margin-right: 7.2rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin-right: 5.6rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        margin-right: 4rem;
+      }
     }
 
     &:hover {
@@ -25,7 +33,6 @@
 .footer-nav {
   font-size: 1.6rem;
   font-weight: 300;
-
 
   a {
     color: $white;
