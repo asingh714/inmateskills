@@ -57,32 +57,65 @@
   }
 }
 
+// -------------- Below here
 .how-it-works-section {
   margin: 10rem auto;
-  width: 80%;
+  padding: 0 4rem;
 
-  .how-it-works-header {
-    text-align: center;
-    font-size: 4rem;
-    font-weight: 300;
-    color: $neutral-two;
-    margin-bottom: 8rem;
+  @media only screen and (max-width: $bp-XL-large) {
+    padding: 0 2rem;
   }
 
-  .image-list-container {
+  @media only screen and (max-width: $bp-X-medium) {
+    margin: 8rem auto;
+  }
+
+  
+
+  .image-list-container,
+  .image-list-flipped {
     display: flex;
+    @media only screen and (max-width: $bp-X-medium) {
+      align-items: center;
+    }
 
     .how-it-works-image {
-      width: 50%;
+      max-width: 50%;
+      height: auto;
       border-radius: 5px;
+
+      @media only screen and (max-width: $bp-large) {
+        max-width: 55%;
+      }
+
+      @media only screen and (max-width: $bp-X-medium) {
+        width: 100%;
+        margin-bottom: 2.4rem;
+      }
     }
 
     .list-container-right {
       margin-left: 4.8rem;
+
+      @media only screen and (max-width: $bp-XL-large) {
+        margin-left: 2.4rem;
+      }
+
+      @media only screen and (max-width: $bp-X-medium) {
+        margin-left: 0rem;
+      }
     }
 
     .list-container-left {
       margin-right: 4.8rem;
+
+      @media only screen and (max-width: $bp-XL-large) {
+        margin-right: 2.4rem;
+      }
+
+      @media only screen and (max-width: $bp-X-medium) {
+        margin-right: 0rem;
+      }
     }
 
     .list-container-right,
@@ -113,15 +146,19 @@
   }
 }
 
-.why-it-matters-section {
-  .why-it-matters-header {
-    text-align: center;
-    font-size: 4rem;
-    font-weight: 300;
-    color: $neutral-two;
-    margin-bottom: 6rem;
+.image-list-container {
+  @media only screen and (max-width: $bp-X-medium) {
+    flex-direction: column;
   }
+}
 
+.image-list-flipped {
+  @media only screen and (max-width: $bp-X-medium) {
+    flex-direction: column-reverse;
+  }
+}
+
+.why-it-matters-section {
   .why-it-matters-text {
     max-width: 80rem;
     text-align: center;
@@ -129,11 +166,24 @@
     line-height: 2;
     color: $neutral-two;
     letter-spacing: 1px;
+
+    @media only screen and (max-width: $bp-XXL-large) {
+      padding: 0 2rem;
+    }
+    
   }
 }
 
 .testimonial-section {
   margin-top: 10rem;
+
+  @media only screen and (max-width: $bp-X-medium) {
+    margin-top: 8rem;
+  }
+
+  @media only screen and (max-width: $bp-medium-small) {
+    padding: 4rem 2rem;
+  }
 
   background-image: linear-gradient(
       to right bottom,
@@ -162,10 +212,23 @@
     letter-spacing: 1px;
     text-align: center;
     font-weight: 300;
+
+    @media only screen and (max-width: $bp-medium-small) {
+      font-size: 1.6rem;
+      max-width: 90%;
+    }
   }
 
   .testimonial-author {
     font-weight: 500;
     margin-top: 2.4rem;
   }
+}
+
+.section-header {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 300;
+  color: $neutral-two;
+  margin-bottom: 6rem;
 }

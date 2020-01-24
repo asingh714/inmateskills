@@ -21,7 +21,7 @@ export default class Homepage extends Component {
         </main>
 
         <div className="how-it-works-section">
-          <h2 className="how-it-works-header">How it works for employees</h2>
+          <h2 className="section-header">How it works for employees</h2>
           <div className="image-list-container">
             <img
               src={Employee_Img}
@@ -47,8 +47,8 @@ export default class Homepage extends Component {
         </div>
 
         <div className="how-it-works-section">
-          <h2 className="how-it-works-header">How it works for employees</h2>
-          <div className="image-list-container">
+          <h2 className="section-header">How it works for employees</h2>
+          <div className="image-list-flipped">
             <div className="list-container-left">
               <ol>
                 <li>Sign up for Prisoner Skills and set up your account</li>
@@ -65,7 +65,7 @@ export default class Homepage extends Component {
         </div>
 
         <div className="why-it-matters-section">
-          <h2 className="why-it-matters-header">Why this matters</h2>
+          <h2 className="section-header">Why this matters</h2>
           <p className="why-it-matters-text">
             Approximately 2.2 million men and women are incarcerated. Of these
             2.2 million inmates, 95% will eventually be released. Every year
