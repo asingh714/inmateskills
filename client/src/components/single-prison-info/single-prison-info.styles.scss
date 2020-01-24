@@ -12,14 +12,29 @@
 }
 
 .prison-banner {
-  height: 36rem;
+  height: 40rem;
   width: 100%;
+
+  @media only screen and (max-width: $bp-large) {
+    height: 36rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    height: auto;
+  }
+
+  
 }
 
 .prison-info-container {
   margin: 7.2rem 0 8rem 4rem;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: $bp-X-medium) {
+    margin: 4rem 0;
+    padding: 0 2rem;
+  }
 
   .prison-name {
     color: $neutral-two;

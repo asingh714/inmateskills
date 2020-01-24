@@ -6,6 +6,11 @@
   color: $neutral-four;
   font-weight: 400;
 
+  @media only screen and (max-width: $bp-X-medium) {
+    margin: 0;
+    padding: 0 2rem;
+  }
+
   #inmate-number {
     font-weight: 600;
   }

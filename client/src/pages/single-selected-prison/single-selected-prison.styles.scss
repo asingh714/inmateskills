@@ -7,4 +7,9 @@
   margin: 10rem auto;
   border-radius: 5px;
   overflow: hidden;
+
+
+  @media only screen and (max-width: $bp-XL-large) {
+    margin: 4rem auto;
+  }
 }

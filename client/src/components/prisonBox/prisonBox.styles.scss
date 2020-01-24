@@ -3,6 +3,7 @@
 .prison-box {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 24rem;
   border-radius: 1rem;
   overflow: hidden;
