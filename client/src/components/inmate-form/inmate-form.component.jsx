@@ -10,11 +10,11 @@ import "./inmate-form.styles.scss";
 
 class InmateForm extends React.Component {
   state = {
-    name: "" || this.props.inmateToEdit.name,
-    availability: false || this.props.inmateToEdit.availability ,
-    inmate_image: null || this.props.inmateToEdit.inmate_image,
-    release_date: "" || this.props.inmateToEdit.release_date,
-    inmate_info: "" || this.props.inmateToEdit.inmate_info
+    name: this.props.inmateToEdit ? this.props.inmateToEdit.name : "",
+    availability: this.props.inmateToEdit ? this.props.inmateToEdit.availability : false,
+    inmate_image: this.props.inmateToEdit ? this.props.inmateToEdit.inmate_image : null,
+    release_date: this.props.inmateToEdit ? this.props.inmateToEdit.release_date : "",
+    inmate_info: this.props.inmateToEdit ? this.props.inmateToEdit.inmate_info : ""
   };
 
   // componentDidMount() {
@@ -176,7 +176,7 @@ const mapStateToProps = state => {
   return {
     inmates: state.inmates.inmates,
     idToEdit: state.forms.idToEdit,
-    inmateToEdit: state.forms.idToEdit ?  state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : null
+    inmateToEdit: state.forms.idToEdit ? state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : null
   };
 };
 
