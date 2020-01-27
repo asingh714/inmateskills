@@ -32,3 +32,12 @@ export const toggleDeleteInmateModal = (id) => {
     id: id
   }
 }
+
+
+export const TOGGLE_CONTACT_MODAL = "TOGGLE_CONTACT_MODAL"
+
+export const toggleContactModal = () => {
+  return {
+    type: TOGGLE_CONTACT_MODAL
+  }
+}

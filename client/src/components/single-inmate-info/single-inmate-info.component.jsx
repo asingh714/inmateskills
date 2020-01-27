@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import moment from "moment";
 import Loader from "react-loader-spinner";
 
-import { singleFetchInmate } from "../../redux/actions/inmates.action";
 import CustomButton from "../custom-button/custom-button.component";
 import ContactModal from "../contact-modal/contact-modal.component";
 
+import { singleFetchInmate } from "../../redux/actions/inmates.action";
+import { toggleContactModal } from "../../redux/actions/forms.action"
 import "./single-inmate-info.styles.scss";
 
 class SingleInmateInfo extends React.Component {
@@ -71,15 +72,15 @@ class SingleInmateInfo extends React.Component {
               <CustomButton
                 text="Contact"
                 className="med-cyan-button"
-                handleClick={this.toggleContact}
+                handleClick={this.props.toggleContactModal}
               />
             </div>
-            <div className={`${this.state.isVisible ? "bg-container" : ""}`}>
-              {this.state.isVisible && (
+            <div className={`${!this.props.contactModalIsHidden ? "bg-container" : ""}`}>
+              {!this.props.contactModalIsHidden && (
                 <ContactModal
                   prisonId={prisonId}
                   inmateId={inmateId}
-                  toggleContact={this.toggleContact}
+                  // toggleContact={this.toggleContact}
                 />
               )}
             </div>
@@ -93,10 +94,11 @@ class SingleInmateInfo extends React.Component {
 const mapStateToProps = state => {
   return {
     inmate: state.inmates.inmate,
-    isFetchingSingleInmate: state.inmates.isFetchingSingleInmate
+    isFetchingSingleInmate: state.inmates.isFetchingSingleInmate,
+    contactModalIsHidden: state.forms.contactModalIsHidden
   };
 };
 
-export default connect(mapStateToProps, { singleFetchInmate })(
+export default connect(mapStateToProps, { singleFetchInmate, toggleContactModal })(
   SingleInmateInfo
 );

@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+
 import { contactInmate } from "../../redux/actions/inmates.action";
+import { toggleContactModal } from "../../redux/actions/forms.action"
+
 
 import "./contact-modal.styles.scss";
 
@@ -27,12 +30,13 @@ class ContactModal extends React.Component {
     const inmateId = this.props.inmateId;
 
     this.props.contactInmate(prisonId, inmateId, this.state);
+    this.props.toggleContactModal();
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="contact-form">
-        <span className="close-button" onClick={this.props.toggleContact}>&#9747;</span>
+        <span className="close-button" onClick={this.props.toggleContactModal}>&#9747;</span>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -71,4 +75,4 @@ class ContactModal extends React.Component {
   }
 }
 
-export default connect(null, { contactInmate })(ContactModal);
+export default connect(null, { contactInmate, toggleContactModal })(ContactModal);
