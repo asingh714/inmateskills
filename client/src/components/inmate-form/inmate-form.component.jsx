@@ -17,38 +17,6 @@ class InmateForm extends React.Component {
     inmate_info: this.props.inmateToEdit ? this.props.inmateToEdit.inmate_info : ""
   };
 
-  // componentDidMount() {
-  //   const inmateId = this.props.match.params.inmateId;
-  //   const inmate = this.props.inmates.find(
-  //     inmate => `${inmate.id}` === inmateId
-  //   );
-
-  //   if (this.props.inmateToBeEdited) {
-  //     this.setState({
-  //       name: inmate.name,
-  //       availability: inmate.availability,
-  //       inmate_image: inmate.inmate_image,
-  //       release_date: inmate.release_date,
-  //       inmate_info: inmate.inmate_info
-  //     });
-  //   }
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const inmateId = this.props.match.params.inmateId;
-  //   const inmate = this.props.inmates.find(inmate => `${inmate.id}` === inmateId);
-
-  //   if (this.props.inmateToBeEdited && prevProps.inmateToBeEdited !== this.props.inmateToBeEdited) {
-  //     this.setState({
-  //       name: inmate.name,
-  //       availability: inmate.availability,
-  //       inmate_image: inmate.inmate_image,
-  //       release_date: inmate.release_date,
-  //       inmate_info: inmate.inmate_info
-  //     });
-  //   }
-  // }
-
   resetForm = event => {
     event.preventDefault();
     this.setState({
