@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -82,7 +83,17 @@ class SignupForm extends React.Component {
           value={this.state.confirmPassword}
           className="login-signup-input"
         />
-        <CustomButton text="Submit" className="wide-purple-submit" />
+        {this.props.isLoggingIn ? (
+          <Loader
+            type="ThreeDots"
+            color="#4c63b6"
+            height={80}
+            width={80}
+            className="loading-dots"
+          />
+        ) : (
+          <CustomButton text="Submit" className="wide-purple-submit" />
+        )}
         <span onClick={this.routeToLoginPage} className="login-signup-route">
           Already have an account?
         </span>
@@ -93,7 +104,8 @@ class SignupForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    id: state.user.id
+    id: state.user.loggedInUser.id,
+    isLoggingIn: state.user.isLoggingIn
   };
 };
 

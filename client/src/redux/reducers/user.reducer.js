@@ -92,7 +92,8 @@ const userReducer = (state = initialState, action) => {
     case DELETE_PRISON_SUCCESS:
       return {
         ...state,
-        prisonDeleted: true
+        prisonDeleted: true,
+        isLoggedIn: false
       };
     case SINGLE_ADMIN_PRISON_FETCH_START:
       return {
