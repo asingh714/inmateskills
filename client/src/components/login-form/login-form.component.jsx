@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import validate from "../../utils/validateForm";
 import { loginPrison } from "../../redux/actions/user.action";
 
 import "./login-signup-form.styles.scss";
@@ -12,7 +13,8 @@ import "./login-signup-form.styles.scss";
 class LoginForm extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    errors: {}
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -30,7 +32,16 @@ class LoginForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.loginPrison(this.state);
+    const { username, password } = this.state;
+    const errors = validate(username, password);
+    if (Object.keys(errors).length === 0) {
+      this.props.loginPrison(this.state);
+    } else {
+      this.setState({
+        ...this.state,
+        errors: errors
+      });
+    }
   };
 
   routeToSignUpPage = () => {
@@ -48,6 +59,9 @@ class LoginForm extends React.Component {
           value={this.state.username}
           className="login-signup-input"
         />
+        {this.state.errors.username && (
+          <span className="form-error">{this.state.errors.username}</span>
+        )}
         <FormInput
           name="password"
           onChange={this.handleInputChange}
@@ -56,8 +70,17 @@ class LoginForm extends React.Component {
           value={this.state.password}
           className="login-signup-input"
         />
+        {this.state.errors.password && (
+          <span className="form-error">{this.state.errors.password}</span>
+        )}
         {this.props.isLoggingIn ? (
-          <Loader type="ThreeDots" color="#4c63b6" height={80} width={80} className="loading-dots"/>
+          <Loader
+            type="ThreeDots"
+            color="#4c63b6"
+            height={80}
+            width={80}
+            className="loading-dots"
+          />
         ) : (
           <CustomButton text="Submit" className="wide-purple-submit" />
         )}
@@ -72,7 +95,7 @@ class LoginForm extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.user.loggedInUser.id,
-    isLoggingIn: state.user.isLoggingIn,
+    isLoggingIn: state.user.isLoggingIn
   };
 };
 
