@@ -4,7 +4,7 @@ import {
   PRISONS_FETCH_FAILURE,
   SINGLE_PRISON_FETCH_START,
   SINGLE_PRISON_FETCH_SUCCESS,
-  SINGLE_PRISON_FETCH_FAILURE,
+  SINGLE_PRISON_FETCH_FAILURE
 } from "../actions/prisons.actions";
 
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
   prison: {},
   isFetchingSinglePrison: false,
   fetchingSinglePrisonError: "",
+  prisonStates: []
 };
 
 const prisonsReducers = (state = initialState, action) => {
@@ -30,7 +31,10 @@ const prisonsReducers = (state = initialState, action) => {
         ...state,
         prisons: action.payload,
         isFetchingPrisons: false,
-        fetchingPrisonsError: ""
+        fetchingPrisonsError: "",
+        prisonStates: action.payload
+          .map(prison => prison.state)
+          .filter((value, index, self) => self.indexOf(value) === index)
       };
     case PRISONS_FETCH_FAILURE:
       return {
