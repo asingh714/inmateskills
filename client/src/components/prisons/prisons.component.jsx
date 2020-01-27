@@ -15,11 +15,17 @@ class Prisons extends Component {
     this.props.fetchPrisons();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.prisonStates !== this.props.prisonStates) {
+      this.setState({ value: this.props.prisonStates[0] });
+    }
+  }
+
   handleChange = event => {
-    if (event.target.value !== "Unknown") {
-      this.setState({ value: event.target.value });
-    } else {
+    if (event.target.value === "Unknown") {
       this.setState({ value: null });
+    } else {
+      this.setState({ value: event.target.value });
     }
   };
 
@@ -36,10 +42,14 @@ class Prisons extends Component {
           />
         ) : (
           <div className="prison-box-dropdown-container">
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              className="prison-dropdown"
+            >
               {this.props.prisonStates.map(state => {
                 return (
-                  <option value={state}>
+                  <option value={state} className="prison-options">
                     {state === null ? "Unknown" : state}
                   </option>
                 );
