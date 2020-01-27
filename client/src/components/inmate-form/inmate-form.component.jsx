@@ -75,10 +75,8 @@ class InmateForm extends React.Component {
     formData.append("name", this.state.name);
     formData.append("availability", this.state.availability);
     formData.append("inmate_image", this.state.inmate_image);
-    // formData.append("resume", this.state.resume);
     formData.append("release_date", this.state.release_date);
     formData.append("inmate_info", this.state.inmate_info);
-    const inmateId = this.props.match.params.inmateId;
 
     if (this.props.idToEdit) {
       this.props.editInmate(this.props.idToEdit, formData);

@@ -23,8 +23,15 @@ class SinglePrisonInfo extends React.Component {
     }
   }
 
+
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.prisonUpdated !== prevProps.prisonUpdated) {
+    console.log("PrevProps:", prevProps.prisonUpdated)
+    console.log("Props:", this.props.prisonUpdated)
+
+    if (
+      this.props.prisonUpdated !== prevProps.prisonUpdated ||
+      this.props.singleAdminPrison !== prevProps.singleAdminPrison
+    ) {
       const id = this.props.match.params.prisonId;
       this.props.fetchSinglePrison(id);
     }

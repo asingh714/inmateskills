@@ -73,7 +73,6 @@ const userReducer = (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: true,
         prisonUpdated: true,
-        loggedInUser: action.payload,
         updateError: ""
       };
     case UPDATE_PRISON_FAILURE:

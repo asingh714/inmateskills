@@ -30,7 +30,7 @@ const Nav = ({ className, isLoggedIn, logoutUser, adminID }) => {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    adminID: state.user.loggedInUser.id
+    adminID: state.user.singleAdminPrison.id
   };
 };
 

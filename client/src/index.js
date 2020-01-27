@@ -4,14 +4,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
 
 import reducer from "./redux/root-reducer";
 
 import App from "./App";
 import "./global-styles/index.scss";
 
-const middlewares = [thunk, logger];
+const middlewares = [thunk];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
