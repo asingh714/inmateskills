@@ -11,10 +11,18 @@ import "./inmate-form.styles.scss";
 class InmateForm extends React.Component {
   state = {
     name: this.props.inmateToEdit ? this.props.inmateToEdit.name : "",
-    availability: this.props.inmateToEdit ? this.props.inmateToEdit.availability : false,
-    inmate_image: this.props.inmateToEdit ? this.props.inmateToEdit.inmate_image : null,
-    release_date: this.props.inmateToEdit ? this.props.inmateToEdit.release_date : "",
-    inmate_info: this.props.inmateToEdit ? this.props.inmateToEdit.inmate_info : ""
+    availability: this.props.inmateToEdit
+      ? this.props.inmateToEdit.availability
+      : false,
+    inmate_image: this.props.inmateToEdit
+      ? this.props.inmateToEdit.inmate_image
+      : null,
+    release_date: this.props.inmateToEdit
+      ? this.props.inmateToEdit.release_date
+      : "",
+    inmate_info: this.props.inmateToEdit
+      ? this.props.inmateToEdit.inmate_info
+      : ""
   };
 
   resetForm = event => {
@@ -48,10 +56,10 @@ class InmateForm extends React.Component {
 
     if (this.props.idToEdit) {
       this.props.editInmate(this.props.idToEdit, formData);
-      this.props.toggleInmateForm(null)
+      this.props.toggleInmateForm(null);
     } else {
       this.props.addInmate(formData);
-      this.props.toggleInmateForm(null)
+      this.props.toggleInmateForm(null);
     }
 
     this.setState({
@@ -73,7 +81,12 @@ class InmateForm extends React.Component {
   render() {
     return (
       <form encType="multipart/form-data" className="inmate-form-container">
-        <span className="close-button" onClick={() => this.props.toggleInmateForm(null)}>&#9747;</span>
+        <span
+          className="close-button"
+          onClick={() => this.props.toggleInmateForm(null)}
+        >
+          &#9747;
+        </span>
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -90,25 +103,24 @@ class InmateForm extends React.Component {
             type="checkbox"
             className="avail-checkbox"
           />
-          <span>Available for work</span>
+          <span>*Available for work</span>
         </label>
 
-        <FormInput
-          name="release_date"
-          onChange={this.handleInputChange}
-          type="date"
-          value={this.state.release_date}
-          className="date-input"
-        />
+        <label className="date-label">
+          <span className="date-text">*Release Date</span>
+          <FormInput
+            name="release_date"
+            onChange={this.handleInputChange}
+            type="date"
+            value={this.state.release_date}
+            className="date-input"
+          />
+        </label>
 
         <label className="file-label">
           <span className="file-input">Inmate Image</span>
           <input type="file" onChange={this.fileSelectedHandler} />
         </label>
-        {/* <label>
-          Resume
-          <input type="file" onChange={this.fileSelectedHandler} />
-        </label> */}
 
         <textarea
           name="inmate_info"
@@ -118,6 +130,8 @@ class InmateForm extends React.Component {
           value={this.state.inmate_info}
           className="inmate_info_textarea"
         ></textarea>
+
+        <span className="required-text">*Required</span>
 
         <div className="inmate-btn-container">
           <CustomButton
@@ -142,8 +156,14 @@ const mapStateToProps = state => {
   return {
     inmates: state.inmates.inmates,
     idToEdit: state.forms.idToEdit,
-    inmateToEdit: state.forms.idToEdit ? state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit) : null
+    inmateToEdit: state.forms.idToEdit
+      ? state.inmates.inmates.find(inmate => inmate.id === state.forms.idToEdit)
+      : null
   };
 };
 
-export default connect(mapStateToProps, { addInmate, editInmate, toggleInmateForm })(InmateForm);
+export default connect(mapStateToProps, {
+  addInmate,
+  editInmate,
+  toggleInmateForm
+})(InmateForm);
