@@ -23,11 +23,8 @@ class SinglePrisonInfo extends React.Component {
     }
   }
 
-
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.prisonUpdated !== prevProps.prisonUpdated 
-    ) {
+    if (this.props.prisonUpdated !== prevProps.prisonUpdated) {
       const id = this.props.match.params.prisonId;
       this.props.fetchSingleAdminPrison(id);
     }
@@ -84,9 +81,16 @@ class SinglePrisonInfo extends React.Component {
             <div className="prison-info-container">
               <h1 className="prison-name">{name}</h1>
               <span className="prison-address">
-                {address} {city}, {state} {zip_code}
+                {address} {city}{city ? "," : ""} {state} {zip_code}
               </span>
-              <span className="prison-info">{prison_info}</span>
+              {!prison_info ? (
+                <span className="prison-info">
+                  Please add more information about the prison via the Edit
+                  Button
+                </span>
+              ) : (
+                <span className="prison-info">{prison_info}</span>
+              )}
             </div>
           </div>
         )}
