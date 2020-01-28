@@ -39,5 +39,6 @@ exports.seed = function(knex) {
       prison_id: 2,
       prison_name: "Adirondack"
     }
+    
   ]);
 };
