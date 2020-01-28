@@ -5,6 +5,7 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { addInmate, editInmate } from "../../redux/actions/inmates.action";
 import { toggleInmateForm } from "../../redux/actions/forms.action";
+import { validateAddInmate } from "../../utils/validateForm";
 
 import "./inmate-form.styles.scss";
 
@@ -22,7 +23,8 @@ class InmateForm extends React.Component {
       : "",
     inmate_info: this.props.inmateToEdit
       ? this.props.inmateToEdit.inmate_info
-      : ""
+      : "",
+      errors: {}
   };
 
   resetForm = event => {
@@ -48,18 +50,30 @@ class InmateForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     let formData = new FormData();
-    formData.append("name", this.state.name);
-    formData.append("availability", this.state.availability);
-    formData.append("inmate_image", this.state.inmate_image);
-    formData.append("release_date", this.state.release_date);
-    formData.append("inmate_info", this.state.inmate_info);
+    const { name, availability, inmate_image, release_date, inmate_info} = this.state;
+    
+    formData.append("name", name);
+    formData.append("availability", availability);
+    formData.append("inmate_image", inmate_image);
+    formData.append("release_date", release_date);
+    formData.append("inmate_info", inmate_info);
+    
+    const errors = validateAddInmate(release_date, availability)
+    
+    if (Object.keys(errors).length === 0) {
 
-    if (this.props.idToEdit) {
-      this.props.editInmate(this.props.idToEdit, formData);
-      this.props.toggleInmateForm(null);
+      if (this.props.idToEdit) {
+        this.props.editInmate(this.props.idToEdit, formData);
+        this.props.toggleInmateForm(null);
+      } else {
+        this.props.addInmate(formData);
+        this.props.toggleInmateForm(null);
+      }
     } else {
-      this.props.addInmate(formData);
-      this.props.toggleInmateForm(null);
+      this.setState({
+        ...this.state,
+        errors: errors
+      })
     }
 
     this.setState({
@@ -106,6 +120,10 @@ class InmateForm extends React.Component {
           <span>*Available for work</span>
         </label>
 
+        {this.state.errors.availability && (
+          <span className="form-error">{this.state.errors.availability}</span>
+        )}
+
         <label className="date-label">
           <span className="date-text">*Release Date</span>
           <FormInput
@@ -116,6 +134,9 @@ class InmateForm extends React.Component {
             className="date-input"
           />
         </label>
+        {this.state.errors.date && (
+          <span className="form-error">{this.state.errors.date}</span>
+        )}
 
         <label className="file-label">
           <span className="file-input">Inmate Image</span>

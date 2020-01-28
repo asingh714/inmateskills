@@ -22,8 +22,22 @@ export const validate = (username, password, name, confirmPassword) => {
   if (!confirmPassword) {
     errors.confirmPassword = "Please provide a confirmation of your password";
   } else if (password !== confirmPassword) {
-    errors.confirmPassword =
-      "Your passwords do not match";
+    errors.confirmPassword = "Your passwords do not match";
+  }
+
+  return errors;
+};
+
+export const validateAddInmate = (date, availability) => {
+  let errors = {};
+
+  if (!date) {
+    errors.date = "Please provide a release date for this inmate";
+  }
+
+  if (!availability) {
+    errors.availability =
+      "Please provide an availability value if this inmate is available";
   }
 
   return errors;
