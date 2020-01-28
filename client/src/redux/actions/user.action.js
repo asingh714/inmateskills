@@ -35,7 +35,7 @@ export const registerPrison = credentials => dispatch => {
     dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });
   })
   .catch(error => {
-    dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.message });
+    dispatch({ type: PRISON_LOGIN_FAILURE, payload: error.response.data.error });
   });
 }
 

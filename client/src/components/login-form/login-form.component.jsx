@@ -25,7 +25,9 @@ class LoginForm extends React.Component {
     }
 
     if (this.props.loggingError !== prevProps.loggingError) {
-      this.setState({ loginError: this.props.loggingError });
+      this.setState({ 
+        ...this.state,
+        loginError: this.props.loggingError });
     }
   }
 

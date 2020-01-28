@@ -35,7 +35,7 @@
 //   return valid;
 // };
 
-export const validate = (username, password) => {
+export const validate = (username, password, name, confirmPassword) => {
   let errors = {};
 
   if (!username) {
@@ -52,7 +52,16 @@ export const validate = (username, password) => {
       "Please provide a password that is at least six characters";
   }
 
+  if (!name) {
+    errors.name = "Please provide a name for your prison";
+  }
+
+  if (!confirmPassword) {
+    errors.confirmPassword = "Please provide a confirmation of your password";
+  } else if (password !== confirmPassword) {
+    errors.confirmPassword =
+      "Your passwords do not match";
+  }
+
   return errors;
 };
-
-
