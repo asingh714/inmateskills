@@ -35,7 +35,7 @@
 //   return valid;
 // };
 
-const validate = (username, password) => {
+export const validate = (username, password) => {
   let errors = {};
 
   if (!username) {
@@ -55,4 +55,4 @@ const validate = (username, password) => {
   return errors;
 };
 
-export default validate;
+

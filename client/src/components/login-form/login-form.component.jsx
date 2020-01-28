@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import validate from "../../utils/validateForm";
+import { validate } from "../../utils/validateForm";
 import { loginPrison } from "../../redux/actions/user.action";
 
 import "./login-signup-form.styles.scss";
@@ -14,13 +14,18 @@ class LoginForm extends React.Component {
   state = {
     username: "",
     password: "",
-    errors: {}
+    errors: {},
+    loginError: ""
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.id !== prevProps.id) {
       let id = this.props.id;
       this.props.history.push(`/admin/${id}`);
+    }
+
+    if (this.props.loggingError !== prevProps.loggingError) {
+      this.setState({ loginError: this.props.loggingError });
     }
   }
 
@@ -51,6 +56,9 @@ class LoginForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="login-signup-form">
+        {this.props.loggingError && (
+          <span className="form-error">{this.props.loggingError}</span>
+        )}
         <FormInput
           name="username"
           onChange={this.handleInputChange}
@@ -84,6 +92,7 @@ class LoginForm extends React.Component {
         ) : (
           <CustomButton text="Submit" className="wide-purple-submit" />
         )}
+
         <span onClick={this.routeToSignUpPage} className="login-signup-route">
           Don't have an account?
         </span>
@@ -95,7 +104,8 @@ class LoginForm extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.user.loggedInUser.id,
-    isLoggingIn: state.user.isLoggingIn
+    isLoggingIn: state.user.isLoggingIn,
+    loggingError: state.user.loggingError
   };
 };
 
