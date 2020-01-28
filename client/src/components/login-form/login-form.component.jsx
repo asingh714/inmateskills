@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { validate } from "../../utils/validateForm";
+import { validateLogin } from "../../utils/validateForm";
 import { loginPrison } from "../../redux/actions/user.action";
 
 import "./login-signup-form.styles.scss";
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { username, password } = this.state;
-    const errors = validate(username, password);
+    const errors = validateLogin(username, password)
     if (Object.keys(errors).length === 0) {
       this.props.loginPrison(this.state);
     } else {
@@ -73,7 +73,9 @@ class LoginForm extends React.Component {
           value={this.state.username}
           className="login-signup-input"
         />
-
+        {this.state.errors.password && (
+          <span className="form-error">{this.state.errors.password}</span>
+        )}
         <FormInput
           name="password"
           onChange={this.handleInputChange}
@@ -82,9 +84,7 @@ class LoginForm extends React.Component {
           value={this.state.password}
           className="login-signup-input"
         />
-        {this.state.errors.password && (
-          <span className="form-error">{this.state.errors.password}</span>
-        )}
+
         {this.props.isLoggingIn ? (
           <Loader
             type="ThreeDots"

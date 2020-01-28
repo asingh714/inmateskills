@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { validate } from "../../utils/validateForm";
+import { validateSignUp } from "../../utils/validateForm";
 import { registerPrison } from "../../redux/actions/user.action";
 
 import "../login-form/login-signup-form.styles.scss";
@@ -42,7 +42,7 @@ class SignupForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { name, username, password, confirmPassword } = this.state;
-    const errors = validate(username, password, name, confirmPassword);
+    const errors = validateSignUp(username, password, name, confirmPassword);
     if (Object.keys(errors).length === 0) {
       this.props.registerPrison({
         name,
@@ -67,6 +67,10 @@ class SignupForm extends React.Component {
         {this.props.loggingError && (
           <span className="form-error">{this.props.loggingError}</span>
         )}
+
+        {this.state.errors.name && (
+          <span className="form-error">{this.state.errors.name}</span>
+        )}
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -75,8 +79,9 @@ class SignupForm extends React.Component {
           value={this.state.name}
           className="login-signup-input"
         />
-        {this.state.errors.name && (
-          <span className="form-error">{this.state.errors.name}</span>
+
+        {this.state.errors.username && (
+          <span className="form-error">{this.state.errors.username}</span>
         )}
         <FormInput
           name="username"
@@ -86,8 +91,8 @@ class SignupForm extends React.Component {
           value={this.state.username}
           className="login-signup-input"
         />
-        {this.state.errors.username && (
-          <span className="form-error">{this.state.errors.username}</span>
+        {this.state.errors.password && (
+          <span className="form-error">{this.state.errors.password}</span>
         )}
         <FormInput
           name="password"
@@ -97,8 +102,10 @@ class SignupForm extends React.Component {
           value={this.state.password}
           className="login-signup-input"
         />
-        {this.state.errors.password && (
-          <span className="form-error">{this.state.errors.password}</span>
+        {this.state.errors.confirmPassword && (
+          <span className="form-error">
+            {this.state.errors.confirmPassword}
+          </span>
         )}
         <FormInput
           name="confirmPassword"
@@ -108,11 +115,7 @@ class SignupForm extends React.Component {
           value={this.state.confirmPassword}
           className="login-signup-input"
         />
-        {this.state.errors.confirmPassword && (
-          <span className="form-error">
-            {this.state.errors.confirmPassword}
-          </span>
-        )}
+
         {this.props.isLoggingIn ? (
           <Loader
             type="ThreeDots"

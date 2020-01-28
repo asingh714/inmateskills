@@ -119,6 +119,10 @@ class InmateForm extends React.Component {
           />
           <span>Available for work</span>
         </label>
+
+        {this.state.errors.date && (
+          <span className="form-error">{this.state.errors.date}</span>
+        )}
         <label className="date-label">
           <span className="date-text">*Release Date</span>
           <FormInput
@@ -129,9 +133,7 @@ class InmateForm extends React.Component {
             className="date-input"
           />
         </label>
-        {this.state.errors.date && (
-          <span className="form-error">{this.state.errors.date}</span>
-        )}
+
 
         <label className="file-label">
           <span className="file-input">Inmate Image</span>

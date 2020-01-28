@@ -123,7 +123,9 @@ const userReducer = (state = initialState, action) => {
     case PRISON_LOGOUT_SUCCESS:
       return {
         ...state,
-        isLoggedIn: false
+        isLoggedIn: false,
+        singleAdminPrison: {},
+        loggedInUser: {}
       };
     default:
       return state;

@@ -1,4 +1,24 @@
-export const validate = (username, password, name, confirmPassword) => {
+export const validateLogin = (username, password) => {
+  let errors = {};
+
+  if (!username) {
+    errors.username = "Please provide a username";
+  } else if (username.length < 6) {
+    errors.username =
+      "Please provide a username that is at least six characters";
+  }
+
+  if (!password) {
+    errors.password = "Please provide a password";
+  } else if (password.length < 6) {
+    errors.password =
+      "Please provide a password that is at least six characters";
+  }
+  
+  return errors;
+};
+
+export const validateSignUp = (username, password, name, confirmPassword) => {
   let errors = {};
 
   if (!username) {

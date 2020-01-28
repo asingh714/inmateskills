@@ -9,8 +9,8 @@
   transition: all 0.3s;
 
   .inmate-box-row-image {
-    height: 10rem;
-    width: 10rem;
+    min-height: 10rem;
+    min-width: 10rem;
     border-radius: 50%;
     margin: 3rem auto 1.6rem;
   }
