@@ -28,16 +28,29 @@ export const validate = (username, password, name, confirmPassword) => {
   return errors;
 };
 
-export const validateAddInmate = (date, availability) => {
+export const validateAddInmate = date => {
   let errors = {};
 
   if (!date) {
     errors.date = "Please provide a release date for this inmate";
   }
 
-  if (!availability) {
-    errors.availability =
-      "Please provide an availability value if this inmate is available";
+  return errors;
+};
+
+export const validateContact = (name, email, phone_number) => {
+  let errors = {};
+
+  if (!name) {
+    errors.name = "Please provide a name";
+  }
+
+  if (!email) {
+    errors.email = "Please provide an email";
+  }
+
+  if (!phone_number) {
+    errors.phone_number = "Please provide a phone number";
   }
 
   return errors;

@@ -25,9 +25,10 @@ class LoginForm extends React.Component {
     }
 
     if (this.props.loggingError !== prevProps.loggingError) {
-      this.setState({ 
+      this.setState({
         ...this.state,
-        loginError: this.props.loggingError });
+        loginError: this.props.loggingError
+      });
     }
   }
 
@@ -61,6 +62,9 @@ class LoginForm extends React.Component {
         {this.props.loggingError && (
           <span className="form-error">{this.props.loggingError}</span>
         )}
+        {this.state.errors.username && (
+          <span className="form-error">{this.state.errors.username}</span>
+        )}
         <FormInput
           name="username"
           onChange={this.handleInputChange}
@@ -69,9 +73,7 @@ class LoginForm extends React.Component {
           value={this.state.username}
           className="login-signup-input"
         />
-        {this.state.errors.username && (
-          <span className="form-error">{this.state.errors.username}</span>
-        )}
+
         <FormInput
           name="password"
           onChange={this.handleInputChange}

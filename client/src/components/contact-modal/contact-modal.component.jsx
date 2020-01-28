@@ -5,17 +5,18 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
 import { contactInmate } from "../../redux/actions/inmates.action";
-import { toggleContactModal } from "../../redux/actions/forms.action"
-
+import { toggleContactModal } from "../../redux/actions/forms.action";
 
 import "./contact-modal.styles.scss";
+import { validateContact } from "../../utils/validateForm";
 
 class ContactModal extends React.Component {
   state = {
     name: "",
     email: "",
     phone_number: "",
-    job_details: ""
+    job_details: "",
+    errors: {}
   };
 
   handleInputChange = event => {
@@ -26,17 +27,32 @@ class ContactModal extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const prisonId = this.props.prisonId;
-    const inmateId = this.props.inmateId;
+    const { prisonId, inmateId } = this.props;
+    const { name, email, phone_number, job_details } = this.state;
+    const contact_info = { name, email, phone_number, job_details };
 
-    this.props.contactInmate(prisonId, inmateId, this.state);
-    this.props.toggleContactModal();
+    const errors = validateContact(name, email, phone_number);
+    if (Object.keys(errors).length === 0) {
+      this.props.contactInmate(prisonId, inmateId, contact_info);
+      this.props.toggleContactModal();
+    } else {
+      this.setState({
+        ...this.state,
+        errors
+      });
+    }
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="contact-form">
-        <span className="close-button" onClick={this.props.toggleContactModal}>&#9747;</span>
+        <span className="close-button" onClick={this.props.toggleContactModal}>
+          &#9747;
+        </span>
+
+        {this.state.errors.name && (
+          <span className="form-error">{this.state.errors.name}</span>
+        )}
         <FormInput
           name="name"
           onChange={this.handleInputChange}
@@ -45,6 +61,9 @@ class ContactModal extends React.Component {
           value={this.state.name}
           className="contact-input"
         />
+        {this.state.errors.email && (
+          <span className="form-error">{this.state.errors.email}</span>
+        )}
         <FormInput
           name="email"
           onChange={this.handleInputChange}
@@ -53,6 +72,9 @@ class ContactModal extends React.Component {
           value={this.state.email}
           className="contact-input"
         />
+        {this.state.errors.phone_number && (
+          <span className="form-error">{this.state.errors.phone_number}</span>
+        )}
         <FormInput
           name="phone_number"
           onChange={this.handleInputChange}
@@ -61,6 +83,7 @@ class ContactModal extends React.Component {
           value={this.state.phone_number}
           className="contact-input"
         />
+
         <textarea
           name="job_details"
           onChange={this.handleInputChange}
@@ -75,4 +98,6 @@ class ContactModal extends React.Component {
   }
 }
 
-export default connect(null, { contactInmate, toggleContactModal })(ContactModal);
+export default connect(null, { contactInmate, toggleContactModal })(
+  ContactModal
+);

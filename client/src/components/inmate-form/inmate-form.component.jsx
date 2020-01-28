@@ -58,7 +58,7 @@ class InmateForm extends React.Component {
     formData.append("release_date", release_date);
     formData.append("inmate_info", inmate_info);
     
-    const errors = validateAddInmate(release_date, availability)
+    const errors = validateAddInmate(release_date)
     
     if (Object.keys(errors).length === 0) {
 
@@ -117,13 +117,8 @@ class InmateForm extends React.Component {
             type="checkbox"
             className="avail-checkbox"
           />
-          <span>*Available for work</span>
+          <span>Available for work</span>
         </label>
-
-        {this.state.errors.availability && (
-          <span className="form-error">{this.state.errors.availability}</span>
-        )}
-
         <label className="date-label">
           <span className="date-text">*Release Date</span>
           <FormInput

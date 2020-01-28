@@ -7,14 +7,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   border-radius: 5px;
 
   .close-button {
     margin: 0 0 1.6rem auto;
     color: $purple-six;
-    font-size: 3.2rem;
+    font-size: 2.4rem;
     cursor: pointer;
     padding: 1rem;
+  }
+
+  .form-error {
+    color: red;
+    margin-bottom: 1.6rem;
   }
 } 
