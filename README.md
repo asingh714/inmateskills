@@ -4,16 +4,16 @@
 </p>
 
 
-
-
 ## Table of Contents 
 * [General Info](#general-info)
 	* [Built With](#built-with)
 * [Getting Started](#setup)
+	* [Installation](#installation)
+	* [Login Details ](#login-details )
 * [Design](#design)
-	- [Logos](#logos)
-	- [Palletes](#palletes)
-	- [Pages](#pages)
+	* [Logos](#logos)
+	* [Palletes](#palletes)
+	* [Pages](#pages)
 
 
 
@@ -22,7 +22,7 @@
 - [URL](https://inmate-skills.netlify.com/) 
 
 
-### Built With
+#### Built With
 - [ReactJS](https://reactjs.org/) - Class Components
 - [Redux] (https://redux.js.org/)
 - [Node] (https://nodejs.org/en/)
@@ -33,21 +33,31 @@
 
 
 
+## Getting Started
+#### Installation 
+- Server-Side 
+	- Go to root project folder and run ```npm install ```
+
+
+
+- Client-Side
+	- Go to client folder and run ```npm install ```
+
+#### Login Details 
+- To view a pre-existing prison page
+	- **Username:** 
+	- **Password:**
 
 
 
 
-## General Info
-
-## Login Details 
-- put them here! 
-
-
-
-
-
-### Logos
+## Design
+#### Logos
 - Logos designed for project
 
 ![Main Logo](design/main_logo.png)
  
+ 
+#### Palletes
+
+#### Pages 
