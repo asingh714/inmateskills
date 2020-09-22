@@ -39,9 +39,15 @@ export default class Homepage extends Component {
                   candidate and prison.
                 </li>
               </ol>
-              <span className="browse-prisons-link" onClick={() => this.props.history.push("/prisons")}>
-                Browse Prisons<span id="triangle">&#9658;</span>
-              </span>
+              <div className="browse-prison-btn-container">
+                <span
+                  className="browse-prisons-link"
+                  onClick={() => this.props.history.push("/prisons")}
+                >
+                  Browse Prisons
+                </span>
+                <span id="triangle">&#9658;</span>
+              </div>
             </div>
           </div>
         </div>
@@ -58,7 +64,11 @@ export default class Homepage extends Component {
                   they are interested in
                 </li>
               </ol>
-              <CustomButton text="Get Started" className="med-cyan-button" handleClick={() => this.props.history.push("/login")}/>
+              <CustomButton
+                text="Get Started"
+                className="med-cyan-button"
+                handleClick={() => this.props.history.push("/login")}
+              />
             </div>
             <img src={Prison_Img} alt="Prison" className="how-it-works-image" />
           </div>

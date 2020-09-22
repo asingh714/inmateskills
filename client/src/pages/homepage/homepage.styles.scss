@@ -70,8 +70,6 @@
     margin: 8rem auto;
   }
 
-  
-
   .image-list-container,
   .image-list-flipped {
     display: flex;
@@ -137,9 +135,19 @@
         text-transform: uppercase;
         font-weight: 600;
         cursor: pointer;
+        transition: all 0.3s;
 
-        #triangle {
-          margin-left: 0.5rem;
+        
+        &:hover {
+          margin-right: 1rem;
+        }
+      }
+      #triangle {
+        margin-left: 0.5rem;
+        transition: all 0.3s;
+
+        &:hover {
+          margin-left: 1rem;
         }
       }
     }
@@ -170,7 +178,6 @@
     @media only screen and (max-width: $bp-XXL-large) {
       padding: 0 2rem;
     }
-    
   }
 }
 
