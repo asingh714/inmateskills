@@ -10,7 +10,7 @@
 * [Getting Started](#setup)
 	* [Installation](#installation)
 	* [Login Details ](#login-details )
-* [Contact] (#contact)
+* [Contact](#contact)
 * [Design](#design)
 	* [Logos](#logos)
 	* [Palette](#palette)
@@ -26,12 +26,12 @@
 
 #### Built With
 - [ReactJS](https://reactjs.org/) (Class Components)
-- [Redux] (https://redux.js.org/)
-- [Node] (https://nodejs.org/en/)
-- [Express] (https://expressjs.com/)
-- [SQLite] (https://sqlite.org/index.html)
-- [Sass] (https://sass-lang.com/)
-- [Sketch] (https://www.sketch.com/)
+- [Redux](https://redux.js.org/)
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [SQLite](https://sqlite.org/index.html)
+- [Sass](https://sass-lang.com/)
+- [Sketch](https://www.sketch.com/)
 
 
 
@@ -58,7 +58,7 @@
 - Aman Singh - <a href="mailto:amsingh714@gmail.com?subject=Hi,%20I'm%20interested%20in%20connecting.">
 amsingh714@gmail.com </a>
 - [Portfolio](https://amans.dev/) 
-- [Resume] (https://docs.google.com/document/d/1cI3QMFkF_pVxEqDeQqFSTy0TB9Y-vu3_BrD4N1qXLeU/edit)
+- [Resume](https://docs.google.com/document/d/1cI3QMFkF_pVxEqDeQqFSTy0TB9Y-vu3_BrD4N1qXLeU/edit)
 
 
 ## Design
