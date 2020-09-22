@@ -65,7 +65,9 @@ amsingh714@gmail.com </a>
 #### Logos
 - Logos designed for project
 	- Main Logo
+	
 		![Main Logo](design/main_logo.png)
+		
 	- Secondary Logo
 		
 		![Briefcase Logo](design/briefcase_logo.png)
@@ -76,5 +78,5 @@ amsingh714@gmail.com </a>
 ![Color Palette](design/color_palette.png)
 
 - Typography
-![Typography](design/Typography.png)
+![Typography](design/typography.png)
 
