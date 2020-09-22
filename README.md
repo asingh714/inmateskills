@@ -10,20 +10,22 @@
 * [Getting Started](#setup)
 	* [Installation](#installation)
 	* [Login Details ](#login-details )
+* [Contact] (#contact)
 * [Design](#design)
 	* [Logos](#logos)
-	* [Palletes](#palletes)
+	* [Palette](#palette)
 	* [Pages](#pages)
 
 
 
 ## General Info 
-- A platform to find jobs for soon to be released inmates. 
+- A platform where prisons can put profiles of soon to be released inmates so that they can find employment. 
+- All design materials can be found in **sketch file** in design folder.
 - [URL](https://inmate-skills.netlify.com/) 
 
 
 #### Built With
-- [ReactJS](https://reactjs.org/) - Class Components
+- [ReactJS](https://reactjs.org/) (Class Components)
 - [Redux] (https://redux.js.org/)
 - [Node] (https://nodejs.org/en/)
 - [Express] (https://expressjs.com/)
@@ -43,21 +45,36 @@
 - Client-Side
 	- Go to client folder and run ```npm install ```
 
+- Design File
+	- Open with Sketch
+
 #### Login Details 
 - To view a pre-existing prison page
 	- **Username:** 
 	- **Password:**
 
 
+## Contact
+- Aman Singh - <a href="mailto:amsingh714@gmail.com?subject=Hi,%20I'm%20interested%20in%20connecting.">
+amsingh714@gmail.com </a>
+- [Portfolio](https://amans.dev/) 
+- [Resume] (https://docs.google.com/document/d/1cI3QMFkF_pVxEqDeQqFSTy0TB9Y-vu3_BrD4N1qXLeU/edit)
 
 
 ## Design
 #### Logos
 - Logos designed for project
+	- Main Logo
+		![Main Logo](design/main_logo.png)
+	- Secondary Logo
+		
+		![Briefcase Logo](design/briefcase_logo.png)
 
-![Main Logo](design/main_logo.png)
  
- 
-#### Palletes
+#### Palettes
+- Color Palette
+![Color Palette](design/color_palette.png)
 
-#### Pages 
+- Typography
+![Typography](design/Typography.png)
+
