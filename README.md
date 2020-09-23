@@ -50,8 +50,8 @@
 
 #### Login Details 
 - To view a pre-existing prison page
-	- **Username:** 
-	- **Password:**
+	- **Username:** woodbourne
+	- **Password:** password
 
 
 ## Contact
