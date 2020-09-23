@@ -58,7 +58,7 @@
 - Aman Singh - <a href="mailto:amsingh714@gmail.com?subject=Hi,%20I'm%20interested%20in%20connecting.">
 amsingh714@gmail.com </a>
 - [Portfolio](https://amans.dev/) 
-- [Resume](https://docs.google.com/document/d/1cI3QMFkF_pVxEqDeQqFSTy0TB9Y-vu3_BrD4N1qXLeU/edit)
+- [Resume](https://docs.google.com/document/d/1LFUL_PpCIM1FlJozvYB-Rsg2UiqX1yCt6TIX9xwyX4Q/edit?usp=sharing)
 
 
 ## Design
