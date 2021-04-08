@@ -4,7 +4,8 @@ const localPg = {
   host: "localhost",
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
-  password: process.env.DB_PASS
+  password: process.env.DB_PASS,
+  ssl: true
 };
 const productionDbConnection = process.env.DATABASE_URL || localPg;
 
@@ -30,11 +31,20 @@ module.exports = {
   production: {
     client: "pg",
     connection: productionDbConnection,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
     migrations: {
       directory: "./data/migrations"
     },
     seeds: {
       directory: "./data/seeds"
-    }
+    },
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: true,
+    },
   }
 };
