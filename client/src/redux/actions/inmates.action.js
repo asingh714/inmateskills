@@ -10,7 +10,7 @@ export const fetchInmates = prisonId => dispatch => {
   dispatch({ type: INMATE_FETCH_START });
 
   axios
-    .get(`https://inmate--skills.herokuapp.com/api/prisons/${prisonId}/inmates`)
+    .get(`https://inmate-api.herokuapp.com/api/prisons/${prisonId}/inmates`)
     .then(res => {
       dispatch({ type: INMATE_FETCH_SUCCESS, payload: res.data });
     })
@@ -28,7 +28,7 @@ export const singleFetchInmate = (prisonId, inmateId) => dispatch => {
 
   axios
     .get(
-      `https://inmate--skills.herokuapp.com/api/prisons/${prisonId}/inmates/${inmateId}`
+      `https://inmate-api.herokuapp.com/api/prisons/${prisonId}/inmates/${inmateId}`
     )
     .then(response => {
       dispatch({ type: SINGLE_INMATE_FETCH_SUCCESS, payload: response.data });
@@ -47,7 +47,7 @@ export const contactInmate = (prisonId, inmateId, contactInfo) => dispatch => {
 
   axios
     .post(
-      `https://inmate--skills.herokuapp.com/api/prisons/${prisonId}/inmate/${inmateId}/contact`,
+      `https://inmate-api.herokuapp.com/api/prisons/${prisonId}/inmate/${inmateId}/contact`,
       contactInfo
     )
     .then(response => {
