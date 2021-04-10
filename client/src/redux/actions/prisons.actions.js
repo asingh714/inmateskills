@@ -8,7 +8,7 @@ export const fetchPrisons = () => dispatch => {
   dispatch({ type: PRISONS_FETCH_START });
 
   axios
-    .get("https://inmate-skills.herokuapp.com/api/prisons")
+    .get("https://inmate--skills.herokuapp.com/api/prisons")
     .then(res => {
       dispatch({ type: PRISONS_FETCH_SUCCESS, payload: res.data });
     })
@@ -25,7 +25,7 @@ export const fetchSinglePrison = id => dispatch => {
   dispatch({ type: SINGLE_PRISON_FETCH_START });
 
   axios
-    .get(`https://inmate-skills.herokuapp.com/api/prisons/${id}`)
+    .get(`https://inmate--skills.herokuapp.com/api/prisons/${id}`)
     .then(res => {
       dispatch({ type: SINGLE_PRISON_FETCH_SUCCESS, payload: res.data });
     })

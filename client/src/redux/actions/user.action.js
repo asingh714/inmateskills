@@ -86,7 +86,7 @@ export const fetchSingleAdminPrison = id => dispatch => {
   dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_START });
 
   axiosWithAuth()
-    .get(`https://inmate-skills.herokuapp.com/api/prisons/admin/${id}`)
+    .get(`https://inmate--skills.herokuapp.com/api/prisons/admin/${id}`)
     .then(res => {
       dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_SUCCESS, payload: res.data });
     })
