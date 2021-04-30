@@ -8,7 +8,7 @@ import { fetchPrisons } from "../../redux/actions/prisons.actions";
 
 class Prisons extends Component {
   state = {
-    value: this.props.prisonStates[0]
+    value: this.props.prisonStates[0],
   };
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class Prisons extends Component {
     }
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     if (event.target.value === "Unknown") {
       this.setState({ value: null });
     } else {
@@ -47,16 +47,16 @@ class Prisons extends Component {
               onChange={this.handleChange}
               className="prison-dropdown"
             >
-              {this.props.prisonStates.map(state => {
+              {this.props.prisonStates.map((state) => {
                 return (
-                  <option value={state} className="prison-options">
+                  <option value={state} key={state} className="prison-options">
                     {state === null ? "Unknown" : state}
                   </option>
                 );
               })}
             </select>
             <div className="prison-box-container">
-              {this.props.prisons.map(prison => {
+              {this.props.prisons.map((prison) => {
                 if (prison.state === this.state.value) {
                   return (
                     <PrisonBox
@@ -75,11 +75,11 @@ class Prisons extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     prisons: state.prisons.prisons,
     isFetchingPrisons: state.prisons.isFetchingPrisons,
-    prisonStates: state.prisons.prisonStates
+    prisonStates: state.prisons.prisonStates,
   };
 };
 

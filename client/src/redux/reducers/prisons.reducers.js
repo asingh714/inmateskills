@@ -4,7 +4,7 @@ import {
   PRISONS_FETCH_FAILURE,
   SINGLE_PRISON_FETCH_START,
   SINGLE_PRISON_FETCH_SUCCESS,
-  SINGLE_PRISON_FETCH_FAILURE
+  SINGLE_PRISON_FETCH_FAILURE,
 } from "../actions/prisons.actions";
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
   prison: {},
   isFetchingSinglePrison: false,
   fetchingSinglePrisonError: "",
-  prisonStates: []
+  prisonStates: [],
 };
 
 const prisonsReducers = (state = initialState, action) => {
@@ -24,7 +24,7 @@ const prisonsReducers = (state = initialState, action) => {
         ...state,
         prisons: [],
         isFetchingPrisons: true,
-        fetchingPrisonsError: ""
+        fetchingPrisonsError: "",
       };
     case PRISONS_FETCH_SUCCESS:
       return {
@@ -33,36 +33,36 @@ const prisonsReducers = (state = initialState, action) => {
         isFetchingPrisons: false,
         fetchingPrisonsError: "",
         prisonStates: action.payload
-          .map(prison => prison.state)
-          .filter((value, index, self) => self.indexOf(value) === index)
+          .map((prison) => prison.state)
+          .filter((value, index, self) => self.indexOf(value) === index),
       };
     case PRISONS_FETCH_FAILURE:
       return {
         ...state,
         prisons: [],
         isFetchingPrisons: false,
-        fetchingPrisonsError: action.payload
+        fetchingPrisonsError: action.payload,
       };
     case SINGLE_PRISON_FETCH_START:
       return {
         ...state,
         prison: {},
         isFetchingSinglePrison: true,
-        fetchingSinglePrisonError: ""
+        fetchingSinglePrisonError: "",
       };
     case SINGLE_PRISON_FETCH_SUCCESS:
       return {
         ...state,
         prison: action.payload,
         isFetchingSinglePrison: false,
-        fetchingSinglePrisonError: ""
+        fetchingSinglePrisonError: "",
       };
     case SINGLE_PRISON_FETCH_FAILURE:
       return {
         ...state,
         prison: {},
         isFetchingSinglePrison: false,
-        fetchingSinglePrisonError: action.payload
+        fetchingSinglePrisonError: action.payload,
       };
     default:
       return state;
