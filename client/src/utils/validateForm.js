@@ -14,7 +14,7 @@ export const validateLogin = (username, password) => {
     errors.password =
       "Please provide a password that is at least six characters";
   }
-  
+
   return errors;
 };
 
@@ -48,7 +48,7 @@ export const validateSignUp = (username, password, name, confirmPassword) => {
   return errors;
 };
 
-export const validateAddInmate = date => {
+export const validateAddInmate = (date) => {
   let errors = {};
 
   if (!date) {

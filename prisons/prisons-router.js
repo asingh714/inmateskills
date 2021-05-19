@@ -16,15 +16,15 @@ router.post("/register", (req, res) => {
 
   if (!name) {
     res.status(400).json({
-      error: "Please provide a name for your prison."
+      error: "Please provide a name for your prison.",
     });
   } else if (!username || username.length < 6) {
     res.status(400).json({
-      error: "Please provide a username that is at least six characters."
+      error: "Please provide a username that is at least six characters.",
     });
   } else if (!password || password.length < 6) {
     res.status(400).json({
-      error: "Please provide a password that is at least six characters."
+      error: "Please provide a password that is at least six characters.",
     });
   } else {
     const hash = bcrypt.hashSync(password, 14);
@@ -32,34 +32,34 @@ router.post("/register", (req, res) => {
     db("prisons")
       .insert(prison)
       .returning("id")
-      .then(ids => {
+      .then((ids) => {
         const id = ids[0];
         db("prisons")
           .where({ id })
           .first()
-          .then(prison => {
+          .then((prison) => {
             const token = tokenService.generateToken(prison);
             res.status(201).json({
               id: prison.id,
               username: prison.username,
               name: prison.name,
-              token
+              token,
             });
           })
-          .catch(error => {
+          .catch((error) => {
             res.status(500).json({
-              error: "There was an error while retrieving the prison data"
+              error: "There was an error while retrieving the prison data",
             });
           });
       })
-      .catch(error => {
+      .catch((error) => {
         if (db("prisons").where({ username })) {
           res.status(400).json({
-            error: "This username already exists"
+            error: "This username already exists",
           });
         } else if (db("prisons").where({ name })) {
           res.status(400).json({
-            error: "This prison name already exists"
+            error: "This prison name already exists",
           });
         }
       });
@@ -71,25 +71,28 @@ router.post("/login", (req, res) => {
 
   if (!username) {
     res.status(400).json({
-      error: "Please provide a username"
+      error: "Please provide a username",
     });
   } else if (!password) {
     res.status(400).json({
-      error: "Please provide a password"
+      error: "Please provide a password",
     });
   } else {
+    const x = db("prisons").returning("id").where({ username }).first();
+    console.log("x", x);
     db("prisons")
       .returning("id")
       .where({ username })
       .first()
-      .then(prison => {
+      .then((prison) => {
+        console.log("prison", prison);
         if (!prison) {
           res.status(401).json({
-            error: "This username does not exist"
+            error: "This username does not exist",
           });
         } else if (prison && !bcrypt.compareSync(password, prison.password)) {
           res.status(401).json({
-            error: "The password is incorrect"
+            error: "The password is incorrect",
           });
         } else {
           const token = tokenService.generateToken(prison);
@@ -97,13 +100,13 @@ router.post("/login", (req, res) => {
             id: prison.id,
             username: prison.username,
             name: prison.username,
-            token
+            token,
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         res.status(500).json({
-          error: "There was an error while logging in."
+          error: "There was an error while logging in.",
         });
       });
   }
@@ -115,7 +118,7 @@ router.get("/", async (req, res) => {
     if (!prisons) {
       res.status(404).json({ error: "There are no prisons." });
     } else {
-      let prisonsWOPasswords = prisons.map(prison => {
+      let prisonsWOPasswords = prisons.map((prison) => {
         let {
           id,
           name,
@@ -125,7 +128,7 @@ router.get("/", async (req, res) => {
           state,
           zip_code,
           prison_info,
-          prison_image
+          prison_image,
         } = prison;
         return {
           id,
@@ -136,14 +139,14 @@ router.get("/", async (req, res) => {
           state,
           zip_code,
           prison_info,
-          prison_image
+          prison_image,
         };
       });
       res.status(200).json(prisonsWOPasswords);
     }
   } catch (error) {
     res.status(500).json({
-      error: "There was an error while retrieving prisons."
+      error: "There was an error while retrieving prisons.",
     });
   }
 });
@@ -154,7 +157,7 @@ router.get("/:id", (req, res) => {
   db("prisons")
     .where({ id })
     .first()
-    .then(prison => {
+    .then((prison) => {
       if (prison) {
         let {
           id,
@@ -165,7 +168,7 @@ router.get("/:id", (req, res) => {
           state,
           zip_code,
           prison_info,
-          prison_image
+          prison_image,
         } = prison;
         res.status(200).json({
           id,
@@ -176,17 +179,17 @@ router.get("/:id", (req, res) => {
           state,
           zip_code,
           prison_info,
-          prison_image
+          prison_image,
         });
       } else {
         res.status(404).json({
-          error: "You cannot access the prison with this specific id"
+          error: "You cannot access the prison with this specific id",
         });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({
-        error: "The prison with the specified ID could not be retrieved"
+        error: "The prison with the specified ID could not be retrieved",
       });
     });
 });
@@ -199,32 +202,32 @@ router.put("/:id", restricted, parser.single("prison_image"), (req, res) => {
     db("prisons")
       .where({ id })
       .update({ ...changes, prison_image: req.file.url })
-      .then(count => {
+      .then((count) => {
         if (count > 0) {
           res.status(200).json(count);
         } else {
           res.status(404).json({
-            error: "You cannot access the prison with this specific id."
+            error: "You cannot access the prison with this specific id.",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         res.status(500).json({ error: "The prison could not be modified." });
       });
   } else {
     db("prisons")
       .where({ id })
       .update({ ...changes })
-      .then(count => {
+      .then((count) => {
         if (count > 0) {
           res.status(200).json(count);
         } else {
           res.status(404).json({
-            error: "You cannot access the prison with this specific id."
+            error: "You cannot access the prison with this specific id.",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         res.status(500).json({ error: "The prison could not be modified." });
       });
   }
@@ -236,23 +239,23 @@ router.delete("/:id", restricted, (req, res) => {
   db("prisons")
     .where({ id })
     .first()
-    .then(prison => {
+    .then((prison) => {
       if (prison) {
         db("prisons")
           .where({ id })
           .del()
-          .then(count => {
+          .then((count) => {
             res.status(200).json(count);
           });
       } else {
         res.status(404).json({
-          error: "You cannot access the prison with this specific id."
+          error: "You cannot access the prison with this specific id.",
         });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({
-        error: "The prison profile could not be removed."
+        error: "The prison profile could not be removed.",
       });
     });
 });
@@ -265,7 +268,7 @@ router.get("/admin/:id", restricted, (req, res) => {
     db("prisons")
       .where({ id })
       .first()
-      .then(prison => {
+      .then((prison) => {
         if (prison) {
           let {
             id,
@@ -276,7 +279,7 @@ router.get("/admin/:id", restricted, (req, res) => {
             state,
             zip_code,
             prison_info,
-            prison_image
+            prison_image,
           } = prison;
           res.status(200).json({
             id,
@@ -287,24 +290,22 @@ router.get("/admin/:id", restricted, (req, res) => {
             state,
             zip_code,
             prison_info,
-            prison_image
+            prison_image,
           });
         } else {
           res.status(404).json({
-            error:
-              "You cannot access the prison with this specific id"
+            error: "You cannot access the prison with this specific id",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         res.status(500).json({
-          error: "The prison with the specified ID could not be retrieved"
+          error: "The prison with the specified ID could not be retrieved",
         });
       });
   } else {
     res.status(404).json({
-      error:
-        "You do not have administrative access to access this prison."
+      error: "You do not have administrative access to access this prison.",
     });
   }
 });
