@@ -3,8 +3,8 @@ import axios from "axios";
 export const PRISONS_FETCH_START = "PRISONS_FETCH_START";
 export const PRISONS_FETCH_SUCCESS = "PRISONS_FETCH_SUCCESS";
 export const PRISONS_FETCH_FAILURE = "PRISONS_FETCH_FAILURE";
-const Link = "http://localhost:5000";
-// const Link = "https://inmate-api.herokuapp.com";
+// const Link = "http://localhost:5000";
+const Link = "https://inmate-api.herokuapp.com";
 export const fetchPrisons = () => (dispatch) => {
   dispatch({ type: PRISONS_FETCH_START });
 
