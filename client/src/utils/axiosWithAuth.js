@@ -1,6 +1,7 @@
 import axios from "axios";
 // const Link = "http://localhost:5000";
-const Link = "https://inmate-api.herokuapp.com";
+const Link = "https://inmate-skills-api.herokuapp.com";
+
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
 

@@ -6,7 +6,9 @@ export const INMATE_FETCH_START = "INMATE_FETCH_START";
 export const INMATE_FETCH_SUCCESS = "INMATE_FETCH_SUCCESS";
 export const INMATE_FETCH_FAILURE = "INMATE_FETCH_FAILURE";
 // const Link = "http://localhost:5000";
-const Link = "https://inmate-api.herokuapp.com";
+const Link = "https://inmate-skills-api.herokuapp.com";
+
+
 export const fetchInmates = (prisonId) => (dispatch) => {
   dispatch({ type: INMATE_FETCH_START });
 

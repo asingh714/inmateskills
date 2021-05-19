@@ -5,7 +5,7 @@ export const PRISON_LOGIN_START = "PRISON_LOGIN_START";
 export const PRISON_LOGIN_SUCCESS = "PRISON_LOGIN_SUCCESS";
 export const PRISON_LOGIN_FAILURE = "PRISON_LOGIN_FAILURE";
 // const Link = "http://localhost:5000";
-// const Link = "https://inmate-api.herokuapp.com";
+// const Link = "https://inmate-skills-api.herokuapp.com";
 
 export const loginPrison = (credentials) => (dispatch) => {
   dispatch({ type: PRISON_LOGIN_START });
@@ -17,7 +17,7 @@ export const loginPrison = (credentials) => (dispatch) => {
       dispatch({ type: PRISON_LOGIN_SUCCESS, payload: res.data });
     })
     .catch((error) => {
-      // console.log(error.response.data.error)
+      console.log(error.response.data.error);
       dispatch({
         type: PRISON_LOGIN_FAILURE,
         payload: error.response.data.error,
