@@ -78,14 +78,11 @@ router.post("/login", (req, res) => {
       error: "Please provide a password",
     });
   } else {
-    const x = db("prisons").returning("id").where({ username }).first();
-    console.log("x", x);
     db("prisons")
       .returning("id")
       .where({ username })
       .first()
       .then((prison) => {
-        console.log("prison", prison);
         if (!prison) {
           res.status(401).json({
             error: "This username does not exist",
