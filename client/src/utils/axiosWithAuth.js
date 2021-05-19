@@ -1,12 +1,13 @@
 import axios from "axios";
-
+const Link = "http://localhost:5000";
+// const Link = "https://inmate-api.herokuapp.com";
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
-    baseURL: "https://inmate-api.herokuapp.com/api/prisons",
+    baseURL: `${Link}/api/prisons`,
     headers: {
-      Authorization: token
-    }
-  })
-}
+      Authorization: token,
+    },
+  });
+};

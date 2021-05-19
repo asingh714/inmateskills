@@ -3,12 +3,13 @@ import axios from "axios";
 export const PRISONS_FETCH_START = "PRISONS_FETCH_START";
 export const PRISONS_FETCH_SUCCESS = "PRISONS_FETCH_SUCCESS";
 export const PRISONS_FETCH_FAILURE = "PRISONS_FETCH_FAILURE";
-
+const Link = "http://localhost:5000";
+// const Link = "https://inmate-api.herokuapp.com";
 export const fetchPrisons = () => (dispatch) => {
   dispatch({ type: PRISONS_FETCH_START });
 
   axios
-    .get("https://inmate-api.herokuapp.com/api/prisons")
+    .get(`${Link}/api/prisons`)
     .then((res) => {
       dispatch({ type: PRISONS_FETCH_SUCCESS, payload: res.data });
     })
@@ -25,7 +26,7 @@ export const fetchSinglePrison = (id) => (dispatch) => {
   dispatch({ type: SINGLE_PRISON_FETCH_START });
 
   axios
-    .get(`https://inmate-api.herokuapp.com/api/prisons/${id}`)
+    .get(`${Link}/api/prisons/${id}`)
     .then((res) => {
       dispatch({ type: SINGLE_PRISON_FETCH_SUCCESS, payload: res.data });
     })

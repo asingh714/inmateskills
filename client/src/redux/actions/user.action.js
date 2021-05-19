@@ -4,6 +4,8 @@ import { DELETE_INMATE_FAILURE } from "./inmates.action";
 export const PRISON_LOGIN_START = "PRISON_LOGIN_START";
 export const PRISON_LOGIN_SUCCESS = "PRISON_LOGIN_SUCCESS";
 export const PRISON_LOGIN_FAILURE = "PRISON_LOGIN_FAILURE";
+// const Link = "http://localhost:5000";
+// const Link = "https://inmate-api.herokuapp.com";
 
 export const loginPrison = (credentials) => (dispatch) => {
   dispatch({ type: PRISON_LOGIN_START });
@@ -93,7 +95,8 @@ export const fetchSingleAdminPrison = (id) => (dispatch) => {
   dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_START });
 
   axiosWithAuth()
-    .get(`https://inmate-api.herokuapp.com/api/prisons/admin/${id}`)
+    // .get(`${Link}/api/prisons/admin/${id}`)
+    .get(`/admin/${id}`)
     .then((res) => {
       dispatch({ type: SINGLE_ADMIN_PRISON_FETCH_SUCCESS, payload: res.data });
     })
